@@ -1,0 +1,10 @@
+=== Changelog
+
+Latest version (1.5.1-SNAPSHOT) was upgraded to 1.6 with the following changes
+
+==== 1.6
+
+* replaced log4j with logback
+* use purge_seq as string in DbInfo (as required from CouchdB 2.3.1)
+* update jackson to 2.9.9
+* replaced findbugs with spotbugs

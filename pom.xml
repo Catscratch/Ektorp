@@ -61,6 +61,9 @@
         <httpclient.version>4.3</httpclient.version>
         <aspectj.version>1.6.9</aspectj.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+
+        <spotbugs.skip>false</spotbugs.skip>
+        <spotbugs.includeTests>true</spotbugs.includeTests>
     </properties>
 
     <dependencyManagement>
@@ -218,6 +221,12 @@
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
+
+                <configuration>
+                    <skip>${spotbugs.skip}</skip>
+                    <fork>true</fork>
+                    <includeTests>${spotbugs.includeTests}</includeTests>
+                </configuration>
                 <executions>
                     <execution>
                         <phase>verify</phase>
@@ -289,48 +298,6 @@
             </build>
         </profile>
 
-        <profile>
-            <id>maven-2</id>
-            <activation>
-                <file>
-                    <!-- basedir expression is only recognized by Maven 3.x (see MNG-2363) -->
-                    <missing>${basedir}</missing>
-                </file>
-            </activation>
-            <properties>
-                <sonarVersion>1.0</sonarVersion>
-            </properties>
-        </profile>
-        <profile>
-            <id>maven-3</id>
-            <activation>
-                <file>
-                    <!-- basedir expression is only recognized by Maven 3.x (see MNG-2363) -->
-                    <exists>${basedir}</exists>
-                </file>
-            </activation>
-            <properties>
-                <sonarVersion>2.1</sonarVersion>
-            </properties>
-        </profile>
-        <profile>
-            <id>jdk16</id>
-            <activation>
-                <jdk>1.6</jdk>
-            </activation>
-            <properties>
-                <findbugs.plugin.version>2.5.3</findbugs.plugin.version>
-            </properties>
-        </profile>
-        <profile>
-            <id>jdk7</id>
-            <activation>
-                <jdk>1.7</jdk>
-            </activation>
-            <properties>
-                <findbugs.plugin.version>2.5.3</findbugs.plugin.version>
-            </properties>
-        </profile>
         <profile>
             <id>jdk8</id>
             <activation>
