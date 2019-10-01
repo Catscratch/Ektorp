@@ -28,7 +28,7 @@ public class BackReferencedBeanDeserializer extends StdDeserializer<Object>
 	private final CouchDbConnector couchDbConnector;
 	private final BeanDeserializer delegate;
 
-    @edu.umd.cs.findbugs.annotations.SuppressWarnings(value="SE_BAD_FIELD")
+    @SuppressWarnings(value="SE_BAD_FIELD")
 	private final List<ConstructibleAnnotatedCollection> backReferencedFields;
 
 	private final Class<?> clazz;

@@ -25,7 +25,7 @@ public class Attachment implements Serializable {
 	private boolean stub;
 	private int revpos;
 
-    @edu.umd.cs.findbugs.annotations.SuppressWarnings(value = "UWF_UNWRITTEN_FIELD")
+    @SuppressWarnings(value = "UWF_UNWRITTEN_FIELD")
 	private String digest;
 
 	private Map<String, Object> anonymous;
@@ -41,7 +41,7 @@ public class Attachment implements Serializable {
 	 * @param contentType
 	 * @param contentLength
 	 */
-    @edu.umd.cs.findbugs.annotations.SuppressWarnings(value = "DM_DEFAULT_ENCODING")
+    @SuppressWarnings(value = "DM_DEFAULT_ENCODING")
 	public Attachment(String id, String data, String contentType) {
 		Assert.hasText(id, "attachmentId must have a value");
 		Assert.hasText(contentType, "contentType must have a value");

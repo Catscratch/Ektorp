@@ -33,7 +33,7 @@ public class DbInfo implements Serializable {
 	@JsonProperty("purge_seq")
 	int purgeSeq;
 	@JsonProperty("update_seq")
-	@edu.umd.cs.findbugs.annotations.SuppressWarnings(value="SE_BAD_FIELD")
+	@SuppressWarnings(value="SE_BAD_FIELD")
 	JsonNode updateSeq;
 	/**
 	 * Used to future proof this class, if new fields are added by CouchDb they will be found here.

@@ -46,7 +46,7 @@ public class IdleConnectionMonitor {
             thisFuture = future;
         }
 
-        @edu.umd.cs.findbugs.annotations.SuppressWarnings(value="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")
+        @SuppressWarnings(value="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")
         public void run() {
             if (cm.get() != null) {
                 cm.get().closeExpiredConnections();

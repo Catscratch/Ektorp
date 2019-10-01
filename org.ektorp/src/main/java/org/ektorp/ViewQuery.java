@@ -731,7 +731,7 @@ public class ViewQuery {
 		return query;
 	}
 
-    @edu.umd.cs.findbugs.annotations.SuppressWarnings({"SA_FIELD_SELF_ASSIGNMENT", "CN_IMPLEMENTS_CLONE_BUT_NOT_CLONEABLE"})
+    @SuppressWarnings({"SA_FIELD_SELF_ASSIGNMENT", "CN_IMPLEMENTS_CLONE_BUT_NOT_CLONEABLE"})
 	public ViewQuery clone() {
 		ViewQuery copy = new ViewQuery(mapper);
 		copy.cacheOk = cacheOk;
@@ -964,7 +964,7 @@ public class ViewQuery {
             return Collections.unmodifiableList(keys);
 		}
 		
-        @edu.umd.cs.findbugs.annotations.SuppressWarnings(value="CN_IMPLEMENTS_CLONE_BUT_NOT_CLONEABLE")
+        @SuppressWarnings(value="CN_IMPLEMENTS_CLONE_BUT_NOT_CLONEABLE")
 		public Keys clone() {
 			return new Keys(keys);
 		}
