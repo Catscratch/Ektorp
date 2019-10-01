@@ -295,13 +295,13 @@ public class SimpleViewGeneratorTest {
 		
 		private Set<String> domainNames;
 
-        @edu.umd.cs.findbugs.annotations.SuppressWarnings(value = "UWF_UNWRITTEN_FIELD")
+        @SuppressWarnings(value = "UWF_UNWRITTEN_FIELD")
         private String name;
 
-        @edu.umd.cs.findbugs.annotations.SuppressWarnings(value = "UWF_UNWRITTEN_FIELD")
+        @SuppressWarnings(value = "UWF_UNWRITTEN_FIELD")
         private String lastName;
 
-        @edu.umd.cs.findbugs.annotations.SuppressWarnings(value = "UWF_UNWRITTEN_FIELD")
+        @SuppressWarnings(value = "UWF_UNWRITTEN_FIELD")
         private String accountId;
 
         private String parentId;
@@ -428,7 +428,7 @@ public class SimpleViewGeneratorTest {
 	
 	public static class DiscriminatingChild implements Serializable {
 
-        @edu.umd.cs.findbugs.annotations.SuppressWarnings(value = "UWF_UNWRITTEN_FIELD")
+        @SuppressWarnings(value = "UWF_UNWRITTEN_FIELD")
         private String parentId;
 		@TypeDiscriminator
 		private String otherField;

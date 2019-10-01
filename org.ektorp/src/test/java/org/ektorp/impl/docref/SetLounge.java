@@ -8,7 +8,8 @@ import org.ektorp.support.*;
 @SuppressWarnings("serial")
 public class SetLounge extends CouchDbDocument {
 
-	@DocumentReferences(fetch = FetchType.EAGER, backReference="loungeId", orderBy = "shoeSize", descendingSortOrder = false, cascade = CascadeType.ALL)
+	@DocumentReferences(fetch = FetchType.EAGER, backReference="loungeId", orderBy = "shoeSize",
+			descendingSortOrder = false, cascade = CascadeType.ALL)
 	private Set<Person> seatedPeople = new LinkedHashSet<Person>();
 	private String color;
 	

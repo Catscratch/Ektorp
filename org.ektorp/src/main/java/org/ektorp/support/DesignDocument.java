@@ -31,7 +31,7 @@ public class DesignDocument extends OpenCouchDbDocument {
     public static final String AUTO_UPDATE_VIEW_ON_CHANGE = "org.ektorp.support.AutoUpdateViewOnChange";
     public static final String UPDATE_ON_DIFF = "org.ektorp.support.UpdateDesignDocOnDiff";
 
-    @edu.umd.cs.findbugs.annotations.SuppressWarnings(value="SE_BAD_FIELD")
+    @SuppressWarnings(value="SE_BAD_FIELD")
     private Map<String, View> views;
 
     private Map<String, String> lists;

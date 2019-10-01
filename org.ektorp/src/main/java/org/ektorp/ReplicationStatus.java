@@ -30,11 +30,11 @@ public class ReplicationStatus extends Status implements Serializable {
 	String id;
 
 	@JsonProperty("source_last_seq")
-    @edu.umd.cs.findbugs.annotations.SuppressWarnings(value="SE_BAD_FIELD")
+    @SuppressWarnings(value="SE_BAD_FIELD")
 	JsonNode sourceLastSequence;
 
 	@JsonProperty("history")
-    @edu.umd.cs.findbugs.annotations.SuppressWarnings(value="SE_BAD_FIELD")
+    @SuppressWarnings(value="SE_BAD_FIELD")
 	List<History> history;
 
 	public boolean isNoChanges() {

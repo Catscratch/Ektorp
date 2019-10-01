@@ -73,7 +73,7 @@ public class ReplicatorDocument extends CouchDbDocument
     private String filter;
     private Object queryParameters;
 
-    @edu.umd.cs.findbugs.annotations.SuppressWarnings(value="SE_BAD_FIELD")
+    @SuppressWarnings(value="SE_BAD_FIELD")
     private UserContext userContext;
 
     private String replicationId;

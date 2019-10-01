@@ -4,12 +4,11 @@
 	<artifactId>org.ektorp.spring</artifactId>
 	<packaging>jar</packaging>
 	<name>Ektorp Spring</name>
-	<version>1.5.1-SNAPSHOT</version>
 	<description>Provides Spring support to Ektorp</description>
 	<parent>
 		<groupId>org.ektorp</groupId>
 		<artifactId>org.ektorp.parent</artifactId>
-		<version>1.5.1-SNAPSHOT</version>
+		<version>1.6.0-SNAPSHOT</version>
 	</parent>
 
 	<dependencies>
@@ -51,13 +50,8 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

@@ -105,7 +105,7 @@ public class ViewBasedCollection implements InvocationHandler {
 		collection.addAll(list);
 	}
 
-    @edu.umd.cs.findbugs.annotations.SuppressWarnings(value="BC_BAD_CAST_TO_ABSTRACT_COLLECTION")
+    @SuppressWarnings(value="BC_BAD_CAST_TO_ABSTRACT_COLLECTION")
 	public Object invoke(Object proxy, Method method, Object[] args)
 			throws Throwable {
 		if (method.getName().equals("set")) {
@@ -189,7 +189,7 @@ public class ViewBasedCollection implements InvocationHandler {
 		return false;
 	}
 
-    @edu.umd.cs.findbugs.annotations.SuppressWarnings(value="BC_BAD_CAST_TO_ABSTRACT_COLLECTION")
+    @SuppressWarnings(value="BC_BAD_CAST_TO_ABSTRACT_COLLECTION")
 	public class RememberRemovedListIterator implements ListIterator<Object> {
 
 		@SuppressWarnings("unchecked")
