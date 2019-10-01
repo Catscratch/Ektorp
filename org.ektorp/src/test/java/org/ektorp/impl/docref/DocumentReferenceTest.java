@@ -115,10 +115,9 @@ public class DocumentReferenceTest {
 
 	@Test
 	public void back_referenced_document_should_update_referrers_when_updated() {
-		when(
-				httpClient.post(Matchers.matches(".*all_docs.*"),
-						Matchers.any(String.class))).thenReturn(
-				ResponseOnFileStub.newInstance(200,
+		when(httpClient.post(Matchers.matches(".*all_docs.*"),
+						Matchers.any(String.class)))
+				.thenReturn(ResponseOnFileStub.newInstance(200,
 						"docref/setlounge_persons_nisse_kalle.json"));
 
 		SetLounge lounge = new SetLounge();

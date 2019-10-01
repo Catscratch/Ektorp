@@ -14,6 +14,7 @@ import org.ektorp.impl.NameConventions;
 import org.ektorp.util.Predicate;
 import org.ektorp.util.ReflectionUtils;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.introspect.Annotated;
 import com.fasterxml.jackson.databind.introspect.AnnotatedClass;
 import com.fasterxml.jackson.databind.introspect.AnnotatedField;
@@ -46,6 +47,7 @@ public class EktorpAnnotationIntrospector extends NopAnnotationIntrospector {
 		return names.contains(m.getName());
 	}
 
+	// deprecated as of Jackson 2.6 and not called at all by 2.7
 	@Override
 	public String[] findPropertiesToIgnore(Annotated ac) {
 		if(ac instanceof AnnotatedClass){
@@ -53,8 +55,8 @@ public class EktorpAnnotationIntrospector extends NopAnnotationIntrospector {
 		}
 		return super.findPropertiesToIgnore(ac);
 	}
-	
-    public String[] findPropertiesToIgnore(AnnotatedClass ac) {
+
+    private String[] findPropertiesToIgnore(AnnotatedClass ac) {
     	List<String> ignoreFields = null;
     	for (AnnotatedField f : ac.fields()) {
     		if (isIgnorableField(f)) {
@@ -66,6 +68,18 @@ public class EktorpAnnotationIntrospector extends NopAnnotationIntrospector {
     	}
         return ignoreFields != null ? ignoreFields.toArray(new String[ignoreFields.size()]) : null;
     }
+
+	@Override // since Jackson 2.9
+	public JsonIgnoreProperties.Value findPropertyIgnorals(Annotated ac) {
+		if(ac instanceof AnnotatedClass){
+			String[] ignoredFields = findPropertiesToIgnore((AnnotatedClass) ac);
+			if (ignoredFields != null) {
+				return JsonIgnoreProperties.Value.forIgnoredProperties(ignoredFields);
+			}
+		}
+
+		return super.findPropertyIgnorals(ac);
+	}
 
 	private void initIgnorableMethods(final Class<?> clazz) {
 		final Set<String> names = new HashSet<String>();
