@@ -3,6 +3,7 @@ package org.ektorp.impl;
 import java.io.*;
 import java.util.*;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.commons.io.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.ektorp.support.*;
@@ -26,7 +27,7 @@ public class StreamingJsonSerializerTest {
 		return objects;
 	}
 
-	@SuppressWarnings("serial")
+	@SuppressFBWarnings("serial")
 	public static class TestDoc extends CouchDbDocument {
 
 		String name;

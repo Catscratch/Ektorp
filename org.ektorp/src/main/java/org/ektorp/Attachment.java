@@ -1,12 +1,14 @@
 package org.ektorp;
 
 import java.io.*;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.ektorp.util.*;
 
 /**
@@ -25,7 +27,7 @@ public class Attachment implements Serializable {
 	private boolean stub;
 	private int revpos;
 
-    @SuppressWarnings(value = "UWF_UNWRITTEN_FIELD")
+    @SuppressFBWarnings(value = "UWF_UNWRITTEN_FIELD")
 	private String digest;
 
 	private Map<String, Object> anonymous;
@@ -41,7 +43,7 @@ public class Attachment implements Serializable {
 	 * @param contentType
 	 * @param contentLength
 	 */
-    @SuppressWarnings(value = "DM_DEFAULT_ENCODING")
+    @SuppressFBWarnings(value = "DM_DEFAULT_ENCODING")
 	public Attachment(String id, String data, String contentType) {
 		Assert.hasText(id, "attachmentId must have a value");
 		Assert.hasText(contentType, "contentType must have a value");
@@ -49,7 +51,7 @@ public class Attachment implements Serializable {
 		this.id = id;
 		this.contentType = contentType;
 		this.dataBase64 = data;
-		this.length = data.getBytes().length;
+		this.length = data.getBytes(Charset.forName("UTF-8")).length;
 	}
 
 	Attachment() {}
@@ -106,6 +108,7 @@ public class Attachment implements Serializable {
 		this.revpos = revpos;
 	}
 
+	@SuppressFBWarnings("UWF_UNWRITTEN_FIELD")
 	public String getDigest() {
 		return digest;
 	}

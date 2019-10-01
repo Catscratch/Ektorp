@@ -31,6 +31,7 @@
 
 package org.ektorp.android.http;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.http.conn.scheme.HostNameResolver;
 import org.apache.http.conn.scheme.LayeredSocketFactory;
 import org.apache.http.conn.scheme.SocketFactory;
@@ -130,7 +131,7 @@ import java.security.*;
  * @author Julius Davies
  */
 
-@SuppressWarnings("deprecation")
+@SuppressFBWarnings("deprecation")
 public class AndroidSSLSocketFactory implements LayeredSocketFactory, SocketFactory {
 
     public static final String TLS   = "TLS";
@@ -180,7 +181,7 @@ public class AndroidSSLSocketFactory implements LayeredSocketFactory, SocketFact
         if (keystore != null) {
             keymanagers = createKeyManagers(keystore, keystorePassword);
         }
-        @SuppressWarnings("unused")
+        @SuppressFBWarnings("unused")
 		TrustManager[] trustmanagers = null;
         if (truststore != null) {
             trustmanagers = createTrustManagers(truststore);

@@ -10,6 +10,7 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.ektorp.CouchDbConnector;
 import org.ektorp.docref.CascadeType;
 import org.ektorp.docref.DocumentReferences;
@@ -17,7 +18,7 @@ import org.ektorp.support.CouchDbDocument;
 import org.junit.Before;
 import org.junit.Test;
 
-@SuppressWarnings("serial")
+@SuppressFBWarnings("serial")
 public class EktorpJacksonModuleTest {
 
 	EktorpJacksonModule module;

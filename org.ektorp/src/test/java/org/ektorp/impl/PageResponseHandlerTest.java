@@ -3,6 +3,7 @@ package org.ektorp.impl;
 import static org.junit.Assert.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.ektorp.Page;
 import org.ektorp.PageRequest;
 import org.ektorp.support.CouchDbDocument;
@@ -46,7 +47,7 @@ public class PageResponseHandlerTest {
 		assertTrue(page.isHasPrevious());
 	}
 
-	@SuppressWarnings("serial")
+	@SuppressFBWarnings("serial")
 	public static class TestDoc extends CouchDbDocument {
 
 		private String name;

@@ -2,9 +2,10 @@ package org.ektorp.impl.docref;
 
 import java.util.*;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.ektorp.docref.*;
 
-@SuppressWarnings("serial")
+@SuppressFBWarnings("serial")
 public class LazyLounge extends BasicSofa {
 
 	@DocumentReferences(fetch = FetchType.LAZY, backReference = "loungeId")

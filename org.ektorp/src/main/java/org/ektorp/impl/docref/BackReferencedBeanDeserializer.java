@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.lang.reflect.Proxy;
 import java.util.List;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.ektorp.CouchDbConnector;
 import org.ektorp.docref.DocumentReferences;
 import org.ektorp.docref.FetchType;
@@ -28,7 +29,7 @@ public class BackReferencedBeanDeserializer extends StdDeserializer<Object>
 	private final CouchDbConnector couchDbConnector;
 	private final BeanDeserializer delegate;
 
-    @SuppressWarnings(value="SE_BAD_FIELD")
+    @SuppressFBWarnings(value="SE_BAD_FIELD")
 	private final List<ConstructibleAnnotatedCollection> backReferencedFields;
 
 	private final Class<?> clazz;

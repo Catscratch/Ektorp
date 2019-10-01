@@ -6,6 +6,7 @@ import static org.mockito.Mockito.*;
 
 import java.io.*;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.commons.io.*;
 import org.ektorp.*;
 import org.junit.*;
@@ -25,7 +26,7 @@ public class RestTemplateTest {
 		client = mock(HttpClient.class);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressFBWarnings("unchecked")
 	@Test
 	public void successful_get2_should_call_success_on_callback_interface_and_release_connection() throws Exception {
 		RestTemplate template = new RestTemplate(client);
@@ -86,7 +87,7 @@ public class RestTemplateTest {
 		verify(rsp).releaseConnection();
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressFBWarnings("unchecked")
 	@Test
 	public void exceptions_in_get2_should_be_rethrown_and_connection_released() throws Exception {
 		RestTemplate template = new RestTemplate(client);
@@ -105,7 +106,7 @@ public class RestTemplateTest {
 		verify(rsp).releaseConnection();
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressFBWarnings("unchecked")
 	@Test
 	public void failed_get_should_call_error_method_in_callback_and_relase_connection() throws Exception {
 		RestTemplate template = new RestTemplate(client);
@@ -181,7 +182,7 @@ public class RestTemplateTest {
 		verify(rsp).releaseConnection();
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressFBWarnings("unchecked")
 	@Test
 	public void put3_should_call_success_in_callback_and_release_connection() throws Exception {
 		RestTemplate template = new RestTemplate(client);
@@ -197,7 +198,7 @@ public class RestTemplateTest {
 		verify(rsp).releaseConnection();
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressFBWarnings("unchecked")
 	@Test
 	public void failed_put3_should_call_error_and_release_connection() throws Exception {
 		RestTemplate template = new RestTemplate(client);
@@ -213,7 +214,7 @@ public class RestTemplateTest {
 		verify(rsp).releaseConnection();
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressFBWarnings("unchecked")
 	@Test
 	public void exceptions_in_put3_should_be_rethrown_error_not_called_and_connection_released() throws Exception {
 		RestTemplate template = new RestTemplate(client);
@@ -249,7 +250,7 @@ public class RestTemplateTest {
 		verify(rsp).releaseConnection();
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressFBWarnings("unchecked")
 	@Test
 	public void successful_post3_should_call_success_and_release_connection() throws Exception {
 		RestTemplate template = new RestTemplate(client);
@@ -265,7 +266,7 @@ public class RestTemplateTest {
 		verify(rsp).releaseConnection();
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressFBWarnings("unchecked")
 	@Test
 	public void failed_post3_should_call_error_and_release_connection() throws Exception {
 		RestTemplate template = new RestTemplate(client);
@@ -281,7 +282,7 @@ public class RestTemplateTest {
 		verify(rsp).releaseConnection();
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressFBWarnings("unchecked")
 	@Test
 	public void exceptions_in_callback_should_be_rethrown_and_connection_released() throws Exception {
 		RestTemplate template = new RestTemplate(client);

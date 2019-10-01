@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.*;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.commons.io.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.ektorp.util.*;
@@ -11,7 +12,7 @@ import org.junit.*;
 
 public class OpenCouchDbDocumentTest {
 
-	@SuppressWarnings("unchecked")
+	@SuppressFBWarnings("unchecked")
 	@Test
 	public void testAnonymous() throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
@@ -34,7 +35,7 @@ public class OpenCouchDbDocumentTest {
 		assertTrue(JSONComparator.areEqual(newJson, orgJson));
 	}
 
-	@SuppressWarnings("serial")
+	@SuppressFBWarnings("serial")
 	static class FlexDoc extends OpenCouchDbDocument {
 
 		private String name;

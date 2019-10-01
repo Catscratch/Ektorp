@@ -9,6 +9,7 @@ import java.util.List;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.ektorp.DocumentOperationResult;
 import org.ektorp.http.HttpResponse;
 import org.ektorp.http.StdResponseHandler;
@@ -33,7 +34,7 @@ public class BulkOperationResponseHandler extends StdResponseHandler<List<Docume
 	}
 
 	@Override
-    @SuppressWarnings(value="SF_SWITCH_NO_DEFAULT")
+    @SuppressFBWarnings(value="SF_SWITCH_NO_DEFAULT")
 	public List<DocumentOperationResult> success(HttpResponse hr)
 			throws Exception {
 		JsonParser jp = objectMapper.getFactory().createParser(hr.getContent());

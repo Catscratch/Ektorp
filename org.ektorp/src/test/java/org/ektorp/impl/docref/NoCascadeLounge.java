@@ -2,10 +2,11 @@ package org.ektorp.impl.docref;
 
 import java.util.*;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.ektorp.docref.*;
 import org.ektorp.support.*;
 
-@SuppressWarnings("serial")
+@SuppressFBWarnings("serial")
 public class NoCascadeLounge extends CouchDbDocument {
 
 	@DocumentReferences(fetch = FetchType.EAGER, backReference="loungeId", cascade = CascadeType.NONE)

@@ -3,6 +3,7 @@ package org.ektorp;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -30,11 +31,11 @@ public class ReplicationStatus extends Status implements Serializable {
 	String id;
 
 	@JsonProperty("source_last_seq")
-    @SuppressWarnings(value="SE_BAD_FIELD")
+    @SuppressFBWarnings(value="SE_BAD_FIELD")
 	JsonNode sourceLastSequence;
 
 	@JsonProperty("history")
-    @SuppressWarnings(value="SE_BAD_FIELD")
+    @SuppressFBWarnings(value="SE_BAD_FIELD")
 	List<History> history;
 
 	public boolean isNoChanges() {

@@ -7,6 +7,7 @@ import java.lang.ref.*;
 import java.lang.reflect.*;
 import java.util.*;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.commons.io.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.ektorp.docref.*;
@@ -133,7 +134,7 @@ public class SimpleViewGenerator {
 				});
 	}
 
-    @SuppressWarnings(value="VA_FORMAT_STRING_EXTRA_ARGUMENTS_PASSED")
+    @SuppressFBWarnings(value="VA_FORMAT_STRING_EXTRA_ARGUMENTS_PASSED")
 	private String resolveTypeDiscriminator(final Class<?> persistentType) {
 		final List<String> discrimintators = new ArrayList<String>();
 		TypeDiscriminator td = persistentType

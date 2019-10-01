@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.ektorp.support.CouchDbDocument;
 
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -73,7 +74,7 @@ public class ReplicatorDocument extends CouchDbDocument
     private String filter;
     private Object queryParameters;
 
-    @SuppressWarnings(value="SE_BAD_FIELD")
+    @SuppressFBWarnings(value="SE_BAD_FIELD")
     private UserContext userContext;
 
     private String replicationId;

@@ -9,6 +9,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.NullNode;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.ektorp.changes.*;
 import org.ektorp.http.HttpResponse;
 import org.ektorp.util.*;
@@ -89,7 +90,7 @@ public final class ContinuousChangesFeed implements ChangesFeed, Runnable {
 		thread.interrupt();
 	}
 
-    @SuppressWarnings(value="RV_RETURN_VALUE_IGNORED_BAD_PRACTICE")
+    @SuppressFBWarnings(value="RV_RETURN_VALUE_IGNORED_BAD_PRACTICE")
 	private void sendInterruptMarker()  {
 		LOG.debug("Sending interrupt marker in order to interrupt feed consumer");
 		changes.offer(INTERRUPT_MARKER);

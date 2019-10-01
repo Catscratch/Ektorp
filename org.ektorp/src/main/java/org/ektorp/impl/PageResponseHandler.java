@@ -3,6 +3,7 @@ package org.ektorp.impl;
 import java.util.Collections;
 import java.util.List;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.ektorp.Page;
 import org.ektorp.PageRequest;
 import org.ektorp.http.HttpResponse;
@@ -42,7 +43,7 @@ public class PageResponseHandler<T> extends StdResponseHandler<Page<T>> {
 	}
 	
 	@Override
-    @SuppressWarnings(value="DB_DUPLICATE_BRANCHES")
+    @SuppressFBWarnings(value="DB_DUPLICATE_BRANCHES")
 	public Page<T> success(HttpResponse hr) throws Exception {
 		parser.parseResult(hr.getContent());
 		List<T> rows = parser.getRows();

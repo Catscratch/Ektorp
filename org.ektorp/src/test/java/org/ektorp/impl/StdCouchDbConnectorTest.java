@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.input.ReaderInputStream;
 import org.ektorp.*;
@@ -180,7 +181,7 @@ public class StdCouchDbConnectorTest {
         assertEquals(12, getted.age);
     }
 
-    @SuppressWarnings("deprecation")
+    @SuppressFBWarnings("deprecation")
     @Test
     public void testGetWithConflicts() {
         setupGetDocResponse();
@@ -801,7 +802,7 @@ public class StdCouchDbConnectorTest {
         assertTrue(status.isOk());
     }
 
-    @SuppressWarnings("serial")
+    @SuppressFBWarnings("serial")
     static class DateDoc extends CouchDbDocument {
 
         private Date date;
@@ -824,7 +825,7 @@ public class StdCouchDbConnectorTest {
         }
     }
 
-    @SuppressWarnings("serial")
+    @SuppressFBWarnings("serial")
     public static class TestDoc extends CouchDbDocument {
         private String name;
         private int age;

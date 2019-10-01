@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.ektorp.*;
 import org.junit.*;
 
@@ -329,7 +330,7 @@ public class DocumentsTest {
 
 	public static class ExtendedDocument extends TestDocument {
 
-        @SuppressWarnings(value = "UWF_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD")
+        @SuppressFBWarnings(value = "UWF_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD")
 		public String id;
 
 		public String getId(String s) {

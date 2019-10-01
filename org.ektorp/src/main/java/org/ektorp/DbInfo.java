@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.*;
 
 import com.fasterxml.jackson.annotation.*;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.ektorp.util.*;
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -33,7 +34,7 @@ public class DbInfo implements Serializable {
 	@JsonProperty("purge_seq")
 	String purgeSeq;
 	@JsonProperty("update_seq")
-	@SuppressWarnings(value="SE_BAD_FIELD")
+	@SuppressFBWarnings(value="SE_BAD_FIELD")
 	JsonNode updateSeq;
 	/**
 	 * Used to future proof this class, if new fields are added by CouchDb they will be found here.

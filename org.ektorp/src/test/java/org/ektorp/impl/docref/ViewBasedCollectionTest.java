@@ -10,6 +10,7 @@ import java.util.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.ClassUtil;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.ektorp.*;
 import org.ektorp.docref.*;
 import org.ektorp.impl.*;
@@ -30,6 +31,7 @@ public class ViewBasedCollectionTest {
 	Set<TestChildType> proxy;
 
 	@Test
+	@SuppressFBWarnings("RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT")
 	public void given_cascadeType_NONE_then_removed_element_should_not_be_added_to_pending_removal_list() {
 		setupHandlerAndProxy(getRefsWithCascadeNone());
 		proxy.size();
@@ -38,6 +40,7 @@ public class ViewBasedCollectionTest {
 	}
 
 	@Test
+	@SuppressFBWarnings("RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT")
 	public void given_cascadeType_ALL_then_removed_element_should_be_added_to_pending_removal_list() {
 		setupHandlerAndProxy(getRefsWithCascadeAll());
 		proxy.size();
@@ -54,7 +57,7 @@ public class ViewBasedCollectionTest {
 		setupViewResponse();
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressFBWarnings("unchecked")
 	private void setupHandlerAndProxy(DocumentReferences cascadeNone) {
 		try {
 			collectionHandler = new ViewBasedCollection("test", db, TestType.class, cascadeNone, cac);
@@ -66,7 +69,7 @@ public class ViewBasedCollectionTest {
 		proxy = (Set<TestChildType>) o;
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressFBWarnings("unchecked")
 	private void setupViewResponse() {
 		List<TestChildType> result = Arrays.asList(child1, child2);
 		when(db.queryView(any(ViewQuery.class), any(Class.class))).thenReturn(result);
@@ -88,13 +91,13 @@ public class ViewBasedCollectionTest {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressFBWarnings("unchecked")
 	private Constructor<Collection<Object>> findCtor(Class<?> clazz) {
 		return ClassUtil.findConstructor(
 				(Class<Collection<Object>>) clazz, true);
 	}
 
-	@SuppressWarnings("serial")
+	@SuppressFBWarnings("serial")
 	static class TestType extends CouchDbDocument {
 
 		@DocumentReferences( backReference = "parentId", cascade = CascadeType.NONE)
@@ -104,7 +107,7 @@ public class ViewBasedCollectionTest {
 		public Set<TestChildType> cascadeAll;
 	}
 
-	@SuppressWarnings("serial")
+	@SuppressFBWarnings("serial")
 	static class TestChildType extends CouchDbDocument {
 
 		String parentId;

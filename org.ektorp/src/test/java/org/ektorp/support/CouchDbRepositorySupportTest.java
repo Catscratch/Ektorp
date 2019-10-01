@@ -7,6 +7,7 @@ import static org.mockito.Mockito.*;
 import java.util.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.ektorp.*;
 import org.junit.*;
 import org.mockito.*;
@@ -33,6 +34,7 @@ public class CouchDbRepositorySupportTest {
 		System.clearProperty(DesignDocument.AUTO_UPDATE_VIEW_ON_CHANGE);
 	}
 
+	@SuppressFBWarnings("OBL_UNSATISFIED_OBLIGATION")
 	private void setupDesignDoc() throws Exception {
 		doReturn(Boolean.TRUE).when(db).contains("_design/TestDoc");
 		ObjectMapper om = new ObjectMapper();
@@ -268,7 +270,7 @@ public class CouchDbRepositorySupportTest {
 		}
 	}
 
-	@SuppressWarnings("serial")
+	@SuppressFBWarnings("serial")
 	public static class TestDoc extends CouchDbDocument {
 
 		private String field;

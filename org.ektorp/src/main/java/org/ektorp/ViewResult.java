@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.ektorp.util.Assert;
 
 /**
@@ -26,7 +27,7 @@ public class ViewResult implements Iterable<ViewResult.Row>, Serializable {
 	private int offset = -1;
 	private String updateSeq;
 
-    @SuppressWarnings(value="SE_BAD_FIELD")
+    @SuppressFBWarnings(value="SE_BAD_FIELD")
 	private List<Row> rows;
 
 	public ViewResult(JsonNode resultNode, boolean ignoreNotFound) {

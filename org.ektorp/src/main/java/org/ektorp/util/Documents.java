@@ -7,6 +7,7 @@ import java.util.concurrent.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.ektorp.*;
 import org.slf4j.*;
 
@@ -443,7 +444,7 @@ public final class Documents {
 			cast(o).put(REV_FIELD_NAME, rev);
 		}
 
-		@SuppressWarnings("unchecked")
+		@SuppressFBWarnings("unchecked")
 		private Map<String, String> cast(Object o) {
 			return (Map<String, String>)o;
 		}

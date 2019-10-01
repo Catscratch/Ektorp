@@ -14,6 +14,7 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.ektorp.CouchDbConnector;
 import org.ektorp.DbAccessException;
 import org.ektorp.DocumentOperationResult;
@@ -99,7 +100,7 @@ public class DocumentReferenceSerializer extends JsonSerializer<Object> {
 		throw new DbAccessException(sb.toString());
 	}
 
-    @SuppressWarnings(value="BC_VACUOUS_INSTANCEOF")
+    @SuppressFBWarnings(value="BC_VACUOUS_INSTANCEOF")
 	private Set<?> findDocumentsToSave(Set<?> o) {
 		if (o == null) {
 			return Collections.emptySet();

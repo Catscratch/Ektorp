@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.io.*;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.commons.io.*;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonParseException;
@@ -44,7 +45,8 @@ public class DesignDocumentTest {
         assertDeserialization(dd);
 	}
 
-    @Test
+	@Test
+	@SuppressFBWarnings("RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT")
 	public void should_deserialize_with_auto_detect_getters_disabled() throws JsonParseException, JsonMappingException, IOException {
 		ObjectMapper om = new ObjectMapper();
 		om.getSerializationConfig().with(MapperFeature.AUTO_DETECT_GETTERS);
@@ -135,6 +137,7 @@ public class DesignDocumentTest {
 	}
 
 	@Test
+	@SuppressFBWarnings("RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT")
 	public void should_serialize_with_auto_detect_getters_disabled() throws JsonParseException, JsonMappingException, IOException {
 		ObjectMapper om = new ObjectMapper();
 		om.getSerializationConfig().with(MapperFeature.AUTO_DETECT_GETTERS);

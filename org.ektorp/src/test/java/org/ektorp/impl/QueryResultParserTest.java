@@ -2,6 +2,7 @@ package org.ektorp.impl;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.ektorp.DbAccessException;
 import org.ektorp.ViewResultException;
 import org.ektorp.support.CouchDbDocument;
@@ -100,7 +101,7 @@ public class QueryResultParserTest {
 		return getClass().getResourceAsStream(name);
 	}
 
-	@SuppressWarnings("serial")
+	@SuppressFBWarnings("serial")
 	public static class TestDoc extends CouchDbDocument {
 
 		private String name;

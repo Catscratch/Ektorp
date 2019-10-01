@@ -17,6 +17,10 @@
             <artifactId>org.ektorp</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs</artifactId>
+        </dependency>
        <dependency>
            <groupId>com.google.android</groupId>
            <artifactId>android</artifactId>

@@ -1,8 +1,9 @@
 package org.ektorp.impl.docref;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.ektorp.support.*;
 
-@SuppressWarnings("serial")
+@SuppressFBWarnings("serial")
 public class Person extends CouchDbDocument implements Comparable<Person> {
 	private int shoeSize;
 	private String loungeId;

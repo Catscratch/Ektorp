@@ -1,6 +1,7 @@
 package org.ektorp.http;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.http.annotation.NotThreadSafe;
 import org.apache.http.entity.AbstractHttpEntity;
 import org.ektorp.util.Assert;
@@ -17,7 +18,7 @@ import java.io.*;
  * @see org.apache.http.entity.SerializableEntity
  */
 @NotThreadSafe
-@SuppressWarnings(value = "HE_EQUALS_USE_HASHCODE")
+@SuppressFBWarnings(value = "HE_EQUALS_USE_HASHCODE")
 public class JacksonableEntity extends AbstractHttpEntity {
 
     private byte[] objSer;

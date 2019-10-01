@@ -8,6 +8,7 @@ import java.util.Iterator;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.ektorp.changes.DocumentChange;
 import org.ektorp.http.HttpResponse;
 import org.ektorp.impl.changes.StdDocumentChange;
@@ -21,12 +22,12 @@ public class StreamingChangesResult implements Serializable, Iterable<DocumentCh
 	private static final long serialVersionUID = 4750290767936801714L;
 	private boolean iteratorCalled;
 
-    @SuppressWarnings(value="SE_BAD_FIELD")
+    @SuppressFBWarnings(value="SE_BAD_FIELD")
 	private JsonParser jp;
 
 	private long lastSeq = -1l;
 
-    @SuppressWarnings(value="SE_BAD_FIELD")
+    @SuppressFBWarnings(value="SE_BAD_FIELD")
     private final HttpResponse response;
 
 	public StreamingChangesResult(ObjectMapper objectMapper, HttpResponse response) {

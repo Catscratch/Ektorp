@@ -2,9 +2,10 @@ package org.ektorp.impl.docref;
 
 import java.util.*;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.ektorp.support.*;
 
-@SuppressWarnings("serial")
+@SuppressFBWarnings("serial")
 public abstract class BasicSofa extends CouchDbDocument {
 
 		private String color;

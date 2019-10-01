@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.ektorp.*;
 import org.ektorp.support.*;
 import org.junit.*;
@@ -65,7 +66,7 @@ public class EmbeddedDocViewResponseHandlerTest {
 		handler.success(ResponseOnFileStub.newInstance(202, "erroneous_cloudant_view_result.json"));
 	}
 
-	@SuppressWarnings("serial")
+	@SuppressFBWarnings("serial")
 	public static class TestDoc extends CouchDbDocument {
 
 		private String name;

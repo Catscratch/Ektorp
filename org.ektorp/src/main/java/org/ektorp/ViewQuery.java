@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.ektorp.http.URI;
 import org.ektorp.impl.ObjectMapperFactory;
 import org.ektorp.impl.CachingObjectMapperFactory;
@@ -731,7 +732,7 @@ public class ViewQuery {
 		return query;
 	}
 
-    @SuppressWarnings({"SA_FIELD_SELF_ASSIGNMENT", "CN_IMPLEMENTS_CLONE_BUT_NOT_CLONEABLE"})
+    @SuppressFBWarnings({"SA_FIELD_SELF_ASSIGNMENT", "CN_IMPLEMENTS_CLONE_BUT_NOT_CLONEABLE"})
 	public ViewQuery clone() {
 		ViewQuery copy = new ViewQuery(mapper);
 		copy.cacheOk = cacheOk;
@@ -964,7 +965,7 @@ public class ViewQuery {
             return Collections.unmodifiableList(keys);
 		}
 		
-        @SuppressWarnings(value="CN_IMPLEMENTS_CLONE_BUT_NOT_CLONEABLE")
+        @SuppressFBWarnings(value="CN_IMPLEMENTS_CLONE_BUT_NOT_CLONEABLE")
 		public Keys clone() {
 			return new Keys(keys);
 		}

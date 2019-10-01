@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.ektorp.CouchDbConnector;
 import org.ektorp.docref.DocumentReferences;
 import org.junit.Test;
@@ -290,18 +291,18 @@ public class SimpleViewGeneratorTest {
 		}	
 	}
 	
-	@SuppressWarnings("serial")
+	@SuppressFBWarnings("serial")
 	public static class TestDoc extends CouchDbDocument {
 		
 		private Set<String> domainNames;
 
-        @SuppressWarnings(value = "UWF_UNWRITTEN_FIELD")
+        @SuppressFBWarnings(value = "UWF_UNWRITTEN_FIELD")
         private String name;
 
-        @SuppressWarnings(value = "UWF_UNWRITTEN_FIELD")
+        @SuppressFBWarnings(value = "UWF_UNWRITTEN_FIELD")
         private String lastName;
 
-        @SuppressWarnings(value = "UWF_UNWRITTEN_FIELD")
+        @SuppressFBWarnings(value = "UWF_UNWRITTEN_FIELD")
         private String accountId;
 
         private String parentId;
@@ -337,7 +338,7 @@ public class SimpleViewGeneratorTest {
 	}
 	
 	
-	@SuppressWarnings("serial")
+	@SuppressFBWarnings("serial")
 	public static class SetRefDoc extends CouchDbDocument {
 		
 		@DocumentReferences(backReference = "parentId", orderBy = "lastName")
@@ -352,7 +353,7 @@ public class SimpleViewGeneratorTest {
 		}
 	}
 	
-	@SuppressWarnings("serial")
+	@SuppressFBWarnings("serial")
 	public static class SetRefDocWNoOrderBy extends CouchDbDocument {
 		
 		@DocumentReferences(backReference = "parentId")
@@ -367,7 +368,7 @@ public class SimpleViewGeneratorTest {
 		}
 	}
 	
-	@SuppressWarnings("serial")
+	@SuppressFBWarnings("serial")
 	public static class ListRefDoc extends CouchDbDocument {
 		
 		@DocumentReferences(backReference = "parentId")
@@ -383,7 +384,7 @@ public class SimpleViewGeneratorTest {
 		
 	}
 	
-	@SuppressWarnings("serial")
+	@SuppressFBWarnings("serial")
 	public static class RefDocWithViewSpecified extends CouchDbDocument {
 		
 		@DocumentReferences(view = "my_view")
@@ -391,7 +392,7 @@ public class SimpleViewGeneratorTest {
 		
 	}
 	
-	@SuppressWarnings("serial")
+	@SuppressFBWarnings("serial")
 	public static class DocWithDiscriminator extends CouchDbDocument {
 		
 		@TypeDiscriminator
@@ -428,7 +429,7 @@ public class SimpleViewGeneratorTest {
 	
 	public static class DiscriminatingChild implements Serializable {
 
-        @SuppressWarnings(value = "UWF_UNWRITTEN_FIELD")
+        @SuppressFBWarnings(value = "UWF_UNWRITTEN_FIELD")
         private String parentId;
 		@TypeDiscriminator
 		private String otherField;
@@ -458,7 +459,7 @@ public class SimpleViewGeneratorTest {
 		}
 	}
 	
-	@TypeDiscriminator("doc.excoticField || doc.otherExcoticField") @SuppressWarnings("serial")
+	@TypeDiscriminator("doc.excoticField || doc.otherExcoticField") @SuppressFBWarnings("serial")
 	public static class DocWithCustomDiscriminator extends CouchDbDocument {
 		
 	}

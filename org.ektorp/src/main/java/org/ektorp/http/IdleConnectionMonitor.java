@@ -1,5 +1,6 @@
 package org.ektorp.http;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.http.conn.ClientConnectionManager;
 
 import java.lang.ref.WeakReference;
@@ -46,7 +47,7 @@ public class IdleConnectionMonitor {
             thisFuture = future;
         }
 
-        @SuppressWarnings(value="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")
+        @SuppressFBWarnings(value="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")
         public void run() {
             if (cm.get() != null) {
                 cm.get().closeExpiredConnections();

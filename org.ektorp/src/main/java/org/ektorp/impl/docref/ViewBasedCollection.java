@@ -7,6 +7,7 @@ import java.util.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.type.CollectionType;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.ektorp.*;
 import org.ektorp.docref.*;
 import org.ektorp.impl.*;
@@ -96,16 +97,16 @@ public class ViewBasedCollection implements InvocationHandler {
 		return ann.designDoc().length() > 0 ? ann.designDoc() : NameConventions.designDocName(clazz);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressFBWarnings("unchecked")
 	protected void initialize() throws IOException {
-		@SuppressWarnings("rawtypes")
+		@SuppressFBWarnings("rawtypes")
 		Collection list = loadFromBackReferences(id, referenceMetaData,
 				constructibleAnnotatedCollection.getCollectionType(),
 				constructibleAnnotatedCollection.getField().getName());
 		collection.addAll(list);
 	}
 
-    @SuppressWarnings(value="BC_BAD_CAST_TO_ABSTRACT_COLLECTION")
+    @SuppressFBWarnings(value="BC_BAD_CAST_TO_ABSTRACT_COLLECTION")
 	public Object invoke(Object proxy, Method method, Object[] args)
 			throws Throwable {
 		if (method.getName().equals("set")) {
@@ -189,10 +190,10 @@ public class ViewBasedCollection implements InvocationHandler {
 		return false;
 	}
 
-    @SuppressWarnings(value="BC_BAD_CAST_TO_ABSTRACT_COLLECTION")
+    @SuppressFBWarnings(value="BC_BAD_CAST_TO_ABSTRACT_COLLECTION")
 	public class RememberRemovedListIterator implements ListIterator<Object> {
 
-		@SuppressWarnings("unchecked")
+		@SuppressFBWarnings("unchecked")
 		private final ListIterator<Object> it = ((List<Object>) collection)
 				.listIterator();
 		private Object current = null;

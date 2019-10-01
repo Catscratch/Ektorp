@@ -1,5 +1,6 @@
 package org.ektorp.android.http;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.http.*;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.params.ClientPNames;
@@ -21,6 +22,7 @@ import static org.mockito.Mockito.mock;
 public class AndroidHttpClientTest {
 
     @Test
+    @SuppressFBWarnings("RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT")
     public void shouldInvokeClientWhenGetWithStringParam() throws IOException {
         org.apache.http.HttpResponse expectedResponse = mock(org.apache.http.HttpResponse.class, new ThrowsException(new UnsupportedOperationException()));
 
@@ -48,6 +50,7 @@ public class AndroidHttpClientTest {
     }
 
     @Test
+    @SuppressFBWarnings("RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT")
     public void shouldInvokeClientWhenPutWithStringParamAndHttpEntityParam() throws IOException {
         org.apache.http.HttpResponse expectedResponse = mock(org.apache.http.HttpResponse.class, new ThrowsException(new UnsupportedOperationException()));
 
@@ -77,6 +80,7 @@ public class AndroidHttpClientTest {
     }
 
     @Test
+    @SuppressFBWarnings("RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT")
     public void shouldInvokeBackendWhenPostWithStringParamAndInputStreamParam() throws IOException {
         org.apache.http.HttpResponse expectedResponse = mock(org.apache.http.HttpResponse.class, new ThrowsException(new UnsupportedOperationException()));
 
@@ -97,6 +101,7 @@ public class AndroidHttpClientTest {
     }
 
     @Test
+    @SuppressFBWarnings("RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT")
     public void shouldInvokeBackendWhenPostWithStringParamAndHttpEntityParam() throws IOException {
         org.apache.http.HttpResponse expectedResponse = mock(org.apache.http.HttpResponse.class, new ThrowsException(new UnsupportedOperationException()));
 

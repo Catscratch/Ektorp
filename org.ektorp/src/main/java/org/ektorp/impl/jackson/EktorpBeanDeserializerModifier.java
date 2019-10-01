@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.jsontype.TypeDeserializer;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.databind.util.ClassUtil;
 import com.fasterxml.jackson.databind.util.SimpleBeanPropertyDefinition;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.ektorp.CouchDbConnector;
 import org.ektorp.docref.DocumentReferences;
 import org.ektorp.impl.docref.BackReferencedBeanDeserializer;
@@ -139,7 +140,7 @@ public class EktorpBeanDeserializerModifier extends BeanDeserializerModifier {
 			DeserializationConfig config, CollectionType type, Class<?> clazz) {
 		Class<?> collectionClass = clazz;
 		if (type.isInterface() || type.isAbstract()) {
-			@SuppressWarnings("rawtypes")
+			@SuppressFBWarnings("rawtypes")
 			Class<? extends Collection> fallback = _collectionFallbacks
 					.get(collectionClass.getName());
 			if (fallback == null) {
@@ -152,13 +153,13 @@ public class EktorpBeanDeserializerModifier extends BeanDeserializerModifier {
 
 		boolean fixAccess = config
 				.isEnabled(MapperFeature.CAN_OVERRIDE_ACCESS_MODIFIERS);
-		@SuppressWarnings("unchecked")
+		@SuppressFBWarnings("unchecked")
 		Constructor<Collection<Object>> ctor = ClassUtil.findConstructor(
 				(Class<Collection<Object>>) collectionClass, fixAccess);
 		return ctor;
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressFBWarnings("rawtypes")
 	final static Map<String, Class<? extends Collection>> _collectionFallbacks = new HashMap<String, Class<? extends Collection>>();
 	static {
 		_collectionFallbacks.put(Collection.class.getName(), ArrayList.class);

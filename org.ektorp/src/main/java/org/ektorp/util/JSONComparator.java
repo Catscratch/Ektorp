@@ -1,6 +1,7 @@
 package org.ektorp.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.commons.io.input.ReaderInputStream;
 
 import java.io.*;
@@ -46,7 +47,7 @@ public class JSONComparator {
     }
 
     private static <T> boolean areEquals(Map<String, T> mapA, Map<String, T> mapB) {
-        @SuppressWarnings("unchecked")
+        @SuppressFBWarnings("unchecked")
         ValueComparator<Map> valueComparator = valueComparators.get(Map.class);
         return valueComparator.equals(mapA, mapB);
     }
@@ -63,7 +64,7 @@ public class JSONComparator {
     }
 
     private static <T> ValueComparator<T> getComparator(T aValue) {
-        @SuppressWarnings("unchecked")
+        @SuppressFBWarnings("unchecked")
         ValueComparator<T> vp = valueComparators.get(aValue.getClass());
         if (vp == null) {
             throw new IllegalStateException(format("No value comparator found for class: %s", aValue.getClass()));
@@ -87,7 +88,7 @@ public class JSONComparator {
 
     private static class MapComparator implements ValueComparator<Map<String, ?>> {
 
-        @SuppressWarnings("unchecked")
+        @SuppressFBWarnings("unchecked")
         public boolean equals(Map<String, ?> aValueMap, Map<String, ?> bValueMap) {
             if (aValueMap.size() != bValueMap.size()) {
                 return false;

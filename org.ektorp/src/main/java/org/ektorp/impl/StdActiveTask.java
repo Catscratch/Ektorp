@@ -2,6 +2,7 @@ package org.ektorp.impl;
 
 import java.util.Date;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.ektorp.ActiveTask;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -18,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
    @Type(value = StdIndexerTask.class, name = "indexer"),
    @Type(value = StdDatabaseCompactionTask.class, name = "database_compaction"),
    @Type(value = StdViewCompactionTask.class, name = "view_compaction") })
-@SuppressWarnings(value = "EI_EXPOSE_REP")
+@SuppressFBWarnings(value = "EI_EXPOSE_REP")
 public abstract class StdActiveTask implements ActiveTask {
 
     private String pid;
