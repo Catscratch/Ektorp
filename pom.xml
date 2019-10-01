@@ -156,11 +156,6 @@
                     <artifactId>sonar-maven-plugin</artifactId>
                     <version>${sonarVersion}</version>
                 </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>findbugs-maven-plugin</artifactId>
-                    <version>${findbugs.plugin.version}</version>
-                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -227,26 +222,6 @@
                         <goals>
                             <goal>jar</goal>
                         </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
-                <configuration>
-                    <skip>${findbugs.skip}</skip>
-                    <fork>true</fork>
-                    <includeTests>${findbugs.includeTests}</includeTests>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                        <configuration>
-                            <skip>false</skip>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
