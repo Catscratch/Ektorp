@@ -22,13 +22,7 @@ import org.ektorp.docref.DocumentReferences;
 import org.ektorp.util.Exceptions;
 import org.ektorp.util.Predicate;
 import org.ektorp.util.ReflectionUtils;
-/**
- *
- * @author ragnar rova
- * @author henrik lundgren
- *
- * @param <T>
- */
+
 public class DocumentReferenceSerializer extends JsonSerializer<Object> {
 
 	private final CouchDbConnector couchDbConnector;
@@ -100,7 +94,7 @@ public class DocumentReferenceSerializer extends JsonSerializer<Object> {
 		throw new DbAccessException(sb.toString());
 	}
 
-    @SuppressFBWarnings(value="BC_VACUOUS_INSTANCEOF")
+	@SuppressFBWarnings(value="BC_VACUOUS_INSTANCEOF")
 	private Set<?> findDocumentsToSave(Set<?> o) {
 		if (o == null) {
 			return Collections.emptySet();

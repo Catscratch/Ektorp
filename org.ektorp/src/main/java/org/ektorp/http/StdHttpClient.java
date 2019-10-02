@@ -43,22 +43,17 @@ import org.ektorp.util.Exceptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * 
- * @author henrik lundgren
- * 
- */
 public class StdHttpClient implements HttpClient {
 
 	private final org.apache.http.client.HttpClient client;
 	private final org.apache.http.client.HttpClient backend;
-	private final static Logger LOG = LoggerFactory
-			.getLogger(StdHttpClient.class);
+	private final static Logger LOG = LoggerFactory.getLogger(StdHttpClient.class);
 
 	public StdHttpClient(org.apache.http.client.HttpClient hc) {
 		this(hc, hc);
 	}
-	public StdHttpClient(org.apache.http.client.HttpClient hc, 
+
+	private StdHttpClient(org.apache.http.client.HttpClient hc,
 			org.apache.http.client.HttpClient backend) {
 		this.client = hc;
 		this.backend = backend;
@@ -236,8 +231,6 @@ public class StdHttpClient implements HttpClient {
 		/**
 		 * Will set host, port and possible enables SSL based on the properties if the supplied URL.
 		 * This method overrides the properties: host, port and enableSSL. 
-		 * @param url
-		 * @return
 		 */
 		public Builder url(URL url){
 			this.host = url.getHost();
@@ -283,8 +276,7 @@ public class StdHttpClient implements HttpClient {
 		 * this.
 		 * <p>
 		 * Disabled by default (for backward compatibility).
-		 * 
-		 * @param b
+     *
 		 * @return This builder
 		 */
 		public Builder compression(boolean b){
@@ -294,8 +286,6 @@ public class StdHttpClient implements HttpClient {
 		/**
 		 * Controls if the http client should cache response entities.
 		 * Default is true.
-		 * @param b
-		 * @return
 		 */
 		public Builder caching(boolean b) {
 			caching = b;
@@ -443,9 +433,6 @@ public class StdHttpClient implements HttpClient {
 		/**
 		 * If set to true, a monitor thread will be started that cleans up idle
 		 * connections every 30 seconds.
-		 * 
-		 * @param b
-		 * @return
 		 */
 		public Builder cleanupIdleConnections(boolean b) {
 			cleanupIdleConnections = b;
@@ -456,9 +443,6 @@ public class StdHttpClient implements HttpClient {
 		 * Bring your own Connection Manager. If this parameters is set, the
 		 * parameters port, maxConnections, connectionTimeout and socketTimeout
 		 * are ignored.
-		 * 
-		 * @param cm
-		 * @return
 		 */
 		public Builder connectionManager(ClientConnectionManager cm) {
 			conman = cm;
@@ -468,9 +452,6 @@ public class StdHttpClient implements HttpClient {
 		/**
 		 * Set to true in order to enable SSL sockets. Note that the CouchDB
 		 * host must be accessible through a https:// path Default is false.
-		 * 
-		 * @param s
-		 * @return
 		 */
 		public Builder enableSSL(boolean b) {
 			enableSSL = b;
@@ -481,9 +462,6 @@ public class StdHttpClient implements HttpClient {
 		 * Bring your own SSLSocketFactory. Note that schemeName must be also be
 		 * configured to "https". Will override any setting of
 		 * relaxedSSLSettings.
-		 * 
-		 * @param f
-		 * @return
 		 */
 		public Builder sslSocketFactory(SSLSocketFactory f) {
 			sslSocketFactory = f;
@@ -493,9 +471,6 @@ public class StdHttpClient implements HttpClient {
 		/**
 		 * If set to true all SSL certificates and hosts will be trusted. This
 		 * might be handy during development. default is false.
-		 * 
-		 * @param b
-		 * @return
 		 */
 		public Builder relaxedSSLSettings(boolean b) {
 			relaxedSSLSettings = b;
@@ -506,9 +481,6 @@ public class StdHttpClient implements HttpClient {
 		 * Activates 'Expect: 100-Continue' handshake with CouchDB.
 		 * Using expect continue can reduce stale connection problems for PUT / POST operations.
 		 * body. Enabled by default.
-		 * 
-		 * @param b
-		 * @return
 		 */
 		public Builder useExpectContinue(boolean b) {
 			useExpectContinue = b;
@@ -527,7 +499,7 @@ public class StdHttpClient implements HttpClient {
 
 	}
 
-        // separate class to avoid runtime dependency to httpclient-cache unless using caching
+	// separate class to avoid runtime dependency to httpclient-cache unless using caching
 	public static class WithCachingBuilder {
 		public static org.apache.http.client.HttpClient withCaching(org.apache.http.client.HttpClient client, int maxCacheEntries, int maxObjectSizeBytes) {
 			CacheConfig cacheConfig = new CacheConfig();  

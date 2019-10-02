@@ -6,11 +6,6 @@ import java.util.Map;
 
 import org.ektorp.http.URI;
 
-/**
- * 
- * @author henrik lundgren
- * @since 1.1
- */
 public class ChangesCommand {
 
 	public final String since;
@@ -73,11 +68,9 @@ public class ChangesCommand {
 		}
 		return queryString;
 	}
+
 	/**
-	 * Ised to create a valid ChangesCommand
-	 * 
-	 * @author henrik lundgren
-	 *
+	 * Used to create a valid ChangesCommand
 	 */
 	public static class Builder {
 		
@@ -91,8 +84,6 @@ public class ChangesCommand {
 		
 		/**
 		 * Start the results from the change immediately after the given sequence number.
-		 * @param l
-		 * @return
 		 */
 		public Builder since(long l) {
 			this.since = Long.toString(l);
@@ -101,8 +92,6 @@ public class ChangesCommand {
 		
 		/**
 		 * Start the results from the change immediately after the given sequence number.
-		 * @param l
-		 * @return
 		 */
 		public Builder since(String s) {
 			this.since = s;
@@ -112,9 +101,6 @@ public class ChangesCommand {
 		/**
 		 * Adds a parameter to the GET request sent to the database.
 		 * This is mainly used for supplying parameters to filter functions.
-		 * @param name
-		 * @param value
-		 * @return
 		 */
 		public Builder param(String name, String value) {
 			if (extraQueryParams == null) {
@@ -128,19 +114,17 @@ public class ChangesCommand {
 			this.continuous = b;
 			return this;
 		}
+
 		/**
 		 * Reference a filter function from a design document to selectively get updates.
-		 * @param s
-		 * @return
 		 */
 		public Builder filter(String s) {
 			this.filter = s;
 			return this;
 		}
+
 		/**
 		 * Include the associated document with each result.
-		 * @param b
-		 * @return
 		 */
 		public Builder includeDocs(boolean b) {
 			this.includeDocs = b;

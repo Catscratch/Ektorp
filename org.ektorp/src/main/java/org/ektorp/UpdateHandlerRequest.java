@@ -1,6 +1,3 @@
-/**
- * 
- */
 package org.ektorp;
 
 import java.util.Map;
@@ -9,10 +6,6 @@ import java.util.TreeMap;
 import org.ektorp.http.URI;
 import org.ektorp.util.Assert;
 
-/**
- * @author lubo
- * 
- */
 public class UpdateHandlerRequest {
     private final Map<String, String> queryParams = new TreeMap<String, String>();
 
@@ -100,9 +93,6 @@ public class UpdateHandlerRequest {
         return uri.toString();
     }
 
-    /**
-     * @return
-     */
     public String getDocId() {
         return docId;
     }

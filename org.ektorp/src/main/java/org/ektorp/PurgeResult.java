@@ -38,8 +38,6 @@ public class PurgeResult {
 
 	/**
 	 * Exists in order to future proof this class.
-	 * @param key
-	 * @param value
 	 */
 	@JsonAnySetter
 	public void setAnonymous(String key, Object value) {

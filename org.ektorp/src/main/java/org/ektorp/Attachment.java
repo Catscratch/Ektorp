@@ -1,143 +1,138 @@
 package org.ektorp;
 
-import java.io.*;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
-
-import com.fasterxml.jackson.annotation.*;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import org.ektorp.util.*;
+import org.ektorp.util.Assert;
 
 /**
- *
  * @author henrik lundgren
- *
  */
 @JsonInclude(Include.NON_NULL)
 public class Attachment implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	private String id;
-	private String contentType;
-	private long length;
-	private String dataBase64;
-	private boolean stub;
-	private int revpos;
+  private static final long serialVersionUID = 1L;
+  private String id;
+  private String contentType;
+  private long length;
+  private String dataBase64;
+  private boolean stub;
+  private int revpos;
 
-    @SuppressFBWarnings(value = "UWF_UNWRITTEN_FIELD")
-	private String digest;
+  @SuppressFBWarnings(value = "UWF_UNWRITTEN_FIELD")
+  private String digest;
 
-	private Map<String, Object> anonymous;
+  private Map<String, Object> anonymous;
 
-	/**
-	 * Constructor that takes data as String.
-	 * The data must be base64 encoded single line of characters, so pre-process your data to remove any carriage returns and newlines
-	 *
-	 * Useful if you want to save the attachment as an inline attachent.
-	 *
-	 * @param id
-	 * @param data base64-encoded
-	 * @param contentType
-	 * @param contentLength
-	 */
-    @SuppressFBWarnings(value = "DM_DEFAULT_ENCODING")
-	public Attachment(String id, String data, String contentType) {
-		Assert.hasText(id, "attachmentId must have a value");
-		Assert.hasText(contentType, "contentType must have a value");
-		Assert.notNull(data, "data input stream cannot be null");
-		this.id = id;
-		this.contentType = contentType;
-		this.dataBase64 = data;
-		this.length = data.getBytes(Charset.forName("UTF-8")).length;
-	}
+  /**
+   * Constructor that takes data as String. The data must be base64 encoded single line of
+   * characters, so pre-process your data to remove any carriage returns and newlines
+   * <p>
+   * Useful if you want to save the attachment as an inline attachent.
+   *
+   * @param data base64-encoded
+   */
+  @SuppressFBWarnings(value = "DM_DEFAULT_ENCODING")
+  public Attachment(String id, String data, String contentType) {
+    Assert.hasText(id, "attachmentId must have a value");
+    Assert.hasText(contentType, "contentType must have a value");
+    Assert.notNull(data, "data input stream cannot be null");
+    this.id = id;
+    this.contentType = contentType;
+    this.dataBase64 = data;
+    this.length = data.getBytes(Charset.forName("UTF-8")).length;
+  }
 
-	Attachment() {}
+  Attachment() {
+  }
 
-	@JsonProperty("content_type")
-	public String getContentType() {
-		return contentType;
-	}
+  @JsonProperty("content_type")
+  public String getContentType() {
+    return contentType;
+  }
 
-	@JsonProperty("content_type")
-	void setContentType(String contentType) {
-		this.contentType = contentType;
-	}
-	@JsonIgnore
-	public long getContentLength() {
-		return length;
-	}
-	/**
-	 * Only populated if this attachment was created with data as String constructor.
-	 * @return
-	 */
-	@JsonProperty("data")
-	public String getDataBase64() {
-		return dataBase64;
-	}
+  @JsonProperty("content_type")
+  void setContentType(String contentType) {
+    this.contentType = contentType;
+  }
 
-	@JsonIgnore
-	public String getId() {
-		return id;
-	}
+  @JsonIgnore
+  public long getContentLength() {
+    return length;
+  }
 
-	@JsonIgnore
-	void setId(String id) {
-		this.id = id;
-	}
+  /**
+   * Only populated if this attachment was created with data as String constructor.
+   */
+  @JsonProperty("data")
+  public String getDataBase64() {
+    return dataBase64;
+  }
 
-	void setLength(long contentLength) {
-		this.length = contentLength;
-	}
+  @JsonIgnore
+  public String getId() {
+    return id;
+  }
 
-	public boolean isStub() {
-		return stub;
-	}
+  @JsonIgnore
+  void setId(String id) {
+    this.id = id;
+  }
 
-	void setStub(boolean stub) {
-		this.stub = stub;
-	}
+  void setLength(long contentLength) {
+    this.length = contentLength;
+  }
 
-	public int getRevpos() {
-		return revpos;
-	}
+  public boolean isStub() {
+    return stub;
+  }
 
-	public void setRevpos(int revpos) {
-		this.revpos = revpos;
-	}
+  void setStub(boolean stub) {
+    this.stub = stub;
+  }
 
-	@SuppressFBWarnings("UWF_UNWRITTEN_FIELD")
-	public String getDigest() {
-		return digest;
-	}
+  public int getRevpos() {
+    return revpos;
+  }
 
-	/**
-	 * @return a Map containing fields that did not map to any other field in the class during object deserializarion from a JSON document.
-	 */
-	@JsonAnyGetter
-	public Map<String, Object> getAnonymous() {
-		return anonymous();
-	}
+  public void setRevpos(int revpos) {
+    this.revpos = revpos;
+  }
 
-	/**
-	 *
-	 * @param key
-	 * @param value
-	 */
-	@JsonAnySetter
-	public void setAnonymous(String key, Object value) {
-		anonymous().put(key, value);
-	}
-	/**
-	 * Provides lay init for the anonymous Map
-	 * @return
-	 */
-	private Map<String, Object> anonymous() {
-		if (anonymous == null) {
-			anonymous = new HashMap<String, Object>();
-		}
-		return anonymous;
-	}
+  @SuppressFBWarnings("UWF_UNWRITTEN_FIELD")
+  public String getDigest() {
+    return digest;
+  }
+
+  /**
+   * @return a Map containing fields that did not map to any other field in the class during object
+   * deserializarion from a JSON document.
+   */
+  @JsonAnyGetter
+  public Map<String, Object> getAnonymous() {
+    return anonymous();
+  }
+
+  @JsonAnySetter
+  public void setAnonymous(String key, Object value) {
+    anonymous().put(key, value);
+  }
+
+  /**
+   * Provides lay init for the anonymous Map
+   */
+  private Map<String, Object> anonymous() {
+    if (anonymous == null) {
+      anonymous = new HashMap<String, Object>();
+    }
+    return anonymous;
+  }
 }

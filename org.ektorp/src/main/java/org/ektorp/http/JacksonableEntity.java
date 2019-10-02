@@ -33,7 +33,6 @@ public class JacksonableEntity extends AbstractHttpEntity {
      * @param ser       input
      * @param bufferize tells whether the content should be
      *                  stored in an internal buffer
-     * @throws java.io.IOException in case of an I/O error
      */
     public JacksonableEntity(final Object ser, final boolean bufferize, final ObjectMapper objectMapper) {
         super();

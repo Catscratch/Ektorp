@@ -9,7 +9,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
  * <p>Example:</p>
  * 
  * <code>String encoded = Base64.encode( myByteArray );</code>
- * <br />
+ *
  * <code>byte[] myByteArray = Base64.decode( encoded );</code>
  *
  * <p>The <tt>options</tt> parameter, which appears in a few places, is used to pass 
@@ -46,14 +46,14 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
  *  <li>v2.3.6 - Fixed bug when breaking lines and the final byte of the encoded
  *   string ended in the last column; the buffer was not properly shrunk and
  *   contained an extra (null) byte that made it into the string.</li>
- *  <li>v2.3.5 - Fixed bug in {@link #encodeFromFile} where estimated buffer size
+ *  <li>v2.3.5 - Fixed bug in {#encodeFromFile} where estimated buffer size
  *   was wrong for files of size 31, 34, and 37 bytes.</li>
  *  <li>v2.3.4 - Fixed bug when working with gzipped streams whereby flushing
  *   the Base64.OutputStream closed the Base64 encoding (by padding with equals
  *   signs) too soon. Also added an option to suppress the automatic decoding
  *   of gzipped streams. Also added experimental support for specifying a
  *   class loader when using the
- *   {@link #decodeToObject(java.lang.String, int, java.lang.ClassLoader)}
+ *   {#decodeToObject(java.lang.String, int, java.lang.ClassLoader)}
  *   method.</li>
  *  <li>v2.3.3 - Changed default char encoding to US-ASCII which reduces the internal Java
  *   footprint with its CharEncoders and so forth. Fixed some javadocs that were
@@ -1181,7 +1181,7 @@ public class Base64
          * Valid options:<pre>
          *   ENCODE or DECODE: Encode or Decode as data is read.
          *   DO_BREAK_LINES: break lines at 76 characters
-         *     (only meaningful when encoding)</i>
+         *     (only meaningful when encoding)
          * </pre>
          * <p>
          * Example: <code>new Base64.InputStream( in, Base64.DECODE )</code>
@@ -1394,7 +1394,7 @@ public class Base64
          * Valid options:<pre>
          *   ENCODE or DECODE: Encode or Decode as data is read.
          *   DO_BREAK_LINES: don't break lines at 76 characters
-         *     (only meaningful when encoding)</i>
+         *     (only meaningful when encoding)
          * </pre>
          * <p>
          * Example: <code>new Base64.OutputStream( out, Base64.ENCODE )</code>

@@ -18,7 +18,7 @@ public @interface TypeDiscriminator {
 	/**
 	 * If TypeDiscriminator is declared on type level, a filter condition must be specified.
 	 * This condition is inserted along other conditions in the generated views map function:
-	 * function(doc) { if(CONDITION INSERTED HERE && doc.otherField) {emit(null, doc._id)} }
+	 * function(doc) { if(CONDITION INSERTED HERE &amp;&amp; doc.otherField) {emit(null, doc._id)} }
 	 * 
 	 * Not valid to use if declared on field or method level.
 	 */
