@@ -56,10 +56,8 @@
         <junit.version>4.8.2</junit.version>
         <joda.time.version>2.3</joda.time.version>
         <jackson.version>2.9.9</jackson.version>
-        <spring.version>3.1.1.RELEASE</spring.version>
         <commons.io.version>2.0.1</commons.io.version>
         <httpclient.version>4.3</httpclient.version>
-        <aspectj.version>1.6.9</aspectj.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <spotbugs.version>4.0.0-beta4</spotbugs.version>
 
