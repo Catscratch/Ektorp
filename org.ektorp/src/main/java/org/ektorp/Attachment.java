@@ -13,9 +13,6 @@ import java.util.HashMap;
 import java.util.Map;
 import org.ektorp.util.Assert;
 
-/**
- * @author henrik lundgren
- */
 @JsonInclude(Include.NON_NULL)
 public class Attachment implements Serializable {
 

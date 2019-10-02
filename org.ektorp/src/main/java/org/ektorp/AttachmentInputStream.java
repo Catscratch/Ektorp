@@ -5,8 +5,6 @@ import java.io.*;
 import org.ektorp.util.*;
 /**
  * An InputStream that knows what content type is contains.
- * @author henrik lundgren
- *
  */
 public class AttachmentInputStream extends FilterInputStream {
 

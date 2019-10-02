@@ -2,8 +2,6 @@ package org.ektorp;
 
 /**
  * Interface for retrieving data about an indexer task
- *
- * @author ed wagstaff
  */
 public interface ViewCompactionTask extends ActiveTask {
 

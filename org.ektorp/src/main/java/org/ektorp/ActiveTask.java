@@ -4,8 +4,6 @@ import java.util.Date;
 
 /**
  * Interface for retrieving data about an active task (e.g. compaction or replication)
- *
- * @author ed wagstaff
  */
 public interface ActiveTask {
 

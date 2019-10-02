@@ -1,51 +1,45 @@
 package org.ektorp.impl.docref;
 
+import com.fasterxml.jackson.databind.deser.SettableBeanProperty;
+import com.fasterxml.jackson.databind.type.CollectionType;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.util.Collection;
 
-import com.fasterxml.jackson.databind.deser.SettableBeanProperty;
-import com.fasterxml.jackson.databind.type.CollectionType;
-
-/**
- *
- * @author ragnar rova
- *
- */
 public class ConstructibleAnnotatedCollection {
 
-	private final Constructor<Collection<Object>> constructor;
-	private final Field field;
-	private final SettableBeanProperty setter;
-	private final CollectionType collectionType;
+  private final Constructor<Collection<Object>> constructor;
+  private final Field field;
+  private final SettableBeanProperty setter;
+  private final CollectionType collectionType;
 
-	public ConstructibleAnnotatedCollection(Field field,
-			Constructor<Collection<Object>> ctor, SettableBeanProperty setter, CollectionType ctype) {
-		this.field = field;
-		this.constructor = ctor;
-		this.setter = setter;
-		this.collectionType = ctype;
-	}
+  public ConstructibleAnnotatedCollection(Field field,
+      Constructor<Collection<Object>> ctor, SettableBeanProperty setter, CollectionType ctype) {
+    this.field = field;
+    this.constructor = ctor;
+    this.setter = setter;
+    this.collectionType = ctype;
+  }
 
-	public Constructor<Collection<Object>> getConstructor() {
-		return constructor;
-	}
+  public Constructor<Collection<Object>> getConstructor() {
+    return constructor;
+  }
 
-	public Field getField() {
-		return field;
-	}
+  public Field getField() {
+    return field;
+  }
 
-	public SettableBeanProperty getSetter() {
-		return setter;
-	}
+  public SettableBeanProperty getSetter() {
+    return setter;
+  }
 
-	public CollectionType getCollectionType() {
-		return collectionType;
-	}
+  public CollectionType getCollectionType() {
+    return collectionType;
+  }
 
-	@Override
-	public String toString() {
-		return field.getName();
-	}
+  @Override
+  public String toString() {
+    return field.getName();
+  }
 
 }
