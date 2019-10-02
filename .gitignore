@@ -1,9 +1,8 @@
 *.pydevproject
 .project
 .metadata
-bin/**
-tmp/**
-tmp/**/*
+bin/
+tmp/
 *.tmp
 *.bak
 *.swp
@@ -16,8 +15,7 @@ local.properties
 # CDT-specific
 .cproject
 
-/org.ektorp.spring/target/
-/target
+target/
 
 # IntelliJ
 .idea
