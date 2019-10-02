@@ -44,10 +44,9 @@
             <timezone>+1</timezone>
         </developer>
     </developers>
+
     <modules>
         <module>org.ektorp</module>
-        <module>org.ektorp.spring</module>
-        <module>org.ektorp.android</module>
     </modules>
 
     <properties>
