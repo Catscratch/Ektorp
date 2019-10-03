@@ -79,7 +79,7 @@ public class DocumentReferenceSerializer extends JsonSerializer<Object> {
 		int maxErrors = 10;
 		for (DocumentOperationResult docResult : res) {
 			if (maxErrors == 0) {
-				sb.append(".. " + res.size() + " more ");
+				sb.append("src/main " + res.size() + " more ");
 				break;
 			}
 			sb.append(docResult.getId());
