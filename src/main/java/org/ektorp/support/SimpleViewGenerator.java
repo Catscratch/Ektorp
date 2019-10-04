@@ -106,7 +106,7 @@ public class SimpleViewGenerator {
    */
   public Map<String, DesignDocument.View> generateViews(
       final Object repository) {
-    final Map<String, DesignDocument.View> views = new HashMap<String, DesignDocument.View>();
+    final Map<String, DesignDocument.View> views = new HashMap<>();
     final Class<?> repositoryClass = repository.getClass();
 
     final Class<?> handledType = repository instanceof CouchDbRepositorySupport<?>
@@ -155,6 +155,10 @@ public class SimpleViewGenerator {
   @SuppressFBWarnings(value = "VA_FORMAT_STRING_EXTRA_ARGUMENTS_PASSED")
   private String resolveTypeDiscriminator(final Class<?> persistentType) {
     final List<String> discrimintators = new ArrayList<>();
+    if (persistentType == null) {
+      return "";
+    }
+
     TypeDiscriminator td = persistentType.getAnnotation(TypeDiscriminator.class);
     if (td != null) {
       if (td.value().length() == 0) {
@@ -400,6 +404,7 @@ public class SimpleViewGenerator {
         && resolveReturnType(me) != null) {
       return resolveTypeDiscriminator(resolveReturnType(me));
     }
+
     return "";
   }
 
