@@ -1,4 +1,6 @@
-# Ektorp [![build status](https://secure.travis-ci.org/helun/Ektorp.png)](http://travis-ci.org/helun/Ektorp) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.ektorp/org.ektorp/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.ektorp/org.ektorp)
+# Ektorp 
+[![build status](https://secure.travis-ci.org/triplem/Ektorp.png)](http://travis-ci.org/triplem/Ektorp) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=triplem_Ektorp&metric=alert_status)](https://sonarcloud.io/dashboard?id=triplem_Ektorp)
+
 
 Ektorp is a persistence API that uses [CouchDB](http://couchdb.apache.org/) as storage engine. The goal of Ektorp is to combine JPA like functionality with the simplicity and flexibility that CouchDB provides.
 
