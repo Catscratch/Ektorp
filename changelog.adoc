@@ -13,4 +13,12 @@ Latest version (1.5.1-SNAPSHOT) was upgraded to 1.6 with the following changes
 * BREAKING CHANGE - do not use default encoding, but use UTF-8 instead (not configurable in this version)
 * suppress all existing findbugs/spotbugs warnings
 
+==== 2.0
+
+* major cleanup
+** remove spring
+** remove android
+** sonarqube cleanup
+
+
 
