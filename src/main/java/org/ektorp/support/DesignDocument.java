@@ -335,36 +335,36 @@ public class DesignDocument extends OpenCouchDbDocument {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
+      if (this == obj) {
+        return true;
+      }
+      if (obj == null) {
+        return false;
+      }
+      if (getClass() != obj.getClass()) {
+        return false;
+      }
       View other = (View) obj;
       if (map == null) {
-          if (other.map != null) {
-              return false;
-          }
-      } else if (!map.equals(other.map)) {
+        if (other.map != null) {
           return false;
+        }
+      } else if (!map.equals(other.map)) {
+        return false;
       }
       if (reduce == null) {
-          if (other.reduce != null) {
-              return false;
-          }
-      } else if (!reduce.equals(other.reduce)) {
+        if (other.reduce != null) {
           return false;
+        }
+      } else if (!reduce.equals(other.reduce)) {
+        return false;
       }
       if (anonymous == null) {
-          if (other.anonymous != null) {
-              return false;
-          }
-      } else if (!anonymous.equals(other.anonymous)) {
+        if (other.anonymous != null) {
           return false;
+        }
+      } else if (!anonymous.equals(other.anonymous)) {
+        return false;
       }
       return true;
     }

@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class ComplexKey {
 
-  private final static ObjectMapper mapper = new ObjectMapper();
+  private static final ObjectMapper mapper = new ObjectMapper();
 
   private final List<Object> components;
 

@@ -7,23 +7,23 @@ import java.util.Date;
  */
 public interface ActiveTask {
 
-    /**
-     * @return the process ID of the task
-     */
-    String getPid();
+  /**
+   * @return the process ID of the task
+   */
+  String getPid();
 
-    /**
-     * @return the percentage progress of the task
-     */
-    int getProgress();
+  /**
+   * @return the percentage progress of the task
+   */
+  int getProgress();
 
-    /**
-     * @return the date and time that the task was started
-     */
-    Date getStartedOn();
+  /**
+   * @return the date and time that the task was started
+   */
+  Date getStartedOn();
 
-    /**
-     * @return the date and time that the information about the task was last updated
-     */
-    Date getUpdatedOn();
+  /**
+   * @return the date and time that the information about the task was last updated
+   */
+  Date getUpdatedOn();
 }

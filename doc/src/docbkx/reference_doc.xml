@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <book version="5.0" xmlns="http://docbook.org/ns/docbook"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
-      xmlns:xi="http://www.w3.org/2001/XInclude"
-      xmlns:svg="http://www.w3.org/2000/svg"
-      xmlns:m="http://www.w3.org/1998/Math/MathML"
-      xmlns:html="http://www.w3.org/1999/xhtml"
-      xmlns:db="http://docbook.org/ns/docbook">
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+>
   <info>
     <title>Ektorp Reference Documentation</title>
 
     <releaseinfo>Version: 1.4.0</releaseinfo>
 
     <author>
-      <personname><firstname>Henrik</firstname><surname>Lundgren</surname></personname>
+      <personname>
+        <firstname>Henrik</firstname>
+        <surname>Lundgren</surname>
+      </personname>
     </author>
   </info>
 
@@ -20,9 +19,11 @@
     <title>Overview of Ektorp</title>
 
     <para>Ektorp is a persistence API that uses <link
-    xlink:href="http://couchdb.apache.org/">CouchDB</link> as storage engine.
-    The goal of Ektorp is to combine JPA* like functionality with the
-    simplicity and flexibility that CouchDB provides.</para>
+      xlink:href="http://couchdb.apache.org/">CouchDB
+    </link> as storage engine.
+      The goal of Ektorp is to combine JPA* like functionality with the
+      simplicity and flexibility that CouchDB provides.
+    </para>
 
     <para>* Java Persistence API</para>
 
@@ -30,27 +31,34 @@
       <title>Why Use Ektorp?</title>
 
       <para>Here are some good reasons why you should consider to use Ektorp
-      in your project:</para>
+        in your project:
+      </para>
 
       <itemizedlist>
         <listitem>
-          <para><emphasis>Rich domain models.</emphasis> With powerful
-          JSON-object mapping provided by <link
-          xlink:href="http://jackson.codehaus.org/">Jackson</link> it is easy
-          to create rich domain models.</para>
+          <para>
+            <emphasis>Rich domain models.</emphasis>
+            With powerful
+            JSON-object mapping provided by <link
+            xlink:href="http://jackson.codehaus.org/">Jackson
+          </link> it is easy
+            to create rich domain models.
+          </para>
         </listitem>
 
         <listitem>
           <para><emphasis>Schemaless comfort</emphasis>. As CouchDB is
-          schemaless, the database gets out of the way during application
-          development. With a schemaless database, most adjustments to the
-          database become transparent and automatic.</para>
+            schemaless, the database gets out of the way during application
+            development. With a schemaless database, most adjustments to the
+            database become transparent and automatic.
+          </para>
         </listitem>
 
         <listitem>
           <para><emphasis>Out-of-the-Box CRUD</emphasis>. The generic
-          repository support makes it trivial to create persistence
-          classes.</para>
+            repository support makes it trivial to create persistence
+            classes.
+          </para>
         </listitem>
 
         <listitem>
@@ -59,20 +67,23 @@
 
         <listitem>
           <para><emphasis>API Coverage</emphasis>. Ektorp has a broad coverage
-          of the CouchDB API. You can perform most tasks like manage
-          documents, perform queries, create, replicate and compact databases
-          with the Ektorp API.</para>
+            of the CouchDB API. You can perform most tasks like manage
+            documents, perform queries, create, replicate and compact databases
+            with the Ektorp API.
+          </para>
         </listitem>
 
         <listitem>
           <para><emphasis>Active development</emphasis>. Ektorp is actively
-          developed and has a growing community.</para>
+            developed and has a growing community.
+          </para>
         </listitem>
 
         <listitem>
           <para><emphasis>Choice of abstraction level</emphasis>. From full
-          object-document mapping to raw streams, Ektorp will never stop you
-          if you need to step down an abstraction level.</para>
+            object-document mapping to raw streams, Ektorp will never stop you
+            if you need to step down an abstraction level.
+          </para>
         </listitem>
       </itemizedlist>
     </section>
@@ -90,18 +101,20 @@
         <para>Core module:</para>
 
         <programlisting language="xml">&lt;dependency&gt;
-    &lt;groupId&gt;org.ektorp&lt;/groupId&gt;
-    &lt;artifactId&gt;org.ektorp&lt;/artifactId&gt;
-    &lt;version&gt;1.3.0&lt;/version&gt;
-&lt;/dependency&gt;</programlisting>
+          &lt;groupId&gt;org.ektorp&lt;/groupId&gt;
+          &lt;artifactId&gt;org.ektorp&lt;/artifactId&gt;
+          &lt;version&gt;1.3.0&lt;/version&gt;
+          &lt;/dependency&gt;
+        </programlisting>
 
         <para>Spring support module:</para>
 
         <programlisting language="xml">&lt;dependency&gt;
-    &lt;groupId&gt;org.ektorp&lt;/groupId&gt;
-    &lt;artifactId&gt;org.ektorp.spring&lt;/artifactId&gt;
-    &lt;version&gt;1.3.0&lt;/version&gt;
-&lt;/dependency&gt;</programlisting>
+          &lt;groupId&gt;org.ektorp&lt;/groupId&gt;
+          &lt;artifactId&gt;org.ektorp.spring&lt;/artifactId&gt;
+          &lt;version&gt;1.3.0&lt;/version&gt;
+          &lt;/dependency&gt;
+        </programlisting>
       </section>
 
       <section>
@@ -110,51 +123,59 @@
         <para>For the latest &amp; greatest use the snapshot:</para>
 
         <programlisting language="xml">&lt;dependency&gt;
-    &lt;groupId&gt;org.ektorp&lt;/groupId&gt;
-    &lt;artifactId&gt;org.ektorp&lt;/artifactId&gt;
-    &lt;version&gt;1.3.1-SNAPSHOT&lt;/version&gt;
-&lt;/dependency&gt;
+          &lt;groupId&gt;org.ektorp&lt;/groupId&gt;
+          &lt;artifactId&gt;org.ektorp&lt;/artifactId&gt;
+          &lt;version&gt;1.3.1-SNAPSHOT&lt;/version&gt;
+          &lt;/dependency&gt;
 
 
-&lt;dependency&gt;
-    &lt;groupId&gt;org.ektorp&lt;/groupId&gt;
-    &lt;artifactId&gt;org.ektorp.spring&lt;/artifactId&gt;
-    &lt;version&gt;1.3.1-SNAPSHOT&lt;/version&gt;
-&lt;/dependency&gt;</programlisting>
+          &lt;dependency&gt;
+          &lt;groupId&gt;org.ektorp&lt;/groupId&gt;
+          &lt;artifactId&gt;org.ektorp.spring&lt;/artifactId&gt;
+          &lt;version&gt;1.3.1-SNAPSHOT&lt;/version&gt;
+          &lt;/dependency&gt;
+        </programlisting>
 
         <para>You can find the snapshots at
-        <emphasis>http://oss.sonatype.org/content/repositories/snapshots/</emphasis></para>
+          <emphasis>http://oss.sonatype.org/content/repositories/snapshots/</emphasis>
+        </para>
 
         <programlisting language="xml">&lt;repositories&gt;
-    &lt;repository&gt;
-        &lt;id&gt;sonatype-nexus-snapshots&lt;/id&gt;
-        &lt;url&gt;http://oss.sonatype.org/content/repositories/snapshots/&lt;/url&gt;
-        &lt;releases&gt;
-            &lt;enabled&gt;false&lt;/enabled&gt;
-        &lt;/releases&gt;
-        &lt;snapshots&gt;
-            &lt;enabled&gt;true&lt;/enabled&gt;
-        &lt;/snapshots&gt;
-    &lt;/repository&gt;
-&lt;/repositories&gt;</programlisting>
+          &lt;repository&gt;
+          &lt;id&gt;sonatype-nexus-snapshots&lt;/id&gt;
+          &lt;url&gt;http://oss.sonatype.org/content/repositories/snapshots/&lt;/url&gt;
+          &lt;releases&gt;
+          &lt;enabled&gt;false&lt;/enabled&gt;
+          &lt;/releases&gt;
+          &lt;snapshots&gt;
+          &lt;enabled&gt;true&lt;/enabled&gt;
+          &lt;/snapshots&gt;
+          &lt;/repository&gt;
+          &lt;/repositories&gt;
+        </programlisting>
       </section>
     </section>
 
     <section>
       <title>Download</title>
 
-      <para>Ektorp can be downloaded from <link
-      xlink:href="https://github.com/helun/Ektorp/downloads">https://github.com/helun/Ektorp/downloads</link></para>
+      <para>Ektorp can be downloaded from
+        <link
+          xlink:href="https://github.com/helun/Ektorp/downloads">
+          https://github.com/helun/Ektorp/downloads
+        </link>
+      </para>
     </section>
 
     <section>
       <title>Sample Application</title>
 
       <para>A sample application can be downloaded from the Ektorp site. It is
-      a blog webapp aimed to showcase a basic Ektorp application. You can read
-      more about it in the <link
-      xlink:href="https://helun.github.io/Ektorp/tutorial.html">Ektorp
-      tutorial</link>.</para>
+        a blog webapp aimed to showcase a basic Ektorp application. You can read
+        more about it in the <link
+          xlink:href="https://helun.github.io/Ektorp/tutorial.html">Ektorp
+          tutorial</link>.
+      </para>
     </section>
   </chapter>
 
@@ -165,37 +186,49 @@
 
     <itemizedlist>
       <listitem>
-        <para><emphasis>org.ektorp.CouchDbInstance</emphasis> is the handle
-        for the actual CouchDB instance you are connecting to.</para>
+        <para>
+          <emphasis>org.ektorp.CouchDbInstance</emphasis>
+          is the handle
+          for the actual CouchDB instance you are connecting to.
+        </para>
       </listitem>
 
       <listitem>
-        <para><emphasis>org.ektorp.CouchDbConnector</emphasis> is a connection
-        to a specific database residing on the instance above.</para>
+        <para>
+          <emphasis>org.ektorp.CouchDbConnector</emphasis>
+          is a connection
+          to a specific database residing on the instance above.
+        </para>
       </listitem>
     </itemizedlist>
 
     <para>So, in order to connect to a database in a CouchDB instance, you
-    will need a CouchDbConnector, which needs a CouchDbInstance, which in turn
-    needs a HttpClient.</para>
+      will need a CouchDbConnector, which needs a CouchDbInstance, which in turn
+      needs a HttpClient.
+    </para>
 
     <section>
       <title>HttpClient</title>
 
       <para>Ektorp's standard implementation of the HttpClient interface is
-      <emphasis>org.ektorp.http.StdHttpClient</emphasis>. It is created
-      through a nested builder class:
-      <emphasis>StdHttpClient.Builder</emphasis><programlisting
-      language="java">HttpClient authenticatedHttpClient = new StdHttpClient?.Builder()
-                                .url("http://mychouchdbhost:5984")
-                                .username("admin")
-                                .password("secret")
-                                .build();</programlisting></para>
+        <emphasis>org.ektorp.http.StdHttpClient</emphasis>. It is created
+        through a nested builder class:
+        <emphasis>StdHttpClient.Builder</emphasis>
+        <programlisting
+          language="java">HttpClient authenticatedHttpClient = new StdHttpClient?.Builder()
+          .url("http://mychouchdbhost:5984")
+          .username("admin")
+          .password("secret")
+          .build();
+        </programlisting>
+      </para>
 
       <para>StdHttpClient just wraps <link
-      xlink:href="http://hc.apache.org/httpcomponents-client/index.html">Apache
-      HttpClient</link> and exposes the following configuration
-      properties:</para>
+        xlink:href="http://hc.apache.org/httpcomponents-client/index.html">Apache
+        HttpClient
+      </link> and exposes the following configuration
+        properties:
+      </para>
 
       <table>
         <title>org.ektorp.http.StdHttpClient Config Parameters</title>
@@ -250,14 +283,16 @@
               <entry>enableSSL</entry>
 
               <entry>false (will automatically be enabled if url begins with
-              https)</entry>
+                https)
+              </entry>
             </row>
 
             <row>
               <entry>sslSocketFactory</entry>
 
               <entry>The JVM's ssl socket factory will be used by
-              default</entry>
+                default
+              </entry>
             </row>
 
             <row>
@@ -300,33 +335,39 @@
       </table>
 
       <para>If this is not enough for you, you can always create a
-      <emphasis>org.apache.http.client.HttpClient</emphasis> yourself and pass
-      it as a constructor argument to the StdHttpClient.</para>
+        <emphasis>org.apache.http.client.HttpClient</emphasis>
+        yourself and pass
+        it as a constructor argument to the StdHttpClient.
+      </para>
 
       <section>
         <title>Enabling SSL/TLS Connections</title>
 
         <para>If you want the http client to connector to CouchDB with a
-        SSL/TLS connection, specify an url that begins with "https" or create
-        the client with the parameter enableSSL = true.</para>
+          SSL/TLS connection, specify an url that begins with "https" or create
+          the client with the parameter enableSSL = true.
+        </para>
 
         <para>You can bring your own SSLSocketFactory if you have configured
-        special trust stores etc. The factory can be specified through the
-        sslSocketFactory parameter.</para>
+          special trust stores etc. The factory can be specified through the
+          sslSocketFactory parameter.
+        </para>
 
         <para>If you are lazy and want the trust manager to trust any host and
-        certificate, relaxed SSL settings can be enabled through the
-        relaxedSSLSettings parameter.</para>
+          certificate, relaxed SSL settings can be enabled through the
+          relaxedSSLSettings parameter.
+        </para>
       </section>
 
       <section>
         <title>Caching</title>
 
         <para>Caching is enabled by default. This means that when you load a
-        document from the database, it will be loaded from the http client's
-        cache if it exists in the cache and the revision has not changed since
-        the last access. This can speed up database access
-        significantly.</para>
+          document from the database, it will be loaded from the http client's
+          cache if it exists in the cache and the revision has not changed since
+          the last access. This can speed up database access
+          significantly.
+        </para>
       </section>
     </section>
 
@@ -334,79 +375,99 @@
       <title>CouchDbInstance</title>
 
       <para>The standard implementation of the CouchDbInstance interface is
-      <emphasis>org.ektorp.impl.StdCouchDbInstance</emphasis>. This interface
-      provides methods for managing databases on the connected CouchDb
-      instance.</para>
+        <emphasis>org.ektorp.impl.StdCouchDbInstance</emphasis>. This interface
+        provides methods for managing databases on the connected CouchDb
+        instance.
+      </para>
 
       <para>StdCouchDbInstance provides two constructors:</para>
 
       <itemizedlist>
         <listitem>
-          <para><emphasis>StdCouchDbInstance(HttpClient
-          client)</emphasis></para>
+          <para>
+            <emphasis>StdCouchDbInstance(HttpClient
+              client)
+            </emphasis>
+          </para>
         </listitem>
 
         <listitem>
-          <para><emphasis>StdCouchDbInstance(HttpClient client,
-          ObjectMapperFactory of)</emphasis></para>
+          <para>
+            <emphasis>StdCouchDbInstance(HttpClient client,
+              ObjectMapperFactory of)
+            </emphasis>
+          </para>
         </listitem>
       </itemizedlist>
 
       <para>The second constructor allows you to bring your own
-      ObjectMapperFactory if you want full control on how Jackson is
-      configured.</para>
+        ObjectMapperFactory if you want full control on how Jackson is
+        configured.
+      </para>
 
-      <para><emphasis>StdCouchDbInstance</emphasis> is thread-safe.</para>
+      <para>
+        <emphasis>StdCouchDbInstance</emphasis>
+        is thread-safe.
+      </para>
     </section>
 
     <section>
       <title>CouchDbConnector</title>
 
       <para>The standard implementation of the CouchDbConnector interface is
-      <emphasis>org.ektorp.impl.StdCouchDbConnector</emphasis>. This interface
-      provides methods for manipulating documents within a specific
-      database.</para>
+        <emphasis>org.ektorp.impl.StdCouchDbConnector</emphasis>. This interface
+        provides methods for manipulating documents within a specific
+        database.
+      </para>
 
       <para>StdCouchDbConnector provides two constructors:</para>
 
       <itemizedlist>
         <listitem>
           <para>StdCouchDbConnector(String databaseName, CouchDbInstance
-          dbInstance)</para>
+            dbInstance)
+          </para>
         </listitem>
 
         <listitem>
           <para>StdCouchDbConnector(String databaseName, CouchDbInstance dbi,
-          ObjectMapperFactory of)</para>
+            ObjectMapperFactory of)
+          </para>
         </listitem>
       </itemizedlist>
 
       <para>The second constructor allows you to bring your own
-      ObjectMapperFactory if you want full control on how Jackson is
-      configured.</para>
+        ObjectMapperFactory if you want full control on how Jackson is
+        configured.
+      </para>
 
-      <para><emphasis>StdCouchDbConnector</emphasis> is thread-safe.</para>
+      <para>
+        <emphasis>StdCouchDbConnector</emphasis>
+        is thread-safe.
+      </para>
     </section>
 
     <section>
       <title>A Minimal Configuration</title>
 
       <para>Here's a minimal example configuration that connects to a CouchDB
-      instance on localhost:</para>
+        instance on localhost:
+      </para>
 
       <programlisting language="java">import org.ektorp.*;
-import org.ektorp.impl.*;
-import org.ektorp.http.*;
+        import org.ektorp.impl.*;
+        import org.ektorp.http.*;
 
-...
+        ...
 
-HttpClient httpClient = new StdHttpClient.Builder().build()
-CouchDbInstance dbInstance = new StdCouchDbInstance(httpClient);
-// if the second parameter is true, the database will be created if it doesn't exists
-CouchDbConnector db = dbInstance.createConnector("my_first_database", true);
+        HttpClient httpClient = new StdHttpClient.Builder().build()
+        CouchDbInstance dbInstance = new StdCouchDbInstance(httpClient);
+        // if the second parameter is true, the database will be created if it doesn't exists
+        CouchDbConnector db = dbInstance.createConnector("my_first_database", true);
 
-// go!
-...</programlisting>
+        // go!
+        ...
+      </programlisting>
     </section>
   </chapter>
 
@@ -414,7 +475,8 @@ CouchDbConnector db = dbInstance.createConnector("my_first_database", true);
     <title>Persistent Classes</title>
 
     <para>Ektorp can work with CouchDB documents in three different
-    styles:</para>
+      styles:
+    </para>
 
     <itemizedlist>
       <listitem>
@@ -434,23 +496,27 @@ CouchDbConnector db = dbInstance.createConnector("my_first_database", true);
       <title>Document Mapped as a POJO</title>
 
       <para>Ektorp is mainly build for persisting rich domain classes in
-      CouchDB much like classing ORM tools such as Hibernate. This is achieved
-      by using the powerful object mapping features provided by the Jackson
-      JSON library.</para>
+        CouchDB much like classing ORM tools such as Hibernate. This is achieved
+        by using the powerful object mapping features provided by the Jackson
+        JSON library.
+      </para>
 
       <para>Your classes need to fulfill two requirements in order to be
-      compatible with Ektorp:</para>
+        compatible with Ektorp:
+      </para>
 
       <orderedlist>
         <listitem>
           <para>The class must be able to be serialized and deserialized
-          through Jackson's ObjectMapper.</para>
+            through Jackson's ObjectMapper.
+          </para>
         </listitem>
 
         <listitem>
           <para>The class must define an id field and a revision field through
-          the annotations <emphasis>@JsonProperty("_id")</emphasis> and
-          <emphasis>@JsonProperty("_rev").</emphasis></para>
+            the annotations <emphasis>@JsonProperty("_id")</emphasis> and
+            <emphasis>@JsonProperty("_rev").</emphasis>
+          </para>
         </listitem>
       </orderedlist>
 
@@ -458,60 +524,64 @@ CouchDbConnector db = dbInstance.createConnector("my_first_database", true);
 
       <programlisting language="java">import org.codehaus.jackson.annotate.*;
 
-public class Sofa {
+        public class Sofa {
 
-        
+
         private String id;
         private String revision;
         private String color;
-        
+
         @JsonProperty("_id")
         public String getId() {
-                return id;
+        return id;
         }
 
         @JsonProperty("_id")
         public void setId(String s) {
-                id = s;
+        id = s;
         }
 
         @JsonProperty("_rev")
         public String getRevision() {
-                return revision;
+        return revision;
         }
 
         @JsonProperty("_rev")
         public void setRevision(String s) {
-                revision = s;
+        revision = s;
         }
 
         public void setColor(String s) {
-                color = s;
+        color = s;
         }
-        
+
         public String getColor() {
-                return color;
+        return color;
         }
-}</programlisting>
+        }
+      </programlisting>
 
       <section>
         <title>Non-standard Method Names</title>
 
         <para>It is possible to use other method names than shown above as
-        long as the method is annotated with
-        <emphasis>@JsonProperty</emphasis>:</para>
+          long as the method is annotated with
+          <emphasis>@JsonProperty</emphasis>:
+        </para>
 
         <programlisting language="java">...
 
-@JsonProperty("_id")
-public String getIdentifikator() {
-    return identifikator;
-}
+          @JsonProperty("_id")
+          public String getIdentifikator() {
+          return identifikator;
+          }
 
-...</programlisting>
+          ...
+        </programlisting>
 
         <para>Methods can have any visibility; public, protected, default or
-        private.</para>
+          private.
+        </para>
       </section>
 
       <section>
@@ -521,119 +591,129 @@ public String getIdentifikator() {
 
         <programlisting language="java">...
 
-@JsonProperty("_id")
-private String id;
+          @JsonProperty("_id")
+          private String id;
 
-@JsonProperty("_rev")
-private String rev;
+          @JsonProperty("_rev")
+          private String rev;
 
-...</programlisting>
+          ...
+        </programlisting>
       </section>
 
       <section>
         <title>The CouchDbDocument Support Class</title>
 
         <para>If you don't mind dependencies on Ektorp in your domain classes
-        you can extend the class
-        <emphasis>org.ektorp.support.CouchDbDocument</emphasis></para>
+          you can extend the class
+          <emphasis>org.ektorp.support.CouchDbDocument</emphasis>
+        </para>
 
         <para>CouchDbDocument already has mappings defined for id, revision
-        and also for attachment stubs.</para>
+          and also for attachment stubs.
+        </para>
 
         <para>Here's how the Sofa class looks like when extending
-        CouchDbDocument:</para>
+          CouchDbDocument:
+        </para>
 
         <programlisting language="java">import org.ektorp.support.CouchDbDocument;
 
-public class Sofa extends CouchDbDocument{
+          public class Sofa extends CouchDbDocument{
 
-        private String color;
-        
-        public void setColor(String s) {
-                color = s;
-        }
-        
-        public String getColor() {
-                return color;
-        }
-}</programlisting>
+          private String color;
+
+          public void setColor(String s) {
+          color = s;
+          }
+
+          public String getColor() {
+          return color;
+          }
+          }
+        </programlisting>
       </section>
 
       <section>
         <title>Example of Various Mappings</title>
 
         <para>Here is an example object that showcases various
-        mappings:</para>
+          mappings:
+        </para>
 
         <programlisting language="java">package org.ektorp.sample;
 
-import java.util.*;
+          import java.util.*;
 
-import org.codehaus.jackson.annotate.*;
-import org.ektorp.*;
+          import org.codehaus.jackson.annotate.*;
+          import org.ektorp.*;
 
-public class Sofa extends CouchDbDocument {
+          public class Sofa extends CouchDbDocument {
 
-        private String color;
-        private int seats;
-        private Date dateCreated;
-        private List&lt;String&gt; imageURLs;
-        private Map&lt;String, Pillow&gt; pillows;
-        
-        public void setColor(String s) {
-                this.color = s;
-        }
-        
-        public int getSeats() {
-                return seats;
-        }
-        
-        public void setSeats(int i) {
-                this.seats = i;
-        }
-        
-        public String getColor() {
-                return color;
-        }
-        
-        public List&lt;String&gt; getImageURLs() {
-                return imageURLs;
-        }
-        
-        public void setImageURLs(List&lt;String&gt; imageURLs) {
-                this.imageURLs = imageURLs;
-        }
-        
-        @JsonIgnore
-        public int getNumberOfImages() {
-                return imageURLs != null ? imageURLs.size() : 0;
-        }
-        
-        public Map&lt;String, Pillow&gt; getPillows() {
-                return pillows;
-        }
-        
-        public void setPillows(Map&lt;String, Pillow&gt; pillows) {
-                this.pillows = pillows;
-        }
-        
-        @JsonProperty("date_created")
-        public Date getDateCreated() {
-                return dateCreated;
-        }
-        
-        @JsonProperty("date_created")
-        public void setDateCreated(Date dateCreated) {
-                this.dateCreated = dateCreated;
-        }
-}</programlisting>
+          private String color;
+          private int seats;
+          private Date dateCreated;
+          private List&lt;String&gt; imageURLs;
+          private Map&lt;String, Pillow&gt; pillows;
+
+          public void setColor(String s) {
+          this.color = s;
+          }
+
+          public int getSeats() {
+          return seats;
+          }
+
+          public void setSeats(int i) {
+          this.seats = i;
+          }
+
+          public String getColor() {
+          return color;
+          }
+
+          public List&lt;String&gt; getImageURLs() {
+          return imageURLs;
+          }
+
+          public void setImageURLs(List&lt;String&gt; imageURLs) {
+          this.imageURLs = imageURLs;
+          }
+
+          @JsonIgnore
+          public int getNumberOfImages() {
+          return imageURLs != null ? imageURLs.size() : 0;
+          }
+
+          public Map&lt;String, Pillow&gt; getPillows() {
+          return pillows;
+          }
+
+          public void setPillows(Map&lt;String, Pillow&gt; pillows) {
+          this.pillows = pillows;
+          }
+
+          @JsonProperty("date_created")
+          public Date getDateCreated() {
+          return dateCreated;
+          }
+
+          @JsonProperty("date_created")
+          public void setDateCreated(Date dateCreated) {
+          this.dateCreated = dateCreated;
+          }
+          }
+        </programlisting>
 
         <para>As you can see, most properties does not require any special
-        mappings. The @JsonProperty annotation are used to map a property to a
-        different name than the property name.</para>
+          mappings. The @JsonProperty annotation are used to map a property to a
+          different name than the property name.
+        </para>
 
-        <para>In order to suppress a property <emphasis>@JsonIgnore</emphasis>
-        is used.</para>
+        <para>In order to suppress a property
+          <emphasis>@JsonIgnore</emphasis>
+          is used.
+        </para>
       </section>
 
       <section>
@@ -643,81 +723,96 @@ public class Sofa extends CouchDbDocument {
 
         <programlisting language="java">package org.ektorp.sample;
 
-import org.codehaus.jackson.annotate.*;
+          import org.codehaus.jackson.annotate.*;
 
-public class Pillow {
-        
-        public enum Softness {SOFT, MEDIUM, FIRM}
-        
-        private final Softness softness;
-        
-        @JsonCreator
-        public Pillow(@JsonProperty("softness") Softness s) {
-            softness = s;
-        }
-        
-        public Softness getSoftness() {
-            return softness;
-        }
-}</programlisting>
+          public class Pillow {
+
+          public enum Softness {SOFT, MEDIUM, FIRM}
+
+          private final Softness softness;
+
+          @JsonCreator
+          public Pillow(@JsonProperty("softness") Softness s) {
+          softness = s;
+          }
+
+          public Softness getSoftness() {
+          return softness;
+          }
+          }
+        </programlisting>
 
         <para>The constructor is annotated with
-        <emphasis>@JsonCreator</emphasis> and the properties has to be
-        specified with @JsonProperty</para>
+          <emphasis>@JsonCreator</emphasis>
+          and the properties has to be
+          specified with @JsonProperty
+        </para>
       </section>
 
       <section>
         <title>Referring Other Documents</title>
 
         <para>An embedded collection may need to be externalized due to size
-        or to reduce update congestion.</para>
+          or to reduce update congestion.
+        </para>
 
         <para>Ektorp provides support for this through the @DocumentReferences
-        annotation.</para>
+          annotation.
+        </para>
 
         <para>Fields annotated with @DocumentReferences will have their
-        children elements stored in separate documents. Only collections that
-        implement java.util.Set are supported.<programlisting language="java">public class BlogPost {
+          children elements stored in separate documents. Only collections that
+          implement java.util.Set are supported.
+          <programlisting language="java">public class BlogPost {
 
-    @JsonProperty("_id")
-    private String id;
+            @JsonProperty("_id")
+            private String id;
 
-    @JsonProperty("_rev")
-    private String rev;
+            @JsonProperty("_rev")
+            private String rev;
 
-    @DocumentReferences(backReference = "blogPostId", fetch = FetchType.LAZY, descendingSortOrder = true, orderBy = "dateCreated")
-    private Set&lt;Comment&gt; comments;
+            @DocumentReferences(backReference = "blogPostId", fetch = FetchType.LAZY,
+            descendingSortOrder = true, orderBy = "dateCreated")
+            private Set&lt;Comment&gt; comments;
 
-...</programlisting></para>
+            ...
+          </programlisting>
+        </para>
 
         <para>The backReference parameter is required and must name the field
-        in the child document that contains the id of the parent
-        document.</para>
+          in the child document that contains the id of the parent
+          document.
+        </para>
 
         <para>The fetch strategy if @DocumentReferences collections may be
-        lazy or eager. If set to lazy, the collection will be populated in
-        entirety when the collection is first touched. Eager setting will
-        cause the collection to be populated at the same time as it
-        parent.</para>
+          lazy or eager. If set to lazy, the collection will be populated in
+          entirety when the collection is first touched. Eager setting will
+          cause the collection to be populated at the same time as it
+          parent.
+        </para>
 
         <para>The sort order of the loaded collection may be specified by the
-        orderBy parameter. The parameter must refer to a field in the child
-        docs.</para>
+          orderBy parameter. The parameter must refer to a field in the child
+          docs.
+        </para>
 
         <section>
           <title>Transitive Persistence</title>
 
           <para>If an element is added to a Set annotated with
-          @DocumentReferences the element will be stored transparently when
-          the parent document is updated.</para>
+            @DocumentReferences the element will be stored transparently when
+            the parent document is updated.
+          </para>
 
           <para>Removing an element from the collection will cause its
-          deletion from the database when the parent document is
-          updated.</para>
+            deletion from the database when the parent document is
+            updated.
+          </para>
 
           <para>The cascade behaviour can be controlled through the cascade
-          parameter in @DocumentReferences. There are four cascade
-          types:</para>
+            parameter in @DocumentReferences. There are four cascade
+            types:
+          </para>
 
           <informaltable>
             <tgroup cols="2">
@@ -726,30 +821,34 @@ public class Pillow {
                   <entry>ALL</entry>
 
                   <entry>All operations are cascaded to the child
-                  documents.</entry>
+                    documents.
+                  </entry>
                 </row>
 
                 <row>
                   <entry>SAVE_UPDATE</entry>
 
                   <entry>Cascades the create and update operations when
-                  create(), update(), executeBulk() or executeAllOrNothing()
-                  is called.</entry>
+                    create(), update(), executeBulk() or executeAllOrNothing()
+                    is called.
+                  </entry>
                 </row>
 
                 <row>
                   <entry>DELETE</entry>
 
                   <entry>Cascades the remove operation to associated entities
-                  if delete(), executeBulk() or executeAllOrNothing() is
-                  called.</entry>
+                    if delete(), executeBulk() or executeAllOrNothing() is
+                    called.
+                  </entry>
                 </row>
 
                 <row>
                   <entry>NONE (default)</entry>
 
                   <entry>No operation is cascaded to the child
-                  documents.</entry>
+                    documents.
+                  </entry>
                 </row>
               </tbody>
             </tgroup>
@@ -759,22 +858,25 @@ public class Pillow {
             <title>Recommendation</title>
 
             <para>The cascade type you choose can have a large inpact on how
-            your application behaves. If you have moved the collection to
-            extenal documents in order to avoid update congestion, then
-            cascade type NONE is probably the best option as this will
-            minimize conflicts.</para>
+              your application behaves. If you have moved the collection to
+              extenal documents in order to avoid update congestion, then
+              cascade type NONE is probably the best option as this will
+              minimize conflicts.
+            </para>
           </section>
 
           <section>
             <title>Limitations</title>
 
             <para>In Ektorp 1.1.0 the cascade logic for updates is quite crude
-            and will cause updates of all elements, regardless if the have
-            changed or not. This behaviour might change in future
-            releases.</para>
+              and will cause updates of all elements, regardless if the have
+              changed or not. This behaviour might change in future
+              releases.
+            </para>
 
             <para>If the parent document is deleted the child docuements will
-            not be deleted automatically.</para>
+              not be deleted automatically.
+            </para>
           </section>
         </section>
 
@@ -782,23 +884,27 @@ public class Pillow {
           <title>Supporting Views</title>
 
           <para>Allthough the document references are managed transparently it
-          can be interesting to know that the relations between parent and
-          child documents are managed by views that are automatically
-          generated by Ektorp (unless explicitly specified). These views are
-          put in the <link xlink:href="std_design_doc">Standard Design
-          Document</link> and are named according to the following naming
-          convention: ektorp_docrefs_[fieldName].</para>
+            can be interesting to know that the relations between parent and
+            child documents are managed by views that are automatically
+            generated by Ektorp (unless explicitly specified). These views are
+            put in the <link xlink:href="std_design_doc">Standard Design
+              Document
+            </link> and are named according to the following naming
+            convention: ektorp_docrefs_[fieldName].
+          </para>
 
           <para>Supporting views are generated in conjunction with the view
-          generation functionaly provided by the repository support in Ektorp,
-          see <link xlink:href="auto_view_gen">chapter 6</link>.</para>
+            generation functionaly provided by the repository support in Ektorp,
+            see <link xlink:href="auto_view_gen">chapter 6</link>.
+          </para>
         </section>
 
         <section>
           <title>Only One-to-Many relations are supported</title>
 
           <para>The views can only support one backreference to one parent,
-          Many-to-Many relations are hence not supported.</para>
+            Many-to-Many relations are hence not supported.
+          </para>
         </section>
       </section>
 
@@ -806,124 +912,138 @@ public class Pillow {
         <title>Decoupling Persistent Classes from Annotations</title>
 
         <para>If you don't want your classes to have external dependencies or
-        if you can't modify them for other reasons, you can register a mix-in
-        class (or interface) that provides the mapping information to the JSON
-        processor. In order to do this you must bring your own instance of
-        org.codehaus.jackson.map.ObjectMapper:</para>
+          if you can't modify them for other reasons, you can register a mix-in
+          class (or interface) that provides the mapping information to the JSON
+          processor. In order to do this you must bring your own instance of
+          org.codehaus.jackson.map.ObjectMapper:
+        </para>
 
         <programlisting language="java">ObjectMapper myMapper = new ObjectMapper();
 
-myMapper.getSerializationConfig().addMixInAnnotations(Target.class, MixIn.class);
-myMapper.getDeserializationConfig().addMixInAnnotations(Target.class, MixIn.class);
+          myMapper.getSerializationConfig().addMixInAnnotations(Target.class, MixIn.class);
+          myMapper.getDeserializationConfig().addMixInAnnotations(Target.class, MixIn.class);
 
 
-CouchDbConnector db = new StdCouchDbConnector("myDBName", dbInstance, myMapper);</programlisting>
+          CouchDbConnector db = new StdCouchDbConnector("myDBName", dbInstance, myMapper);
+        </programlisting>
 
         <para>The mix-in class is just an abstract class that provides the
-        annotations for your target class:</para>
+          annotations for your target class:
+        </para>
 
         <programlisting language="java">@JsonSerialize(include = Inclusion.NON_NULL)
-abstract class MixIn
+          abstract class MixIn
 
-  @JsonProperty("_id") abstract int getFoo(); // rename property
-  @JsonProperty("_rev") abstract int getBar(); // rename property
-  @JsonIgnore int getSize(); // we don't need it!
-  
-}</programlisting>
+          @JsonProperty("_id") abstract int getFoo(); // rename property
+          @JsonProperty("_rev") abstract int getBar(); // rename property
+          @JsonIgnore int getSize(); // we don't need it!
 
-        <para>Read more about mix-ins in the <link
-        xlink:href="http://wiki.fasterxml.com/JacksonMixInAnnotations">Jackson
-        Documentation.</link></para>
+          }
+        </programlisting>
+
+        <para>Read more about mix-ins in the
+          <link
+            xlink:href="http://wiki.fasterxml.com/JacksonMixInAnnotations">Jackson
+            Documentation.
+          </link>
+        </para>
       </section>
 
       <section>
         <title>Custom Serializer</title>
 
         <para>If you have special needs and want to have complete control of
-        the serialization you can register a custom serializer for your
-        class:</para>
+          the serialization you can register a custom serializer for your
+          class:
+        </para>
 
         <programlisting language="java">@JsonSerailize(using = MySpecialType.Serializer.class)
-public class MySpecialDocument {
+          public class MySpecialDocument {
 
-    String id;
-    String revision;
-    
-    ... rest of class goes here ...
-    
-    public static class Serializer extends JsonSerializer&lt;MySpecialType&gt; {
+          String id;
+          String revision;
 
-        @Override
-        public void serialize(MySpecialType value, JsonGenerator jgen,
-                SerializerProvider provider) throws IOException,
-                JsonProcessingException {
-            jgen.writeStartObject();
-            jgen.writeStringField("_id", value.id);
-            jgen.writeStringField("_rev", value.revision);
-            ...
-            etc etc
-            ...
-            jgen.writeEndObject();
-        }
-        
-    }
-}</programlisting>
+          ... rest of class goes here ...
+
+          public static class Serializer extends JsonSerializer&lt;MySpecialType&gt; {
+
+          @Override
+          public void serialize(MySpecialType value, JsonGenerator jgen,
+          SerializerProvider provider) throws IOException,
+          JsonProcessingException {
+          jgen.writeStartObject();
+          jgen.writeStringField("_id", value.id);
+          jgen.writeStringField("_rev", value.revision);
+          ...
+          etc etc
+          ...
+          jgen.writeEndObject();
+          }
+
+          }
+          }
+        </programlisting>
       </section>
 
       <section>
         <title>Custom DocumentAccessor</title>
 
         <para>Ektorp has to know how to access the id and revision properties
-        in the types it is working with. For most types that are annotated or
-        follow the naming convention this works out of the box. But if you are
-        using a an exotic type, a custom serializer or mix-ins Ektorp might
-        not be able to figure out how to access these properties.</para>
+          in the types it is working with. For most types that are annotated or
+          follow the naming convention this works out of the box. But if you are
+          using a an exotic type, a custom serializer or mix-ins Ektorp might
+          not be able to figure out how to access these properties.
+        </para>
 
         <para>In this case you can create and register a custom document
-        accessor:</para>
+          accessor:
+        </para>
 
         <programlisting language="java">import org.ektorp.util.DocumentAccessor;
-import org.ektorp.util.Documents;
+          import org.ektorp.util.Documents;
 
-class MyDocumentAccessor implements DocumentAccessor {
-    /**
-    * @return true if document type's id field can be mutated.
-    */
-    public boolean hasIdMutator() {
-        return true;
-    }
+          class MyDocumentAccessor implements DocumentAccessor {
+          /**
+          * @return true if document type's id field can be mutated.
+          */
+          public boolean hasIdMutator() {
+          return true;
+          }
 
-    public String getId(Object o) {
-        return cast(o).foo;
-    }
+          public String getId(Object o) {
+          return cast(o).foo;
+          }
 
-    public void setId(Object o, String id) {
-        cast(o).foo = rev;
-    }
+          public void setId(Object o, String id) {
+          cast(o).foo = rev;
+          }
 
-    public String getRevision(Object o) {
-        return cast(o).bar;
-    }
+          public String getRevision(Object o) {
+          return cast(o).bar;
+          }
 
-    public void setRevision(Object o, String rev) {
-        cast(o).bar = rev;
-    }
+          public void setRevision(Object o, String rev) {
+          cast(o).bar = rev;
+          }
 
-    private MyType cast(Object o) {
-        return (MyType) o;
-    }
+          private MyType cast(Object o) {
+          return (MyType) o;
+          }
 
-}</programlisting>
+          }
+        </programlisting>
 
         <para>And register the new accessor with Ektorp:</para>
 
-        <programlisting language="java">Documents.registerAccessor(MyType.class, new MyDocumentAccessor());
+        <programlisting language="java">Documents.registerAccessor(MyType.class, new
+          MyDocumentAccessor());
 
-// here's a Junit snippet you can use to test your accessor:
-MyType myType = new MyType();
-Documents.setId(myType, "my_id");
-assertEquals("my_id", Documents.getId(myType));
-assertTrue(Documents.isNew(myType));</programlisting>
+          // here's a Junit snippet you can use to test your accessor:
+          MyType myType = new MyType();
+          Documents.setId(myType, "my_id");
+          assertEquals("my_id", Documents.getId(myType));
+          assertTrue(Documents.isNew(myType));
+        </programlisting>
       </section>
     </section>
 
@@ -931,49 +1051,53 @@ assertTrue(Documents.isNew(myType));</programlisting>
       <title>Document Mapped as java.util.Map</title>
 
       <para>It is possible to read and write documents mapped as
-      java.util.Map&lt;String, Object&gt;. This is convenient if you have
-      documents that have a simple structure and a small number of
-      fields.</para>
+        java.util.Map&lt;String, Object&gt;. This is convenient if you have
+        documents that have a simple structure and a small number of
+        fields.
+      </para>
 
-      <programlisting language="java">    
-    List&lt;String&gt; countries = ...
-    Map&lt;String, List&lt;String&gt;&gt; majorCitiesByCountry = ...
-    
-    Map&lt;String, Object&gt; referenceData = new HashMap&lt;String, Object&gt;();
-    referenceData.put("_id", "referenceData");
-    referenceData.put("countries", countries);
-    referenceData.put("majorCitiesByCountry", majorCitiesByCountry);
-    
-    db.create(referenceData);
+      <programlisting language="java">
+        List&lt;String&gt; countries = ...
+        Map&lt;String, List&lt;String&gt;&gt; majorCitiesByCountry = ...
 
-    Map&lt;String, Object&gt; referenceData_2 = db.get(Map.class, "referenceData")
-    ...</programlisting>
+        Map&lt;String, Object&gt; referenceData = new HashMap&lt;String, Object&gt;();
+        referenceData.put("_id", "referenceData");
+        referenceData.put("countries", countries);
+        referenceData.put("majorCitiesByCountry", majorCitiesByCountry);
+
+        db.create(referenceData);
+
+        Map&lt;String, Object&gt; referenceData_2 = db.get(Map.class, "referenceData")
+        ...
+      </programlisting>
     </section>
 
     <section>
       <title>Document Mapped as JsonNode</title>
 
       <para>If you like to work with your documents in a DOM-style manner your
-      can use <emphasis>org.codehaus.jackson.JsonNode</emphasis>. This is
-      useful if you want to modify documents without creating explicit Java
-      types for them. JsonNode is more powerful than java.util.Map when it
-      comes to traversing and modifying the document.</para>
+        can use <emphasis>org.codehaus.jackson.JsonNode</emphasis>. This is
+        useful if you want to modify documents without creating explicit Java
+        types for them. JsonNode is more powerful than java.util.Map when it
+        comes to traversing and modifying the document.
+      </para>
 
       <programlisting language="java">import org.ektorp.*;
-import org.codehaus.jackson.*;
-import org.codehaus.jackson.node.*;
+        import org.codehaus.jackson.*;
+        import org.codehaus.jackson.node.*;
 
-    ...
+        ...
 
-    JsonNode doc = db.get(JsonNode.class, "myDoc");
-        
-    JsonNode address = doc.findPath("address");
-    if (address.isObject()) {
+        JsonNode doc = db.get(JsonNode.class, "myDoc");
+
+        JsonNode address = doc.findPath("address");
+        if (address.isObject()) {
         ObjectNode a = (ObjectNode) address;
         a.put("city", "Stockholm");
-    }
-        
-    db.update(doc);</programlisting>
+        }
+
+        db.update(doc);
+      </programlisting>
     </section>
   </chapter>
 
@@ -981,27 +1105,31 @@ import org.codehaus.jackson.node.*;
     <title>Working with Objects</title>
 
     <para>Basic CRUD (Create, Read, Update and Delete) operations are
-    straightforward in Ektorp.</para>
+      straightforward in Ektorp.
+    </para>
 
     <para>The easiest way to create a repository is to extend the class
-    CouchDbRepositorySupport. The class provides all CRUD methods out of the
-    box and has support methods for writing terse finder methods.</para>
+      CouchDbRepositorySupport. The class provides all CRUD methods out of the
+      box and has support methods for writing terse finder methods.
+    </para>
 
     <section>
       <title>Create</title>
 
       <programlisting language="java">Sofa sofa = ...
 
-CouchDbConnector db = ...
-db.create(sofa);
+        CouchDbConnector db = ...
+        db.create(sofa);
 
-// both id and revision will be set after create
-String id = sofa.getId();
-String revision = sofa.getRevision();</programlisting>
+        // both id and revision will be set after create
+        String id = sofa.getId();
+        String revision = sofa.getRevision();
+      </programlisting>
 
       <para>If the object being created does not have an id set, CouchDB will
-      generate one. Both id and revision will be set after the create
-      operation.</para>
+        generate one. Both id and revision will be set after the create
+        operation.
+      </para>
     </section>
 
     <section>
@@ -1010,52 +1138,66 @@ String revision = sofa.getRevision();</programlisting>
       <para>Get the latest revision of a document from the database:</para>
 
       <programlisting language="java">String id = ...
-Sofa sofa = db.get(Sofa.class, id);</programlisting>
+        Sofa sofa = db.get(Sofa.class, id);
+      </programlisting>
 
       <para>If the desired document does not exists in the database an
-      <emphasis>org.ektorp.DocumentNotFoundException</emphasis> is
-      thrown.</para>
+        <emphasis>org.ektorp.DocumentNotFoundException</emphasis>
+        is
+        thrown.
+      </para>
 
       <para>If you need to fetch a specific revision:</para>
 
       <programlisting language="java">String id = ...
-String rev = ...
-Sofa sofa = db.get(Sofa.class, id, rev);</programlisting>
+        String rev = ...
+        Sofa sofa = db.get(Sofa.class, id, rev);
+      </programlisting>
 
       <para>Read a document as a raw stream:</para>
 
       <programlisting language="java">String id = ...
-InputStream doc = db.getAsStream(id);
+        InputStream doc = db.getAsStream(id);
 
-InputStream olderRev = db.getAsStream(id, rev);</programlisting>
+        InputStream olderRev = db.getAsStream(id, rev);
+      </programlisting>
 
       <section>
         <title>Special Cases</title>
 
         <para>All get methods in CouchDbConnector has a variant that takes a
-        <emphasis>org.ektorp.Options</emphasis> argument. Options is used for
-        special cases when you need to load a document with a specific
-        revision, conflict markers etc.</para>
+          <emphasis>org.ektorp.Options</emphasis>
+          argument. Options is used for
+          special cases when you need to load a document with a specific
+          revision, conflict markers etc.
+        </para>
 
         <section>
           <title>Read a Specific Revision</title>
 
-          <para><parameter>Retrieve a specific revision of the
-          document.</parameter><programlisting language="java">String id = ...
-String rev = ...
-Options options = new Options().revision(rev);
-Sofa sofa = db.get(Sofa.class, id, options);</programlisting></para>
+          <para>
+            <parameter>Retrieve a specific revision of the
+              document.
+            </parameter>
+            <programlisting language="java">String id = ...
+              String rev = ...
+              Options options = new Options().revision(rev);
+              Sofa sofa = db.get(Sofa.class, id, options);
+            </programlisting>
+          </para>
         </section>
 
         <section>
           <title>Include Conflicts</title>
 
           <para>The loaded doc will include the special field '_conflicts'
-          that contains all the conflicting revisions of the document.</para>
+            that contains all the conflicting revisions of the document.
+          </para>
 
           <programlisting language="java">String id = ...
-Options options = new Options().includeConflicts();
-Sofa sofa = db.get(Sofa.class, id, options);</programlisting>
+            Options options = new Options().includeConflicts();
+            Sofa sofa = db.get(Sofa.class, id, options);
+          </programlisting>
 
           <para></para>
         </section>
@@ -1064,19 +1206,27 @@ Sofa sofa = db.get(Sofa.class, id, options);</programlisting>
           <title>Include All Revisions</title>
 
           <para>The loaded doc will include the special field '_revisions'
-          that describes all document revisions that exists in the
-          database.<programlisting language="java">String id = ...
-Options options = new Options().includeRevisions();
-Sofa sofa = db.get(Sofa.class, id, options);</programlisting></para>
+            that describes all document revisions that exists in the
+            database.
+            <programlisting language="java">String id = ...
+              Options options = new Options().includeRevisions();
+              Sofa sofa = db.get(Sofa.class, id, options);
+            </programlisting>
+          </para>
         </section>
 
         <section>
           <title>Add Arbitrary Parameters to the Request</title>
 
-          <para><parameter>It is possible to add arbitrary parameters to the
-          database request.</parameter><programlisting language="java">String id = ...
-Options options = new Options().param("paramName","paramValue");
-Sofa sofa = db.get(Sofa.class, id, options);</programlisting></para>
+          <para>
+            <parameter>It is possible to add arbitrary parameters to the
+              database request.
+            </parameter>
+            <programlisting language="java">String id = ...
+              Options options = new Options().param("paramName","paramValue");
+              Sofa sofa = db.get(Sofa.class, id, options);
+            </programlisting>
+          </para>
         </section>
       </section>
     </section>
@@ -1085,67 +1235,81 @@ Sofa sofa = db.get(Sofa.class, id, options);</programlisting></para>
       <title>Update</title>
 
       <programlisting language="java">Sofa sofa = ...
-db.update(sofa)
-// revision will be updated after update
-sofa.getRevision();</programlisting>
+        db.update(sofa)
+        // revision will be updated after update
+        sofa.getRevision();
+      </programlisting>
 
       <para>If the there exists a newer revision of the document in the
-      database, an <emphasis>org.ektorp.UpdateConflictException</emphasis> is
-      thrown.</para>
+        database, an <emphasis>org.ektorp.UpdateConflictException</emphasis> is
+        thrown.
+      </para>
 
       <para>Note that calling update with an object that has an empty id field
-      will create a new document in the database.</para>
+        will create a new document in the database.
+      </para>
 
-        <section>
-            <title>Updating from a Stream</title>
-            <para>
-                Documents can be updated from an InputStream. The InputStream must contain a JSON document. Using
-                an InputStream allows you to update a document from a JSON document without having to parse it, which
-                can be more efficient for large documents.
-            </para>
+      <section>
+        <title>Updating from a Stream</title>
+        <para>
+          Documents can be updated from an InputStream. The InputStream must contain a JSON
+          document. Using
+          an InputStream allows you to update a document from a JSON document without having to
+          parse it, which
+          can be more efficient for large documents.
+        </para>
 
-            <programlisting language="java">
-                File file = someMethodToGetFile();
-                InputStream jsonInputStream = new FileInputStream(file);
-                db.update("document_id",
-                          jsonInputStream,
-                          file.length(),
-                          null);
-            </programlisting>
-        </section>
+        <programlisting language="java">
+          File file = someMethodToGetFile();
+          InputStream jsonInputStream = new FileInputStream(file);
+          db.update("document_id",
+          jsonInputStream,
+          file.length(),
+          null);
+        </programlisting>
+      </section>
     </section>
 
     <section>
       <title>Delete</title>
 
       <para>Both the id and revision of an object is required in order to
-      delete it:</para>
+        delete it:
+      </para>
 
       <programlisting language="java">String id = ...
-String revision = ...
-db.delete(id, revision):</programlisting>
+        String revision = ...
+        db.delete(id, revision):
+      </programlisting>
 
       <para>If the there exists a newer revision of the document in the
-      database, an <emphasis>org.ektorp.UpdateConflictException</emphasis> is
-      thrown.</para>
+        database, an <emphasis>org.ektorp.UpdateConflictException</emphasis> is
+        thrown.
+      </para>
 
       <para>As a convenience, a whole object can also be passed as an
-      argument:</para>
+        argument:
+      </para>
 
       <programlisting language="java">Sofa sofa = ...
-db.delete(sofa)</programlisting>
+        db.delete(sofa)
+      </programlisting>
 
       <section>
         <title>Purge Deleted Documents</title>
 
         <para>Since the database retains references to deleted documents you
-        may need to permanently remove those references. This can be achieved
-        through a purge operation:<programlisting>// the map contains revisions by doc id to purge
-Map&lt;String,List&lt;String&gt;&gt; revisionsToPurge = ...
-PurgeResult result = db.purge(revisionsToPurge);
-</programlisting><parameter>Note that purging docs from the database is not
-        part of a normal use case and should only be considered if you need to
-        free up disk space.</parameter></para>
+          may need to permanently remove those references. This can be achieved
+          through a purge operation:
+          <programlisting>// the map contains revisions by doc id to purge
+            Map&lt;String,List&lt;String&gt;&gt; revisionsToPurge = ...
+            PurgeResult result = db.purge(revisionsToPurge);
+          </programlisting>
+          <parameter>Note that purging docs from the database is not
+            part of a normal use case and should only be considered if you need to
+            free up disk space.
+          </parameter>
+        </para>
       </section>
     </section>
 
@@ -1153,71 +1317,82 @@ PurgeResult result = db.purge(revisionsToPurge);
       <title>Bulk Operations</title>
 
       <para>Ektorp provides full support for the bulk document operations
-      available in CouchDB.</para>
+        available in CouchDB.
+      </para>
 
       <section>
         <title>Fetch Multiple Documents With a Single Request</title>
 
         <para>Loading multiple documents in one call is performed through the
-        queryView API. The difference from regular view queries is that
-        allDocs() is called instead of defining a design document.</para>
+          queryView API. The difference from regular view queries is that
+          allDocs() is called instead of defining a design document.
+        </para>
 
         <programlisting language="java">List&lt;String&gt; docIds = ...
 
-ViewQuery q = new ViewQuery()
-                      .allDocs()
-                      .includeDocs(true)
-                      .keys(docIds);
+          ViewQuery q = new ViewQuery()
+          .allDocs()
+          .includeDocs(true)
+          .keys(docIds);
 
-List&lt;Sofa&gt; bulkLoaded = db.queryView(q, Sofa.class);</programlisting>
+          List&lt;Sofa&gt; bulkLoaded = db.queryView(q, Sofa.class);
+        </programlisting>
       </section>
 
       <section>
         <title>Creating, Updating and Deleting Documents With a Single
-        Request</title>
+          Request
+        </title>
 
         <para>All other bulk operations are performed through the same methods
-        in <emphasis>CouchDbConnector</emphasis>:</para>
+          in <emphasis>CouchDbConnector</emphasis>:
+        </para>
 
-        <programlisting language="java">List&lt;DocumentOperationResult&gt; executeBulk(Collection&lt;?&gt; objects);
+        <programlisting language="java">List&lt;DocumentOperationResult&gt; executeBulk(Collection&lt;?&gt;
+          objects);
 
-List&lt;DocumentOperationResult&gt; executeAllOrNothing(Collection&lt;?&gt; objects);</programlisting>
+          List&lt;DocumentOperationResult&gt; executeAllOrNothing(Collection&lt;?&gt; objects);
+        </programlisting>
 
         <para>If a new object is added to the objects list it will be created
-        in the database. If an existing object is added, (revision being not
-        null) it will be updated.</para>
+          in the database. If an existing object is added, (revision being not
+          null) it will be updated.
+        </para>
 
         <para>In order to delete an object, add a instance of
-        org.ektorp.BulkDeleteDocument the the bulk list:</para>
+          org.ektorp.BulkDeleteDocument the the bulk list:
+        </para>
 
         <programlisting language="java">List&lt;Object&gt; bulkDocs = ...
-Sofa toBeDeleted = ...
-        
-bulkDocs.add(BulkDeleteDocument.of(toBeDeleted));
-        
-db.executeBulk(bulkDocs);
-</programlisting>
+          Sofa toBeDeleted = ...
+
+          bulkDocs.add(BulkDeleteDocument.of(toBeDeleted));
+
+          db.executeBulk(bulkDocs);
+        </programlisting>
       </section>
 
       <section>
         <title>All Or Nothing</title>
 
         <para>The method <emphasis>executeAllOrNothing</emphasis> has
-        unsurprisingly all-or-nothing semantics. In the case of a failure
-        during the bulk operation, when the database restarts either all the
-        changes will have been saved or none of them. However, it does not do
-        any conflict checking, so the documents will be committed even if this
-        creates conflicts.</para>
+          unsurprisingly all-or-nothing semantics. In the case of a failure
+          during the bulk operation, when the database restarts either all the
+          changes will have been saved or none of them. However, it does not do
+          any conflict checking, so the documents will be committed even if this
+          creates conflicts.
+        </para>
       </section>
 
       <section>
         <title>A Note on Resource Usage in Bulk Operations</title>
 
         <para>Ektorp will create threads for writing bulk documents to the
-        database. The threads are named <emphasis>"ektorp-doc-writer-[thread
-        count]"</emphasis>. The thread pool used is a
-        <emphasis>java.util.concurrent.Executors.newCachedThreadPool()</emphasis>.
-        Unused threads will die after 60 seconds.</para>
+          database. The threads are named <emphasis>"ektorp-doc-writer-[thread
+            count]"</emphasis>. The thread pool used is a
+          <emphasis>java.util.concurrent.Executors.newCachedThreadPool()</emphasis>.
+          Unused threads will die after 60 seconds.
+        </para>
       </section>
     </section>
   </chapter>
@@ -1226,13 +1401,16 @@ db.executeBulk(bulkDocs);
     <title>Repository Support</title>
 
     <para>The Repository Support in Ektorp is aimed to reduce the amount of
-    repetitive code in repositories and to facilitate the management of the
-    design documents that define the views for the documents in
-    CouchDB.</para>
+      repetitive code in repositories and to facilitate the management of the
+      design documents that define the views for the documents in
+      CouchDB.
+    </para>
 
     <para>Ektorp provides a repository base class
-    <emphasis>org.ektorp.support.CouchDbRepositorySupport</emphasis> that has
-    a number of features:</para>
+      <emphasis>org.ektorp.support.CouchDbRepositorySupport</emphasis>
+      that has
+      a number of features:
+    </para>
 
     <itemizedlist>
       <listitem>
@@ -1258,75 +1436,89 @@ db.executeBulk(bulkDocs);
       <title>Out of the Box CRUD</title>
 
       <para>Here is a minimal repository based on
-      <emphasis>org.ektorp.support.CouchDbRepositorySupport:</emphasis></para>
+        <emphasis>org.ektorp.support.CouchDbRepositorySupport:</emphasis>
+      </para>
 
       <programlisting language="java">package org.ektorp.sample;
 
-import java.util.*;
-import org.ektorp.*;
+        import java.util.*;
+        import org.ektorp.*;
 
-public class SofaRepository extends CouchDbRepositorySupport&lt;Sofa&gt; {
+        public class SofaRepository extends CouchDbRepositorySupport&lt;Sofa&gt; {
 
         public SofaRepository(CouchDbConnector db) {
-                super(Sofa.class, db);
+        super(Sofa.class, db);
         }
 
         public List&lt;Sofa&gt; findByColor(String color) {
-                return queryView("by_color", color);
+        return queryView("by_color", color);
         }
-}</programlisting>
+        }
+      </programlisting>
 
       <para>This repository above doesn't look like much but
-      <emphasis>CouchDbRepositorySupport</emphasis> has provided the following
-      methods to the SofaRepository:</para>
+        <emphasis>CouchDbRepositorySupport</emphasis>
+        has provided the following
+        methods to the SofaRepository:
+      </para>
 
       <programlisting language="java">public void add(Sofa entity);
-public void update(Sofa entity);
-public void remove(Sofa entity);
-public Sofa get(String id);
-public Sofa get(String id, String rev);
-public List&lt;T&gt; getAll();
-public boolean contains(String docId);</programlisting>
+        public void update(Sofa entity);
+        public void remove(Sofa entity);
+        public Sofa get(String id);
+        public Sofa get(String id, String rev);
+        public List&lt;T&gt; getAll();
+        public boolean contains(String docId);
+      </programlisting>
     </section>
 
     <section>
       <title xml:id="std_design_doc">Standard Design Document</title>
 
       <para>When using support methods like <emphasis>queryView</emphasis> the
-      underlying code assumes that the database contains a design document
-      with an id adhering to the naming convention:</para>
+        underlying code assumes that the database contains a design document
+        with an id adhering to the naming convention:
+      </para>
 
-      <para><emphasis>_design/[repository type simple name]</emphasis></para>
+      <para>
+        <emphasis>_design/[repository type simple name]</emphasis>
+      </para>
 
       <para>e.g. the repository in the previous section expects that the
-      document _design/Sofa exists in the database.</para>
+        document _design/Sofa exists in the database.
+      </para>
 
       <para>Calling <emphasis>queryView</emphasis> without the standard design
-      document defined will cause an exception to be thrown.</para>
+        document defined will cause an exception to be thrown.
+      </para>
 
       <section>
         <title>Standard Views</title>
 
         <para>The method getAll will try to query the view "all" in the
-        standard design document in order to get a list of all document ids
-        that are handled by the repository.</para>
+          standard design document in order to get a list of all document ids
+          that are handled by the repository.
+        </para>
 
         <para>If the "all" view is missing, all documents (except design
-        documents) will be loaded. This means that you cannot mix document
-        types in the same database without the "all" view. Another problem
-        with a missing "all" view is that concurrent deletes of documents
-        while documents are loaded may cause an DbAccessException.</para>
+          documents) will be loaded. This means that you cannot mix document
+          types in the same database without the "all" view. Another problem
+          with a missing "all" view is that concurrent deletes of documents
+          while documents are loaded may cause an DbAccessException.
+        </para>
 
         <para>It is strongly recommended that the all view is defined in a
-        production enviroment.</para>
+          production enviroment.
+        </para>
 
         <para>Here is an example "all" view:</para>
 
         <programlisting language="javascript">[{"_id":"_design/Sofa",
-    "views":{
-        "all": {"map": "function(doc) { if (doc.type == 'Sofa' ) emit( null, doc._id ) } "}
-     }
-}]</programlisting>
+          "views":{
+          "all": {"map": "function(doc) { if (doc.type == 'Sofa' ) emit( null, doc._id ) } "}
+          }
+          }]
+        </programlisting>
       </section>
     </section>
 
@@ -1334,109 +1526,135 @@ public boolean contains(String docId);</programlisting>
       <title>In-line View Definitions</title>
 
       <para>Repositories based on CouchDbRepositorySupport may define the
-      views used by the repository through annotations in the repository
-      class.</para>
+        views used by the repository through annotations in the repository
+        class.
+      </para>
 
-      <programlisting language="java">@View( name = "all", map = "function(doc) { if (doc.type == 'Sofa' ) emit( null, doc._id )}")
-public class SofaRepository extends CouchDbRepositorySupport&lt;Sofa&gt; {
+      <programlisting language="java">@View( name = "all", map = "function(doc) { if (doc.type ==
+        'Sofa' ) emit( null, doc._id )}")
+        public class SofaRepository extends CouchDbRepositorySupport&lt;Sofa&gt; {
 
-    @View( name = "avg_sofa_size", map = "function(doc) {...}", reduce = "function(doc) {...}")
-    public int getAverageSofaSize() {
+        @View( name = "avg_sofa_size", map = "function(doc) {...}", reduce = "function(doc) {...}")
+        public int getAverageSofaSize() {
         ViewResult r = db.queryView(createQuery("avg_sofa_size"));
         return r.getRows().get(0).getValueAsInt();
-    }
+        }
 
-}</programlisting>
+        }
+      </programlisting>
 
       <para>If you have many view definition you can group them with the
-      @Views annotation:</para>
+        @Views annotation:
+      </para>
 
       <programlisting>@Views({
-    @View(name = "view_1", map = "function(doc) { ... }"),
-    @View(name = "view_2", map = "function(doc) { ... }"),
-    @View(name = "view_3", map = "function(doc) { ... }")
-    })
-public class MyRepository {
-    ...</programlisting>
+        @View(name = "view_1", map = "function(doc) { ... }"),
+        @View(name = "view_2", map = "function(doc) { ... }"),
+        @View(name = "view_3", map = "function(doc) { ... }")
+        })
+        public class MyRepository {
+        ...
+      </programlisting>
 
-      <para><emphasis>@View</emphasis> and <emphasis>@Views</emphasis> and can
-      be defined at class level or at method level.</para>
+      <para>
+        <emphasis>@View</emphasis>
+        and <emphasis>@Views</emphasis> and can
+        be defined at class level or at method level.
+      </para>
 
       <para>View creation is triggered by calling the method:
-      <emphasis>initStandardDesignDocument</emphasis> in
-      <emphasis>CouchDbRepositorySupport</emphasis>.</para>
+        <emphasis>initStandardDesignDocument</emphasis>
+        in
+        <emphasis>CouchDbRepositorySupport</emphasis>.
+      </para>
 
       <para>If the standard design document doesn't exists, it will be
-      created.</para>
+        created.
+      </para>
 
       <section>
         <title>Loading the View Definition From the classpath</title>
 
         <para>Non-trivial views are best stored in a separate files. By
-        specifying the "classpath:" prefix in the map or reduce parameters,
-        followed by the path to a file in the classpath, the functions can be
-        loaded from the classpath. The path is relative to the class annotated
-        by this annotation. If the file myMapFunction.js is in the same
-        directory as the repository this parameter should be set to
-        <emphasis>"myMapFunction.js"</emphasis>:</para>
+          specifying the "classpath:" prefix in the map or reduce parameters,
+          followed by the path to a file in the classpath, the functions can be
+          loaded from the classpath. The path is relative to the class annotated
+          by this annotation. If the file myMapFunction.js is in the same
+          directory as the repository this parameter should be set to
+          <emphasis>"myMapFunction.js"</emphasis>:
+        </para>
 
         <programlisting language="javascript">function(doc)
-{
-    much javascript here
-}</programlisting>
+          {
+          much javascript here
+          }
+        </programlisting>
 
         <para>The repository class:</para>
 
-        <programlisting language="java">@View( name = "complicated_view", map = "classpath:myMapFunction.js")
-public int getAverageSofaSize() {
-    ViewResult r = db.queryView(createQuery("complicated_view.json"));
-    return r.getRows().get(0).getValueAsInt();
-}</programlisting>
+        <programlisting language="java">@View( name = "complicated_view", map =
+          "classpath:myMapFunction.js")
+          public int getAverageSofaSize() {
+          ViewResult r = db.queryView(createQuery("complicated_view.json"));
+          return r.getRows().get(0).getValueAsInt();
+          }
+        </programlisting>
       </section>
 
       <section>
         <title>Auto Updating Views</title>
 
         <para>The default behaviour is to not touch existing views if they
-        already exists. However, Ektorp can update views automatically if the
-        view defined in the annotation @View differs from the one existing in
-        the database. This is especially convenient during development.</para>
+          already exists. However, Ektorp can update views automatically if the
+          view defined in the annotation @View differs from the one existing in
+          the database. This is especially convenient during development.
+        </para>
 
         <para>This feature is enabled through the system property:
-        <emphasis>org.ektorp.support.AutoUpdateViewOnChange=true</emphasis></para>
+          <emphasis>org.ektorp.support.AutoUpdateViewOnChange=true</emphasis>
+        </para>
 
         <para>If enabled, a simple string comparison will determine if the
-        view definition has changed and update it if necessary.</para>
+          view definition has changed and update it if necessary.
+        </para>
 
         <para>If you are using the Ektorp Spring module, you can also enable
-        this feature through a setter in
-        <emphasis>org.ektorp.spring.HttpClientFactoryBean</emphasis>.</para>
+          this feature through a setter in
+          <emphasis>org.ektorp.spring.HttpClientFactoryBean</emphasis>.
+        </para>
       </section>
     </section>
 
     <section>
       <title xml:id="auto_view_gen">Automatic Generation of Design Document
-      and Views</title>
+        and Views
+      </title>
 
-      <para><emphasis>CouchDbRepositorySupport</emphasis> is able to generate
-      some views automatically. Simple finder methods can be annotated with
-      the <emphasis>@GenererateView</emphasis> annotation.</para>
+      <para>
+        <emphasis>CouchDbRepositorySupport</emphasis>
+        is able to generate
+        some views automatically. Simple finder methods can be annotated with
+        the <emphasis>@GenererateView</emphasis> annotation.
+      </para>
 
       <programlisting language="java">...
-@GenerateView
-public List&lt;Sofa&gt; findByColor(String color) {
-    return queryView("by_color", color);
-}
-...</programlisting>
+        @GenerateView
+        public List&lt;Sofa&gt; findByColor(String color) {
+        return queryView("by_color", color);
+        }
+        ...
+      </programlisting>
 
       <para>In order for @GenerateView to work properly, the following
-      requirements has to be fulfilled:</para>
+        requirements has to be fulfilled:
+      </para>
 
       <itemizedlist>
         <listitem>
           <para>The method must be named findBy[Property]. If a
-          @TypeDiscriminator is defined, the "all" view used by the getAll
-          method can also be generated.</para>
+            @TypeDiscriminator is defined, the "all" view used by the getAll
+            method can also be generated.
+          </para>
         </listitem>
 
         <listitem>
@@ -1446,66 +1664,81 @@ public List&lt;Sofa&gt; findByColor(String color) {
         <listitem>
           <para>The property must exist in the target class.</para>
 
-          <para><emphasis>public String getColor()</emphasis> in the class
-          Sofa the example above.</para>
+          <para>
+            <emphasis>public String getColor()</emphasis>
+            in the class
+            Sofa the example above.
+          </para>
         </listitem>
 
         <listitem>
           <para>For iterable properties the property may be named in the
-          plural form: <emphasis>List&lt;String&gt;
-          getColors()</emphasis></para>
+            plural form:
+            <emphasis>List&lt;String&gt;
+              getColors()
+            </emphasis>
+          </para>
         </listitem>
       </itemizedlist>
 
       <para>The generated view will be named by_[property].</para>
 
       <para>View generation is triggered by calling the method:
-      <emphasis>initStandardDesignDocument</emphasis> in
-      <emphasis>CouchDbRepositorySupport</emphasis>.</para>
+        <emphasis>initStandardDesignDocument</emphasis>
+        in
+        <emphasis>CouchDbRepositorySupport</emphasis>.
+      </para>
 
       <para>If the standard design document doesn't exists, it will be
-      created.</para>
+        created.
+      </para>
 
       <section>
         <title>Resolving Field Name Conflicts</title>
 
         <para>The database may contain other types of documents that have a
-        field with the same name as in the type handled by a particular
-        repository. This is normally not a problem, but if that field name is
-        used as a key or in a condition in a view, wrong documents may be
-        returned in view queries.</para>
+          field with the same name as in the type handled by a particular
+          repository. This is normally not a problem, but if that field name is
+          used as a key or in a condition in a view, wrong documents may be
+          returned in view queries.
+        </para>
 
         <para>In order to distinguish your type's documents in the database
-        the @TypeDiscriminator annotation can be used:<programlisting
-        language="java">public class BlogPost {
+          the @TypeDiscriminator annotation can be used:<programlisting
+            language="java">public class BlogPost {
 
-    @JsonProperty("_id")
-    private String id;
+            @JsonProperty("_id")
+            private String id;
 
-    @JsonProperty("_rev")
-    private String rev;
+            @JsonProperty("_rev")
+            private String rev;
 
-    // this field marks blog post documents in the db 
-    @TypeDiscriminator
-    private String title;
+            // this field marks blog post documents in the db
+            @TypeDiscriminator
+            private String title;
 
-...</programlisting> It is also possible to write a custom type discriminator
-        by declaring the @TypeDiscriminator on the type:<programlisting
-        language="java">// the declared string is inserted as a part of if statements int the generated view's map function.
-@TypeDiscriminator("doc.title &amp;&amp; doc.myField === 'special_value'")
-public class BlogPost {
+            ...
+          </programlisting> It is also possible to write a custom type discriminator
+          by declaring the @TypeDiscriminator on the type:
+          <programlisting
+            language="java">// the declared string is inserted as a part of if statements int the
+            generated view's map function.
+            @TypeDiscriminator("doc.title &amp;&amp; doc.myField === 'special_value'")
+            public class BlogPost {
 
-    @JsonProperty("_id")
-    private String id;
+            @JsonProperty("_id")
+            private String id;
 
-    @JsonProperty("_rev")
-    private String rev
+            @JsonProperty("_rev")
+            private String rev
 
-    private String title;
+            private String title;
 
-    private String myField;
+            private String myField;
 
-...</programlisting></para>
+            ...
+          </programlisting>
+        </para>
       </section>
     </section>
 
@@ -1513,24 +1746,29 @@ public class BlogPost {
       <title>Additional Design Document Functions</title>
 
       <para>Repositories based on CouchDbRepositorySupport may also define
-      list, show and filter functions through annotations in the repository
-      class.</para>
+        list, show and filter functions through annotations in the repository
+        class.
+      </para>
 
       <para>They all have the same functionality, it is just the type of
-      function that differs:</para>
+        function that differs:
+      </para>
 
       <programlisting language="java">@Filter( name = "my_filter" file = "my_filter.js")
-@ListFunction( name = "my_list_function" file = "my_list_function.js")
-@ShowFunction( name = "my_show_function" file = "my_show_function.js")
-@UpdateHandler( name = "my_show_function" file = "my_update_handler.js")
-public class MyRepository {
-    ...</programlisting>
+        @ListFunction( name = "my_list_function" file = "my_list_function.js")
+        @ShowFunction( name = "my_show_function" file = "my_show_function.js")
+        @UpdateHandler( name = "my_show_function" file = "my_update_handler.js")
+        public class MyRepository {
+        ...
+      </programlisting>
 
       <para>Multiple functions can be grouped with the corresponding
-      annotations @Filters, @Lists, @Shows and @UpdateHandlers.</para>
+        annotations @Filters, @Lists, @Shows and @UpdateHandlers.
+      </para>
 
       <para>These annotations behaves in effect as the @View and @Views
-      annotations described in section 3 of this chapter.</para>
+        annotations described in section 3 of this chapter.
+      </para>
     </section>
   </chapter>
 
@@ -1538,59 +1776,68 @@ public class MyRepository {
     <title>Attachments</title>
 
     <para>Documents in CouchDB may have any number of attachments associated
-    with it. The content of an attachment is not loaded together with the
-    document, just a stub containing meta information is co-loaded with the
-    document.</para>
+      with it. The content of an attachment is not loaded together with the
+      document, just a stub containing meta information is co-loaded with the
+      document.
+    </para>
 
     <section>
       <title>In-line Attachments</title>
 
       <para>Attachments can be stored along with its parent document by
-      embedding them in the parent document. The attachment itself has to be
-      Base64 encoded in this case as the whole document including the
-      attachment will be serialized into a string.</para>
+        embedding them in the parent document. The attachment itself has to be
+        Base64 encoded in this case as the whole document including the
+        attachment will be serialized into a string.
+      </para>
 
       <para>Note that the Sofa class in the example below extends
-      CouchDbDocument and exposes the protected method
-      addInlineAttachment(Attachment a).</para>
+        CouchDbDocument and exposes the protected method
+        addInlineAttachment(Attachment a).
+      </para>
 
       <programlisting language="java">String base64EncodedData = ...
-Sofa sofa = ...
+        Sofa sofa = ...
 
-Attachment inline = new Attachment("attachment_id", base64EncodedData, "image/jpeg");
+        Attachment inline = new Attachment("attachment_id", base64EncodedData, "image/jpeg");
 
-sofa.addInlineAttachment(inline);
-db.update(sofa);</programlisting>
+        sofa.addInlineAttachment(inline);
+        db.update(sofa);
+      </programlisting>
     </section>
 
     <section>
       <title>Create Document and Attachment in one operation</title>
 
       <para>An attachment and its parent document can be created in the same
-      operation. This is useful if you just want to store the data "as is" and
-      don't really use the actual document, i.e. when storing an image.</para>
+        operation. This is useful if you just want to store the data "as is" and
+        don't really use the actual document, i.e. when storing an image.
+      </para>
 
       <programlisting language="java">InputStream data = ...
-String contentType = "image/jpeg";
+        String contentType = "image/jpeg";
 
-AttachmentInputStream a = new AttachmentInputStream("attachment_id",
-                                                     data,
-                                                     contentType);
+        AttachmentInputStream a = new AttachmentInputStream("attachment_id",
+        data,
+        contentType);
 
-db.createAttachment("new_document_id", a);</programlisting>
+        db.createAttachment("new_document_id", a);
+      </programlisting>
     </section>
 
     <section>
       <title>Add an Attachment to an Existing Document</title>
 
       <para>If you don't want to add the attachment in-line, you can add
-      attachments in an separate operation.</para>
+        attachments in an separate operation.
+      </para>
 
-      <programlisting language="Java">AttachmentInputStream a = new AttachmentInputStream("attachment_id",
-                                                     data,
-                                                     contentType);
+      <programlisting language="Java">AttachmentInputStream a = new
+        AttachmentInputStream("attachment_id",
+        data,
+        contentType);
 
-db.createAttachment("existing_document_id", "document_revision", a);</programlisting>
+        db.createAttachment("existing_document_id", "document_revision", a);
+      </programlisting>
     </section>
 
     <section>
@@ -1599,73 +1846,82 @@ db.createAttachment("existing_document_id", "document_revision", a);</programlis
       <para>To retrieve the attachment's content:</para>
 
       <programlisting language="java">AttachmentInputStream data = db.getAttachment("document_id",
-                                              "attachment_id");</programlisting>
+        "attachment_id");
+      </programlisting>
 
       <para>The entity base class
-      <emphasis>org.ektorp.support.CouchDbDocument</emphasis> provides an
-      accessor for the document's attachments. The list contains stub
-      attachments.</para>
+        <emphasis>org.ektorp.support.CouchDbDocument</emphasis>
+        provides an
+        accessor for the document's attachments. The list contains stub
+        attachments.
+      </para>
     </section>
 
-      <section>
-          <title>Upload a Document with Attachments in MIME Format</title>
+    <section>
+      <title>Upload a Document with Attachments in MIME Format</title>
 
-          <para>Couch supports updating a document along with attachments as a MIME
-              multipart/related message. This is an efficient way to update a document
-              along with attachments since it does not require Base64 encoding.
-          </para>
+      <para>Couch supports updating a document along with attachments as a MIME
+        multipart/related message. This is an efficient way to update a document
+        along with attachments since it does not require Base64 encoding.
+      </para>
 
-          <para>To update a document as a MIME multipart/related in Ektorp, use
-              the updateMultipart() method of CouchDbConnector.
-          </para>
+      <para>To update a document as a MIME multipart/related in Ektorp, use
+        the updateMultipart() method of CouchDbConnector.
+      </para>
 
-          <programlisting language="java">
-              File file = someMethodToGetFile();
-              InputStream mimeInputStream = new FileInputStream(file);
-              db.updateMultipart("document_id",
-                                 mimeInputStream,
-                                 "abc_boundary",
-                                 file.length(),
-                                 new Options());
-          </programlisting>
+      <programlisting language="java">
+        File file = someMethodToGetFile();
+        InputStream mimeInputStream = new FileInputStream(file);
+        db.updateMultipart("document_id",
+        mimeInputStream,
+        "abc_boundary",
+        file.length(),
+        new Options());
+      </programlisting>
 
-          <para>The data in the InputStream must contain only the MIME multipart/related
-              message. This message is specifed in
-              <link xlink:href="http://wiki.apache.org/couchdb/HTTP_Document_API#Multiple_Attachments">
-                  CouchDB Multiple Attachments API
-              </link>.
-          </para>
+      <para>The data in the InputStream must contain only the MIME multipart/related
+        message. This message is specifed in
+        <link xlink:href="http://wiki.apache.org/couchdb/HTTP_Document_API#Multiple_Attachments">
+          CouchDB Multiple Attachments API
+        </link>.
+      </para>
 
-      </section>
+    </section>
   </chapter>
 
   <chapter>
     <title>Querying</title>
 
     <para>Queries in Ektorp are always performed against predefined views in
-    CouchDB. View queries are issued through
-    <emphasis>org.ektorp.ViewQuery</emphasis> objects.</para>
+      CouchDB. View queries are issued through
+      <emphasis>org.ektorp.ViewQuery</emphasis>
+      objects.
+    </para>
 
     <programlisting language="java">ViewQuery query = new ViewQuery()
-                     .designDocId("_design/Sofa")
-                     .viewName("by_color")
-                     .key("red");</programlisting>
+      .designDocId("_design/Sofa")
+      .viewName("by_color")
+      .key("red");
+    </programlisting>
 
     <section>
       <title>Query for Objects</title>
 
       <para>Objects can be loaded directly from view results as long as the
-      result contain documents. The document can either be included in the
-      view result by specifying the query parameter
-      <emphasis>includeDocs(true)</emphasis> or be emitted directly by the
-      view into the value field.</para>
+        result contain documents. The document can either be included in the
+        view result by specifying the query parameter
+        <emphasis>includeDocs(true)</emphasis>
+        or be emitted directly by the
+        view into the value field.
+      </para>
 
       <programlisting language="java">ViewQuery query = new ViewQuery()
-                     .designDocId("_design/Sofa")
-                     .viewName("by_color")
-                     .key("red");
-                
-List&lt;Sofa&gt; redSofas = db.queryView(query, Sofa.class);</programlisting>
+        .designDocId("_design/Sofa")
+        .viewName("by_color")
+        .key("red");
+
+        List&lt;Sofa&gt; redSofas = db.queryView(query, Sofa.class);
+      </programlisting>
     </section>
 
     <section>
@@ -1674,126 +1930,152 @@ List&lt;Sofa&gt; redSofas = db.queryView(query, Sofa.class);</programlisting>
       <para>It is possible to query for scalar values.</para>
 
       <programlisting language="java">ViewQuery query = new ViewQuery()
-          .designDocId("_design/somedoc")
-          .viewName("some_view_name");
-                
-ViewResult result = db.queryView(query);
-for (ViewResult.Row row : result.getRows()) {
-    String stringValue = row.getValue();
-    int intValue = row.getValueAsInt();
-}</programlisting>
+        .designDocId("_design/somedoc")
+        .viewName("some_view_name");
+
+        ViewResult result = db.queryView(query);
+        for (ViewResult.Row row : result.getRows()) {
+        String stringValue = row.getValue();
+        int intValue = row.getValueAsInt();
+        }
+      </programlisting>
 
       <para>The key, value and doc fields can be access as a
-      <emphasis>org.jackson.JsonNode:</emphasis><programlisting
-      language="java">
-ViewResult result = db.queryView(query);
-for (ViewResult.Row row : result) {
-    JsonNode keyNode = row.getKeyAsNode();
-    JsonNode valueNode = row.getValueAsNode();
-    JsonNode docNode = row.getDocAsNode();
-    ...
-}</programlisting></para>
+        <emphasis>org.jackson.JsonNode:</emphasis>
+        <programlisting
+          language="java">
+          ViewResult result = db.queryView(query);
+          for (ViewResult.Row row : result) {
+          JsonNode keyNode = row.getKeyAsNode();
+          JsonNode valueNode = row.getValueAsNode();
+          JsonNode docNode = row.getDocAsNode();
+          ...
+          }
+        </programlisting>
+      </para>
     </section>
 
     <section>
       <title>View Result as Raw JSON Stream</title>
 
       <para>The most flexible method is query for stream. The result is
-      returned as a stream. It is important that the stream is closed after
-      usage as resource leaks otherwise will occur.</para>
+        returned as a stream. It is important that the stream is closed after
+        usage as resource leaks otherwise will occur.
+      </para>
 
       <programlisting language="java">ViewQuery query = new ViewQuery()
-                       .designDocId("_design/somedoc")
-                       .viewName("view_with_huge_result");
+        .designDocId("_design/somedoc")
+        .viewName("view_with_huge_result");
 
-InputStream data = db.queryForStream(query);
-...
-data.close();</programlisting>
+        InputStream data = db.queryForStream(query);
+        ...
+        data.close();
+      </programlisting>
     </section>
 
     <section>
       <title>Complex Keys</title>
 
       <para>If your views produce complex keys such as [2010, 6, 1], you
-      should construct your key through the class
-      <emphasis>org.ektorp.ComplexKey</emphasis><programlisting
-      language="java">ComplexKey start = ComplexKey.of(2010, 6, 1);
-ComplexKey end = ComplexKey.of(2010, 10, 1);
-        
-ViewQuery query = new ViewQuery()
-                       .designDocId("_design/Order")
-                       .viewName("by_orderDate")
-                       .startKey(start)
-                       .endKey(end);</programlisting>If you want to use a wild
-      card in your key, often used in date ranges, add a
-      <emphasis>ComplexKey.emptyObject()</emphasis>:</para>
+        should construct your key through the class
+        <emphasis>org.ektorp.ComplexKey</emphasis>
+        <programlisting
+          language="java">ComplexKey start = ComplexKey.of(2010, 6, 1);
+          ComplexKey end = ComplexKey.of(2010, 10, 1);
 
-      <programlisting language="java">    // will render to [2010, {}]
-    ComplexKey allOf2010 = ComplexKey.of(2010, ComplexKey.emptyObject());</programlisting>
+          ViewQuery query = new ViewQuery()
+          .designDocId("_design/Order")
+          .viewName("by_orderDate")
+          .startKey(start)
+          .endKey(end);</programlisting>If you want to use a wild
+        card in your key, often used in date ranges, add a
+        <emphasis>ComplexKey.emptyObject()</emphasis>:
+      </para>
+
+      <programlisting language="java">// will render to [2010, {}]
+        ComplexKey allOf2010 = ComplexKey.of(2010, ComplexKey.emptyObject());
+      </programlisting>
     </section>
 
     <section>
       <title>Pagination</title>
 
       <para>CouchDbConnector provides a method for querying views for paged
-      results. The implementation is based on the recipe described in the book
-      <link
-      xlink:href="http://guide.couchdb.org/editions/1/en/recipes.html#pagination">"CouchDB
-      The Definitive Guide"</link></para>
+        results. The implementation is based on the recipe described in the book
+        <link
+          xlink:href="http://guide.couchdb.org/editions/1/en/recipes.html#pagination">"CouchDB
+          The Definitive Guide"
+        </link>
+      </para>
 
       <para>Querying a view for a page starts with the querying for the first
-      page:<programlisting language="java">// create a page request with a page size of 5 
-PageRequest pageRequest = PageRequest.firstPage(5);
+        page:
+        <programlisting language="java">// create a page request with a page size of 5
+          PageRequest pageRequest = PageRequest.firstPage(5);
 
-ViewQuery query = new ViewQuery()
-                       .designDocId("_design/Order")
-                       .viewName("by_orderDate")
-                       .includeDocs(true);
+          ViewQuery query = new ViewQuery()
+          .designDocId("_design/Order")
+          .viewName("by_orderDate")
+          .includeDocs(true);
 
-Page&lt;Order&gt; result = db.queryForPage(query, pageRequest, Order.class);
+          Page&lt;Order&gt; result = db.queryForPage(query, pageRequest, Order.class);
 
-// Page is iterable
-for (Order o : result) {
-    // do something here
-}</programlisting><parameter>Requesting the next page is a simple
-      affair:</parameter></para>
+          // Page is iterable
+          for (Order o : result) {
+          // do something here
+          }
+        </programlisting>
+        <parameter>Requesting the next page is a simple
+          affair:
+        </parameter>
+      </para>
 
       <programlisting language="java">Page&lt;Order&gt; previousPage = ...
-PageRequest nextPageRequest = previousPage.getNextPageRequest();
+        PageRequest nextPageRequest = previousPage.getNextPageRequest();
 
-Page&lt;Order&gt; nextPage = db.queryForPage(query, nextPageRequest, Order.class);
+        Page&lt;Order&gt; nextPage = db.queryForPage(query, nextPageRequest, Order.class);
 
-// requesting the previous page:
-PageRequest prevPageRequest = nextPage.getPreviousPageRequest();</programlisting>
+        // requesting the previous page:
+        PageRequest prevPageRequest = nextPage.getPreviousPageRequest();
+      </programlisting>
 
       <section>
         <title>PageRequest as a text link</title>
 
         <para>In order to simplify state handling between separate http
-        requests the page request can be serialized into an URL-safe
-        string.</para>
+          requests the page request can be serialized into an URL-safe
+          string.
+        </para>
 
         <para>Given that the Page object is available in the model in the jsp
-        page below, a link to the previous page can be constructed like
-        this:</para>
+          page below, a link to the previous page can be constructed like
+          this:
+        </para>
 
         <programlisting language="html">&lt;c:if test="${page.hasPrevious}"&gt;
-    &lt;a href="/blog/posts/?p=${page.previousLink}"&gt;Previous page&lt;/a&gt;
-&lt;/c:if&gt;</programlisting>
+          &lt;a href="/blog/posts/?p=${page.previousLink}"&gt;Previous page&lt;/a&gt;
+          &lt;/c:if&gt;
+        </programlisting>
 
         <para>When the request is handled in a controller the page request can
-        be recreated from the request parameter. Here is an example snippet
-        from a controller created in Spring MVC</para>
+          be recreated from the request parameter. Here is an example snippet
+          from a controller created in Spring MVC
+        </para>
 
-        <programlisting language="java">@RequestMapping( value = "/posts/", method = RequestMethod.GET)
-public String viewAll(Model m, @RequestParam(value = "p", required = false) String pageLink) {
-    PageRequest pr = pageLink != null ? PageRequest.fromLink(pageLink) : PageRequest.firstPage(5);
-    m.addAttribute(blogPostRepo.getAll(pr));
-    return "/posts/index";
-}</programlisting>
+        <programlisting language="java">@RequestMapping( value = "/posts/", method =
+          RequestMethod.GET)
+          public String viewAll(Model m, @RequestParam(value = "p", required = false) String
+          pageLink) {
+          PageRequest pr = pageLink != null ? PageRequest.fromLink(pageLink) :
+          PageRequest.firstPage(5);
+          m.addAttribute(blogPostRepo.getAll(pr));
+          return "/posts/index";
+          }
+        </programlisting>
 
         <para>Handlig the page state as text links eliminates the need for
-        storing data in the session.</para>
+          storing data in the session.
+        </para>
       </section>
     </section>
 
@@ -1801,21 +2083,24 @@ public String viewAll(Model m, @RequestParam(value = "p", required = false) Stri
       <title>Queries and Cache</title>
 
       <para>If you enable the cache in a query, the result may be stale
-      depending on how your view is constructed.</para>
+        depending on how your view is constructed.
+      </para>
 
       <para>The cache works through conditional gets that invalidates the
-      cache if the view's etag has changed. It is possible that an document
-      update don't cause the view contents to be updated and hence the cache
-      will not be invalidated. If you emit a timestamp or the document's
-      revision as the view value the cache will be properly
-      invalidated.</para>
+        cache if the view's etag has changed. It is possible that an document
+        update don't cause the view contents to be updated and hence the cache
+        will not be invalidated. If you emit a timestamp or the document's
+        revision as the view value the cache will be properly
+        invalidated.
+      </para>
 
       <section>
         <title>Enable the Cached Queries</title>
 
         <para>As of Ektorp 1.2.2 it is possible to control if a query should
-        use the cache or not. Cached queries is disabled by default but can be
-        enabled by setting the parameter cacheOk to true in ViewQuery.</para>
+          use the cache or not. Cached queries is disabled by default but can be
+          enabled by setting the parameter cacheOk to true in ViewQuery.
+        </para>
       </section>
     </section>
   </chapter>
@@ -1824,63 +2109,73 @@ public String viewAll(Model m, @RequestParam(value = "p", required = false) Stri
     <title>Change Notifications</title>
 
     <para>As of Ektorp 1.1.0 the <link
-    xlink:href="http://wiki.apache.org/couchdb/HTTP_database_API#Changes">CouchDB
-    changes API</link> is supported.</para>
+      xlink:href="http://wiki.apache.org/couchdb/HTTP_database_API#Changes">CouchDB
+      changes API
+    </link> is supported.
+    </para>
 
     <para>Ektorp provides two different methods to access the database
-    changes:</para>
+      changes:
+    </para>
 
     <itemizedlist>
       <listitem>
         <para>Continuous changes feed enables your application to listen to
-        change events as they happen in the database in real time.</para>
+          change events as they happen in the database in real time.
+        </para>
       </listitem>
 
       <listitem>
         <para>Snapshots that provides all changes since a specific database
-        sequence number.</para>
+          sequence number.
+        </para>
       </listitem>
     </itemizedlist>
 
     <para>Both methods are specified through a ChangesCommand:</para>
 
     <programlisting language="java">ChangesCommand cmd = new ChangesCommand.Builder()
-                             .includeDocs(true)
-                             .build();</programlisting>
+      .includeDocs(true)
+      .build();
+    </programlisting>
 
     <section>
       <title>Continuous changes</title>
 
       <para>Ektorp provides a continuous changes feed through the class
-      <emphasis>org.ektorp.changes.ChangesFeed</emphasis>. The ChangesFeed
-      provides an API that is similar to a BlockingQueue:</para>
+        <emphasis>org.ektorp.changes.ChangesFeed</emphasis>. The ChangesFeed
+        provides an API that is similar to a BlockingQueue:
+      </para>
 
       <programlisting language="java">ChangesCommand cmd = new ChangesCommand.Builder().build();
 
-ChangesFeed feed = db.changesFeed(cmd);
+        ChangesFeed feed = db.changesFeed(cmd);
 
-while (feed.isAlive()) {
-    DocumentChange change = feed.next();
-    String docId = change.getId();
-    ...
-}
-</programlisting>
+        while (feed.isAlive()) {
+        DocumentChange change = feed.next();
+        String docId = change.getId();
+        ...
+        }
+      </programlisting>
 
       <para>If you don't want to wait indefinitely for changes the ChangesFeed
-      class provides a variant if the feed method where a time out can be
-      specified.</para>
+        class provides a variant if the feed method where a time out can be
+        specified.
+      </para>
 
       <section>
         <title>Managing the Feed</title>
 
         <para>As long as the feed is alive it will continue to buffer changes
-        coming from the database. This will happen regardless if any thread is
-        draing the feed though calls to next(). This means that your
-        application might experience OutOfMemoryError if a feed is left
-        unattended.</para>
+          coming from the database. This will happen regardless if any thread is
+          draing the feed though calls to next(). This means that your
+          application might experience OutOfMemoryError if a feed is left
+          unattended.
+        </para>
 
         <para>To kill a feed just call the cancel() method provided by the
-        ChangesFeed class.</para>
+          ChangesFeed class.
+        </para>
       </section>
     </section>
 
@@ -1888,19 +2183,22 @@ while (feed.isAlive()) {
       <title>Snapshots</title>
 
       <para>If continuous notifications are not needed, the database can be
-      queried through the <emphasis>changes</emphasis> method in
-      CouchDbConnector:</para>
+        queried through the <emphasis>changes</emphasis> method in
+        CouchDbConnector:
+      </para>
 
-      <programlisting language="java">int dbSequenceNumber = ... // is available in the class org.ektorp.DbInfo obtained through db.getDbInfo();
+      <programlisting language="java">int dbSequenceNumber = ... // is available in the class
+        org.ektorp.DbInfo obtained through db.getDbInfo();
 
-ChangesCommand cmd = new ChangesCommand.Builder()
-                         .since(dbSequenceNumber)
-                         .build();
+        ChangesCommand cmd = new ChangesCommand.Builder()
+        .since(dbSequenceNumber)
+        .build();
 
-List&lt;DocumentChange&gt; changes = db.changes(cmd);
-for(DocumentChange change : changes) {
-    ...
-}</programlisting>
+        List&lt;DocumentChange&gt; changes = db.changes(cmd);
+        for(DocumentChange change : changes) {
+        ...
+        }
+      </programlisting>
     </section>
   </chapter>
 
@@ -1908,12 +2206,17 @@ for(DocumentChange change : changes) {
     <title>Calling Update Handlers</title>
 
     <para>CouchDB provides the ability to define functions that clients can
-    request to invoke server-side logic that will create or update a
-    document.</para>
+      request to invoke server-side logic that will create or update a
+      document.
+    </para>
 
     <para>CouchDbConnector provides a method for calling update
-    handlers:<programlisting language="java">CouchDbConnector db = ...
-String responseString = db.callUpdateHandler("_design/designDocID", "functionName", "docID");</programlisting></para>
+      handlers:
+      <programlisting language="java">CouchDbConnector db = ...
+        String responseString = db.callUpdateHandler("_design/designDocID", "functionName",
+        "docID");
+      </programlisting>
+    </para>
   </chapter>
 
   <chapter>
@@ -1929,12 +2232,14 @@ String responseString = db.callUpdateHandler("_design/designDocID", "functionNam
       <itemizedlist>
         <listitem>
           <para>The replicate method in
-          <emphasis>CouchDbInstance.</emphasis></para>
+            <emphasis>CouchDbInstance.</emphasis>
+          </para>
         </listitem>
 
         <listitem>
           <para>The replicateTo and replicateFrom methods in
-          <emphasis>CouchDbConnector.</emphasis></para>
+            <emphasis>CouchDbConnector.</emphasis>
+          </para>
         </listitem>
       </itemizedlist>
 
@@ -1942,44 +2247,51 @@ String responseString = db.callUpdateHandler("_design/designDocID", "functionNam
         <title>Initiate Replication from CouchDbInstance</title>
 
         <para>The replication job is defined in the class
-        <emphasis>org.ektorp.ReplicationCommand</emphasis>. The command is
-        created by its companion builder class:
-        <emphasis>org.ektorp.ReplicationCommand.Builder</emphasis>:</para>
+          <emphasis>org.ektorp.ReplicationCommand</emphasis>. The command is
+          created by its companion builder class:
+          <emphasis>org.ektorp.ReplicationCommand.Builder</emphasis>:
+        </para>
 
         <programlisting language="java">CouchDbInstance dbInstance = ...
 
-ReplicationCommand cmd = new ReplicationCommand.Builder()
-                                 .source("example-database")
-                                 .target("http://example.org/example-database")
-                                 .build();
+          ReplicationCommand cmd = new ReplicationCommand.Builder()
+          .source("example-database")
+          .target("http://example.org/example-database")
+          .build();
 
-ReplicationStatus status = dbInstance.replicate(cmd);</programlisting>
+          ReplicationStatus status = dbInstance.replicate(cmd);
+        </programlisting>
 
         <para>ReplicationCommand supports all replication parameters defined
-        in the <link
-        xlink:href="http://wiki.apache.org/couchdb/Replication">CouchDb
-        reference documentation</link>.</para>
+          in the <link
+            xlink:href="http://wiki.apache.org/couchdb/Replication">CouchDb
+            reference documentation</link>.
+        </para>
       </section>
 
       <section>
         <title>Initiate Replication from CouchDbConnector</title>
 
         <para>Replications can be initiated from a
-        <emphasis>CouchDbConnector</emphasis>, in this case one database
-        involved in the replication is the database the
-        <emphasis>CouchDbConnector</emphasis> is connected to.</para>
+          <emphasis>CouchDbConnector</emphasis>, in this case one database
+          involved in the replication is the database the
+          <emphasis>CouchDbConnector</emphasis>
+          is connected to.
+        </para>
 
         <programlisting language="java">CouchDbConnector db = ...
 
-ReplicationStatus status = db.replicateFrom("example-database");
+          ReplicationStatus status = db.replicateFrom("example-database");
 
-// or
+          // or
 
-ReplicationStatus status2 = db.replicateTo("http://example.org/example-database");</programlisting>
+          ReplicationStatus status2 = db.replicateTo("http://example.org/example-database");
+        </programlisting>
 
         <para>The methods in <emphasis>CouchDbConnector</emphasis> will start
-        basic one time replications, for more advanced options use the
-        replicate method in <emphasis>CouchDbInstance</emphasis>.</para>
+          basic one time replications, for more advanced options use the
+          replicate method in <emphasis>CouchDbInstance</emphasis>.
+        </para>
       </section>
     </section>
   </chapter>
@@ -1993,170 +2305,207 @@ ReplicationStatus status2 = db.replicateTo("http://example.org/example-database"
       <title>XML Schema-based configuration</title>
 
       <para>Ektorp Spring module comes with a Spring XML namespace that
-      simplifies the Ektorp configuration in an application context.</para>
+        simplifies the Ektorp configuration in an application context.
+      </para>
 
       <para>The following xml-snippet will create an CouchDbConnector
-      connected to the database named "myDatabase". If an id is not declared
-      the connector will be registered with the same id as the database name
-      in the application context:</para>
+        connected to the database named "myDatabase". If an id is not declared
+        the connector will be registered with the same id as the database name
+        in the application context:
+      </para>
 
       <para><programlisting language="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:couchdb="http://www.ektorp.org/schema/couchdb"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        &lt;beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:couchdb="http://www.ektorp.org/schema/couchdb"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
         http://www.ektorp.org/schema/couchdb http://www.ektorp.org/schema/couchdb/couchdb.xsd"&gt;
 
-    &lt;couchdb:database name="myDatabase" url="http://localhost:5984"/&gt;
+        &lt;couchdb:database name="myDatabase" url="http://localhost:5984"/&gt;
 
-&lt;/beans&gt;</programlisting>If you need multiple connectors connected to
-      the same CouchDB instance, the CouchDbInstance bean can be explicitly
-      declared:<programlisting language="xml">&lt;beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:couchdb="http://www.ektorp.org/schema/couchdb"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-        http://www.ektorp.org/schema/couchdb http://www.ektorp.org/schema/couchdb/couchdb.xsd"&gt;
+        &lt;/beans&gt;</programlisting>If you need multiple connectors connected to
+        the same CouchDB instance, the CouchDbInstance bean can be explicitly
+        declared:
+        <programlisting language="xml">&lt;beans xmlns="http://www.springframework.org/schema/beans"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:couchdb="http://www.ektorp.org/schema/couchdb"
+          xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+          http://www.ektorp.org/schema/couchdb http://www.ektorp.org/schema/couchdb/couchdb.xsd"&gt;
 
-    &lt;couchdb:instance id="localCouchDB" url="http://localhost:5984/" /&gt;
+          &lt;couchdb:instance id="localCouchDB" url="http://localhost:5984/" /&gt;
 
-    &lt;couchdb:database name="myDatabase" instance-ref="localCouchDB" /&gt;
+          &lt;couchdb:database name="myDatabase" instance-ref="localCouchDB" /&gt;
 
-    &lt;couchdb:database name="myOtherDatabase" instance-ref="localCouchDB" /&gt;
+          &lt;couchdb:database name="myOtherDatabase" instance-ref="localCouchDB" /&gt;
 
-&lt;/beans&gt;</programlisting><parameter>If you need to specify more
-      properties to Ektorp you can just refer to them when the CouchDB
-      instance is declared:</parameter><programlisting language="xml">&lt;beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:couchdb="http://www.ektorp.org/schema/couchdb"
-    xmlns:util="http://www.springframework.org/schema/util"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-        http://www.ektorp.org/schema/couchdb http://www.ektorp.org/schema/couchdb/couchdb.xsd
-        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"&gt;
+          &lt;/beans&gt;
+        </programlisting>
+        <parameter>If you need to specify more
+          properties to Ektorp you can just refer to them when the CouchDB
+          instance is declared:
+        </parameter>
+        <programlisting language="xml">&lt;beans xmlns="http://www.springframework.org/schema/beans"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:couchdb="http://www.ektorp.org/schema/couchdb"
+          xmlns:util="http://www.springframework.org/schema/util"
+          xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+          http://www.ektorp.org/schema/couchdb http://www.ektorp.org/schema/couchdb/couchdb.xsd
+          http://www.springframework.org/schema/util
+          http://www.springframework.org/schema/util/spring-util-3.0.xsd"&gt;
 
-    &lt;util:properties id="couchdbProperties" location="classpath:/couchdb.properties"/&gt;
+          &lt;util:properties id="couchdbProperties" location="classpath:/couchdb.properties"/&gt;
 
-    &lt;couchdb:instance id="localCouchDB" url="http://localhost:5984" properties="couchdbProperties" /&gt;
+          &lt;couchdb:instance id="localCouchDB" url="http://localhost:5984"
+          properties="couchdbProperties" /&gt;
 
-    &lt;couchdb:database name="myDatabase" instance-ref="localCouchDB" /&gt;
+          &lt;couchdb:database name="myDatabase" instance-ref="localCouchDB" /&gt;
 
-&lt;/beans&gt;</programlisting></para>
+          &lt;/beans&gt;
+        </programlisting>
+      </para>
     </section>
 
     <section>
       <title>HttpClientFactoryBean</title>
 
       <para>If you for some reason cannot use the XML namespace described in
-      the previous section, you can use the class
-      org.ektorp.spring.HttpClientFactoryBean to configure a HttpClient in the
-      application context.</para>
+        the previous section, you can use the class
+        org.ektorp.spring.HttpClientFactoryBean to configure a HttpClient in the
+        application context.
+      </para>
 
       <para>When added to the appllication context, the factory will read
-      configuration from couchdbProperties defined in the application
-      context:</para>
+        configuration from couchdbProperties defined in the application
+        context:
+      </para>
 
       <programlisting>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:util="http://www.springframework.org/schema/util"
-    xmlns:context="http://www.springframework.org/schema/context"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"&gt;
+        &lt;beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:util="http://www.springframework.org/schema/util"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-3.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd"&gt;
 
-    &lt;util:properties id="couchdbProperties" location="classpath:/couchdb.properties"/&gt;
+        &lt;util:properties id="couchdbProperties" location="classpath:/couchdb.properties"/&gt;
 
-    &lt;bean id="httpClient" class="org.ektorp.spring.HttpClientFactoryBean" &gt;
+        &lt;bean id="httpClient" class="org.ektorp.spring.HttpClientFactoryBean" &gt;
         &lt;property name="properties" ref="couchdbProperties"/&gt;
-    &lt;/bean&gt;
+        &lt;/bean&gt;
 
-    &lt;bean id="couchDbInstance" class="org.ektorp.impl.StdCouchDbInstance"&gt;
+        &lt;bean id="couchDbInstance" class="org.ektorp.impl.StdCouchDbInstance"&gt;
         &lt;constructor-arg ref="httpClient"/&gt;
-    &lt;/bean&gt;
+        &lt;/bean&gt;
 
-    &lt;bean id="initialDataLoader" class="org.ektorp.spring.InitialDataLoader" autowire="byType" init-method="loadData"/&gt;
+        &lt;bean id="initialDataLoader" class="org.ektorp.spring.InitialDataLoader"
+        autowire="byType" init-method="loadData"/&gt;
 
-&lt;/beans&gt;</programlisting>
+        &lt;/beans&gt;
+      </programlisting>
 
       <para>And here is a couchdb.properties to cut &amp; paste:</para>
 
       <programlisting>host=localhost
-port=5984
-maxConnections=20
-connectionTimeout=1000
-socketTimeout=10000
-username=CouchDB_Admin
-password=geheimnis</programlisting>
+        port=5984
+        maxConnections=20
+        connectionTimeout=1000
+        socketTimeout=10000
+        username=CouchDB_Admin
+        password=geheimnis
+      </programlisting>
     </section>
 
     <section>
       <title>Bootstrapping the Database</title>
 
       <para>The Ektorp Spring module features a class for loading the database
-      with documents at application startup.</para>
+        with documents at application startup.
+      </para>
 
       <para>The <emphasis>org.ektorp.spring.InitialDataLoader</emphasis> will
-      lookup all beans in the application context that implements
-      <emphasis>org.ektorp.dataload.DataLoader</emphasis> (typically your
-      repositories) and feed them data streams loaded from locations specified
-      by the DataLoaders themselves.</para>
+        lookup all beans in the application context that implements
+        <emphasis>org.ektorp.dataload.DataLoader</emphasis>
+        (typically your
+        repositories) and feed them data streams loaded from locations specified
+        by the DataLoaders themselves.
+      </para>
 
       <section>
         <title>Declaring the InitialDataLoader in the Application
-        Context</title>
+          Context
+        </title>
 
         <para>The InitialDataLoader work best if its dependencies are
-        autowired. (Otherwise you will have to maintain the list of
-        DataLoaders manually).</para>
+          autowired. (Otherwise you will have to maintain the list of
+          DataLoaders manually).
+        </para>
 
-        <programlisting language="xml">&lt;bean class="org.ektorp.spring.InitialDataLoader" autowire="constructor"/&gt;</programlisting>
+        <programlisting language="xml">&lt;bean class="org.ektorp.spring.InitialDataLoader"
+          autowire="constructor"/&gt;
+        </programlisting>
       </section>
 
       <section>
         <title>Component Scanning</title>
 
         <para>The InitialDataLoader will be created automatically if you
-        include the <emphasis>org.ektorp.spring</emphasis> package in your
-        component scan directive:</para>
+          include the <emphasis>org.ektorp.spring</emphasis> package in your
+          component scan directive:
+        </para>
 
         <programlisting>&lt;context:component-scan base-package="org.example"&gt;
-    &lt;context:include-filter type="regex" expression="org\.ektorp\.spring.*"/&gt;
-&lt;/context:component-scan&gt;</programlisting>
+          &lt;context:include-filter type="regex" expression="org\.ektorp\.spring.*"/&gt;
+          &lt;/context:component-scan&gt;
+        </programlisting>
       </section>
 
       <section>
         <title>DataLoader</title>
 
         <para>The dataloader points out its data locations through the method
-        String[] getDataLocations(). The location is loaded though Spring's
-        <link
-        xlink:href="http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/resources.html">resource
-        loader</link> so paths like
-        <emphasis>"classpath:/my_initial_docs.json"</emphasis> are expected.
-        The DataLoader can then process the data in the loadInitialData
-        method.</para>
+          String[] getDataLocations(). The location is loaded though Spring's
+          <link
+            xlink:href="http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/resources.html">
+            resource
+            loader
+          </link>
+          so paths like
+          <emphasis>"classpath:/my_initial_docs.json"</emphasis>
+          are expected.
+          The DataLoader can then process the data in the loadInitialData
+          method.
+        </para>
 
         <programlisting language="java">import org.ektorp.dataload.*;
-import org.ektorp.support.*;
+          import org.ektorp.support.*;
 
-class SofaRepository extends CouchDbRepositorySupport&lt;Sofa&gt; implements DataLoader {
+          class SofaRepository extends CouchDbRepositorySupport&lt;Sofa&gt; implements DataLoader {
 
-    private final static String[] INITIAL_DATA_PATH = {"classpath:/init_sofa_data.json"};
+          private final static String[] INITIAL_DATA_PATH = {"classpath:/init_sofa_data.json"};
 
-    public void loadInitialData(Reader in) {
-        new DefaultDataLoader(db).load(in);
-    }
-  
-    public String[] getDataLocations() {
-        return INITIAL_DATA_PATH;
-    }
+          public void loadInitialData(Reader in) {
+          new DefaultDataLoader(db).load(in);
+          }
 
-    /**
-    * Is called when all DataLoaders in the system has loaded it´s data.
-    */
-    public void allDataLoaded() {
+          public String[] getDataLocations() {
+          return INITIAL_DATA_PATH;
+          }
 
-    }
-}</programlisting>
+          /**
+          * Is called when all DataLoaders in the system has loaded it´s data.
+          */
+          public void allDataLoaded() {
+
+          }
+          }
+        </programlisting>
       </section>
     </section>
   </chapter>
@@ -2165,144 +2514,171 @@ class SofaRepository extends CouchDbRepositorySupport&lt;Sofa&gt; implements Dat
     <title>Android Integration</title>
 
     <para>The Android Integration package provides additional functionality to
-    improve the behavior of Ektorp on the Android Platform. Using the
-    AndroidHttpClient implementation is required since Android inclues a
-    version of Apache HttpClient that is not compatible with the StdHttpClient
-    provided by Ektorp. Use of the other classes in this package is entirely
-    optional, but they may save you writing repetitive code.</para>
+      improve the behavior of Ektorp on the Android Platform. Using the
+      AndroidHttpClient implementation is required since Android inclues a
+      version of Apache HttpClient that is not compatible with the StdHttpClient
+      provided by Ektorp. Use of the other classes in this package is entirely
+      optional, but they may save you writing repetitive code.
+    </para>
 
     <section>
       <title>AndroidHttpClient</title>
 
       <para>Ektorp has a custom implementation of the HttpClient interface for
-      Android <emphasis>org.ektorp.android.http.AndroidHttpClient</emphasis>.
-      It is designed to use the version of Apache HttpClient included in the
-      Android platform:
-      <emphasis>AnddroidHttpClient.Builder</emphasis><programlisting
-      language="java">HttpClient authenticatedHttpClient = new AndroidHttpClient.Builder()
-                                .url("http://mychouchdbhost:5984")
-                                .username("admin")
-                                .password("secret")
-                                .build();</programlisting></para>
+        Android <emphasis>org.ektorp.android.http.AndroidHttpClient</emphasis>.
+        It is designed to use the version of Apache HttpClient included in the
+        Android platform:
+        <emphasis>AnddroidHttpClient.Builder</emphasis>
+        <programlisting
+          language="java">HttpClient authenticatedHttpClient = new AndroidHttpClient.Builder()
+          .url("http://mychouchdbhost:5984")
+          .username("admin")
+          .password("secret")
+          .build();
+        </programlisting>
+      </para>
 
       <para>When using AndroidHttpClient you should NOT include the httpclient
-      or httpcore libraries in your project. Android includes a copy of Apache
-      HttpClient and supplying your own copy can lead to difficult to debug
-      class loading exceptions.</para>
+        or httpcore libraries in your project. Android includes a copy of Apache
+        HttpClient and supplying your own copy can lead to difficult to debug
+        class loading exceptions.
+      </para>
 
-      <para><emphasis>NOTE:</emphasis> AndroidHttpClient does not support
-      caching.</para>
+      <para>
+        <emphasis>NOTE:</emphasis>
+        AndroidHttpClient does not support
+        caching.
+      </para>
     </section>
 
     <section>
       <title>EktorpAsyncTask</title>
 
-      <para>The EktorpAsyncTask class extends the Android platform's <link
-      xlink:href="http://developer.android.com/reference/android/os/AsyncTask.html">AsyncTask</link>
-      class to perform Ektorp operations on a background thread, while
-      handling success and failure conditions on the application's main
-      thread. This is important since performing network operations on the
-      main thread may lead to <link
-      xlink:href="http://developer.android.com/reference/android/os/NetworkOnMainThreadException.html">
-      NetworkOnMainThreadException</link>. Further, you can only interact with
-      the Android UI from the main thread.</para>
+      <para>The EktorpAsyncTask class extends the Android platform's
+        <link
+          xlink:href="http://developer.android.com/reference/android/os/AsyncTask.html">AsyncTask
+        </link>
+        class to perform Ektorp operations on a background thread, while
+        handling success and failure conditions on the application's main
+        thread. This is important since performing network operations on the
+        main thread may lead to <link
+          xlink:href="http://developer.android.com/reference/android/os/NetworkOnMainThreadException.html">
+          NetworkOnMainThreadException</link>. Further, you can only interact with
+        the Android UI from the main thread.
+      </para>
     </section>
 
     <programlisting language="java">EktorpAsyncTask createItemTask = new EktorpAsyncTask() {
 
-    @Override
-    protected void doInBackground() {
-        couchDbConnector.create(item);
-    }
+      @Override
+      protected void doInBackground() {
+      couchDbConnector.create(item);
+      }
 
-    @Override
-    protected void onSuccess() {
-        Toast.makeText(context, "Document created successfully", 5000).show();
-    }
+      @Override
+      protected void onSuccess() {
+      Toast.makeText(context, "Document created successfully", 5000).show();
+      }
 
-    @Override
-    protected void onUpdateConflict(UpdateConflictException updateConflictException) {
-        Toast.makeText(context, "Got an update conflict for: " + item.toString(), 5000).show();
-    }
+      @Override
+      protected void onUpdateConflict(UpdateConflictException updateConflictException) {
+      Toast.makeText(context, "Got an update conflict for: " + item.toString(), 5000).show();
+      }
 
-    @Override
-    protected void onDbAccessException(DbAccessException dbAccessException) {
-        Log.e(TAG, "DbAccessException in background", dbAccessException);
-    }
-};
-createItemTask.execute();
-      </programlisting>
+      @Override
+      protected void onDbAccessException(DbAccessException dbAccessException) {
+      Log.e(TAG, "DbAccessException in background", dbAccessException);
+      }
+      };
+      createItemTask.execute();
+    </programlisting>
 
     <para>In this example, a document is created on a background thread. If
-    the document is created successfully or an update conflict occurs, the
-    user is notifed by a Toast popup message. If any other DbAccessException
-    occurs the exception is sent to the Android Log.</para>
+      the document is created successfully or an update conflict occurs, the
+      user is notifed by a Toast popup message. If any other DbAccessException
+      occurs the exception is sent to the Android Log.
+    </para>
 
     <section>
       <title>ChangesFeedAsyncTask</title>
 
       <para>The ChangesFeedAsyncTask is another class extending the Android
-      platform's <link
-      xlink:href="http://developer.android.com/reference/android/os/AsyncTask.html">AsyncTask</link>
-      class. This class allows you to follow a CouchDB changes feed in a
-      background thread and receive the DocumentChange objects on the main
-      thread.</para>
+        platform's
+        <link
+          xlink:href="http://developer.android.com/reference/android/os/AsyncTask.html">AsyncTask
+        </link>
+        class. This class allows you to follow a CouchDB changes feed in a
+        background thread and receive the DocumentChange objects on the main
+        thread.
+      </para>
 
-      <programlisting language="java">public class ExampleChangesFeedAsyncTask extends ChangesFeedAsyncTask {
+      <programlisting language="java">public class ExampleChangesFeedAsyncTask extends
+        ChangesFeedAsyncTask {
 
-    private Context context;
+        private Context context;
 
-    public ExampleChangesFeedAsyncTask(Context context, CouchDbConnector couchDbConnector, ChangesCommand changesCommand) {
+        public ExampleChangesFeedAsyncTask(Context context, CouchDbConnector couchDbConnector,
+        ChangesCommand changesCommand) {
         super(couchDbConnector, changesCommand);
         this.context = context;
-    }
+        }
 
-    @Override
-    protected void handleDocumentChange(DocumentChange change) {
+        @Override
+        protected void handleDocumentChange(DocumentChange change) {
         Toast.makeText(context, "Received change sequence : " + change.getSequence(), 5000).show();
-    }
+        }
 
-    @Override
-    protected void onDbAccessException(DbAccessException dbAccessException) {
+        @Override
+        protected void onDbAccessException(DbAccessException dbAccessException) {
         Log.e(TAG, "DbAccessException following changes feed", dbAccessException);
-    }
+        }
 
-}</programlisting>
+        }
+      </programlisting>
 
       <para>Then to use this class:</para>
 
-      <programlisting language="java">ChangesCommand changesCmd = new ChangesCommand.Builder().since(lastUpdate).continuous(true).build();
-ExampleChangesFeedAsyncTask couchChangesAsyncTask = new ExampleChangesFeedAsyncTask(couchDbConnector, changesCmd);
-couchChangesAsyncTask.execute();
-    </programlisting>
+      <programlisting language="java">ChangesCommand changesCmd = new
+        ChangesCommand.Builder().since(lastUpdate).continuous(true).build();
+        ExampleChangesFeedAsyncTask couchChangesAsyncTask = new
+        ExampleChangesFeedAsyncTask(couchDbConnector, changesCmd);
+        couchChangesAsyncTask.execute();
+      </programlisting>
     </section>
 
     <section>
       <title>CouchbaseViewListAdapter</title>
 
       <para>The CouchbaseViewListAdapter class extends the Android platform's
-      <link
-      xlink:href="http://developer.android.com/reference/android/widget/BaseAdapter.html">BaseAdapter</link>
-      class. This class allows you populate the rows of an Android <link
-      xlink:href="http://developer.android.com/reference/android/widget/ListView.html">ListView</link>.
-      with content from the rows of a CouchDB view. Optionally, you can have
-      it follow the changes feed and update the list when the data
-      changes.</para>
+        <link
+          xlink:href="http://developer.android.com/reference/android/widget/BaseAdapter.html">
+          BaseAdapter
+        </link>
+        class. This class allows you populate the rows of an Android <link
+          xlink:href="http://developer.android.com/reference/android/widget/ListView.html">
+          ListView</link>.
+        with content from the rows of a CouchDB view. Optionally, you can have
+        it follow the changes feed and update the list when the data
+        changes.
+      </para>
 
-      <programlisting language="java">public class ExampleListAdapter extends CouchbaseViewListAdapter {
+      <programlisting language="java">public class ExampleListAdapter extends
+        CouchbaseViewListAdapter {
 
-    private Context context;
+        private Context context;
 
-    public ExampleListAdapter(Context context, CouchDbConnector couchDbConnector, ViewQuery viewQuery, boolean followChanges) {
+        public ExampleListAdapter(Context context, CouchDbConnector couchDbConnector, ViewQuery
+        viewQuery, boolean followChanges) {
         super(couchDbConnector, viewQuery, followChanges);
         this.context = context;
-    }
+        }
 
-    @Override
-    public View getView(int position, View itemView, ViewGroup parent) {
+        @Override
+        public View getView(int position, View itemView, ViewGroup parent) {
         if (itemView == null) {
-            LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            itemView = li.inflate(R.layout.grocery_list_item, null);
+        LayoutInflater li =
+        (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        itemView = li.inflate(R.layout.grocery_list_item, null);
         }
 
         TextView label = (TextView) itemView.findViewById(R.id.label);
@@ -2310,20 +2686,22 @@ couchChangesAsyncTask.execute();
         JsonNode item = row.getValueAsNode();
         JsonNode itemText = item.get("text");
         if(itemText != null) {
-            label.setText(itemText.getTextValue());
+        label.setText(itemText.getTextValue());
         }
 
         return itemView;
-    }
-}
-    </programlisting>
+        }
+        }
+      </programlisting>
 
       <para>To use this adapter:</para>
 
-      <programlisting language="java">ViewQuery viewQuery = new ViewQuery().designDocId(dDocId).viewName(viewName);
-ExampleListAdapter itemListViewAdapter = new ExampleListAdapter(this, couchDbConnector, viewQuery, true);
-listView.setAdapter(itemListViewAdapter);
-    </programlisting>
+      <programlisting language="java">ViewQuery viewQuery = new
+        ViewQuery().designDocId(dDocId).viewName(viewName);
+        ExampleListAdapter itemListViewAdapter = new ExampleListAdapter(this, couchDbConnector,
+        viewQuery, true);
+        listView.setAdapter(itemListViewAdapter);
+      </programlisting>
     </section>
   </chapter>
 </book>

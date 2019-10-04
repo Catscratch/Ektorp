@@ -41,9 +41,9 @@ public class Revision implements Serializable {
 
   @Override
   public boolean equals(Object o) {
-		if (o == this) {
-			return true;
-		}
+    if (o == this) {
+      return true;
+    }
     if (o instanceof Revision) {
       Revision r = (Revision) o;
       return rev.equals(r.rev);

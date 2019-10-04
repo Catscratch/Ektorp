@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.Serializable;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import org.ektorp.util.Assert;
@@ -37,7 +38,6 @@ public class Attachment implements Serializable {
    *
    * @param data base64-encoded
    */
-  @SuppressFBWarnings(value = "DM_DEFAULT_ENCODING")
   public Attachment(String id, String data, String contentType) {
     Assert.hasText(id, "attachmentId must have a value");
     Assert.hasText(contentType, "contentType must have a value");
@@ -45,7 +45,7 @@ public class Attachment implements Serializable {
     this.id = id;
     this.contentType = contentType;
     this.dataBase64 = data;
-    this.length = data.getBytes(Charset.forName("UTF-8")).length;
+    this.length = data.getBytes(StandardCharsets.UTF_8).length;
   }
 
   Attachment() {
@@ -128,7 +128,7 @@ public class Attachment implements Serializable {
    */
   private Map<String, Object> anonymous() {
     if (anonymous == null) {
-      anonymous = new HashMap<String, Object>();
+      anonymous = new HashMap<>();
     }
     return anonymous;
   }

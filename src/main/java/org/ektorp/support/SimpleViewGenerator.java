@@ -37,8 +37,8 @@ import org.slf4j.LoggerFactory;
 
 public class SimpleViewGenerator {
 
-  private final static Logger LOG = LoggerFactory
-      .getLogger(SimpleViewGenerator.class);
+  private final static Logger LOG = LoggerFactory.getLogger(SimpleViewGenerator.class);
+
   private final static String ALL_VIEW_TEMPLATE = "function(doc) { if(%s) {emit(null, doc._id)} }";
   private final static String LOOKUP_BY_PROPERTY_TEMPLATE = "function(doc) { if(%s) {emit(doc.%s, doc._id)} }";
   private final static String ITERABLE_PROPERTY_TEMPLATE = "function(doc) {%s}";
@@ -154,9 +154,8 @@ public class SimpleViewGenerator {
 
   @SuppressFBWarnings(value = "VA_FORMAT_STRING_EXTRA_ARGUMENTS_PASSED")
   private String resolveTypeDiscriminator(final Class<?> persistentType) {
-    final List<String> discrimintators = new ArrayList<String>();
-    TypeDiscriminator td = persistentType
-        .getAnnotation(TypeDiscriminator.class);
+    final List<String> discrimintators = new ArrayList<>();
+    TypeDiscriminator td = persistentType.getAnnotation(TypeDiscriminator.class);
     if (td != null) {
       if (td.value().length() == 0) {
         throw new ViewGenerationException(
@@ -397,7 +396,8 @@ public class SimpleViewGenerator {
   private String resolveTypeDiscriminatorForBackReference(Member m) {
     Method me = ReflectionUtils.findMethod(m.getDeclaringClass(), "get"
         + firstCharToUpperCase(m.getName()));
-    if (me != null) {
+    if (me != null
+        && resolveReturnType(me) != null) {
       return resolveTypeDiscriminator(resolveReturnType(me));
     }
     return "";
@@ -506,5 +506,4 @@ public class SimpleViewGenerator {
     }
     return mapper;
   }
-
 }

@@ -891,130 +891,114 @@ public class ViewQuery {
 
   @Override
   public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
     ViewQuery other = (ViewQuery) obj;
     if (cachedQuery == null) {
-			if (other.cachedQuery != null) {
-				return false;
-			}
+      if (other.cachedQuery != null) {
+        return false;
+      }
     } else if (!cachedQuery.equals(other.cachedQuery)) {
-			return false;
-		}
+      return false;
+    }
     if (dbPath == null) {
-			if (other.dbPath != null) {
-				return false;
-			}
+      if (other.dbPath != null) {
+        return false;
+      }
     } else if (!dbPath.equals(other.dbPath)) {
-			return false;
-		}
-		if (descending != other.descending) {
-			return false;
-		}
+      return false;
+    }
+    if (descending != other.descending) {
+      return false;
+    }
     if (designDocId == null) {
-			if (other.designDocId != null) {
-				return false;
-			}
+      if (other.designDocId != null) {
+        return false;
+      }
     } else if (!designDocId.equals(other.designDocId)) {
-			return false;
-		}
+      return false;
+    }
     if (endDocId == null) {
-			if (other.endDocId != null) {
-				return false;
-			}
+      if (other.endDocId != null) {
+        return false;
+      }
     } else if (!endDocId.equals(other.endDocId)) {
-			return false;
-		}
-    if (endKey == null) {
-			if (other.endKey != null) {
-				return false;
-			}
-    } else if (!endKey.equals(other.endKey)) {
-			return false;
-		}
-		if (group != other.group) {
-			return false;
-		}
-		if (groupLevel != other.groupLevel) {
-			return false;
-		}
-		if (ignoreNotFound != other.ignoreNotFound) {
-			return false;
-		}
-		if (includeDocs != other.includeDocs) {
-			return false;
-		}
-		if (inclusiveEnd != other.inclusiveEnd) {
-			return false;
-		}
-		if (updateSeq != other.updateSeq) {
-			return false;
-		}
-    if (key == null) {
-			if (other.key != null) {
-				return false;
-			}
-    } else if (!key.equals(other.key)) {
-			return false;
-		}
-		if (limit != other.limit) {
-			return false;
-		}
+      return false;
+    }
+    if (!endKey.equals(other.endKey)) {
+      return false;
+    }
+    if (group != other.group) {
+      return false;
+    }
+    if (groupLevel != other.groupLevel) {
+      return false;
+    }
+    if (ignoreNotFound != other.ignoreNotFound) {
+      return false;
+    }
+    if (includeDocs != other.includeDocs) {
+      return false;
+    }
+    if (inclusiveEnd != other.inclusiveEnd) {
+      return false;
+    }
+    if (updateSeq != other.updateSeq) {
+      return false;
+    }
+    if (!key.equals(other.key)) {
+      return false;
+    }
+    if (limit != other.limit) {
+      return false;
+    }
     if (listName == null) {
-			if (other.listName != null) {
-				return false;
-			}
+      if (other.listName != null) {
+        return false;
+      }
     } else if (!listName.equals(other.listName)) {
-			return false;
-		}
-    if (queryParams == null) {
-			if (other.queryParams != null) {
-				return false;
-			}
-    } else if (!queryParams.equals(other.queryParams)) {
-			return false;
-		}
-		if (reduce != other.reduce) {
-			return false;
-		}
-		if (skip != other.skip) {
-			return false;
-		}
+      return false;
+    }
+    if (!queryParams.equals(other.queryParams)) {
+      return false;
+    }
+    if (reduce != other.reduce) {
+      return false;
+    }
+    if (skip != other.skip) {
+      return false;
+    }
     if (staleOk == null) {
-			if (other.staleOk != null) {
-				return false;
-			}
+      if (other.staleOk != null) {
+        return false;
+      }
     } else if (!staleOk.equals(other.staleOk)) {
-			return false;
-		}
+      return false;
+    }
     if (startDocId == null) {
-			if (other.startDocId != null) {
-				return false;
-			}
+      if (other.startDocId != null) {
+        return false;
+      }
     } else if (!startDocId.equals(other.startDocId)) {
-			return false;
-		}
-    if (startKey == null) {
-			if (other.startKey != null) {
-				return false;
-			}
-    } else if (!startKey.equals(other.startKey)) {
-			return false;
-		}
+      return false;
+    }
+    if (!startKey.equals(other.startKey)) {
+      return false;
+    }
     if (viewName == null) {
-			if (other.viewName != null) {
-				return false;
-			}
+      if (other.viewName != null) {
+        return false;
+      }
     } else if (!viewName.equals(other.viewName)) {
-			return false;
-		}
+      return false;
+    }
     return true;
   }
 

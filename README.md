@@ -219,3 +219,6 @@ Getting Help
 You can usually get quick answers at the [Ektorp google group](http://groups.google.com/group/ektorp-discuss)
 
 [jackson]: http://wiki.fasterxml.com/JacksonHome
+
+
+mvn sonar:sonar   -Dsonar.projectKey=triplem_Ektorp   -Dsonar.organization=triplem   -Dsonar.host.url=https://sonarcloud.io   -Dsonar.login=fcece4211a15d23ddc2e276b2579732083a23ae8 

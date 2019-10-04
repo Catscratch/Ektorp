@@ -52,14 +52,15 @@ public class BulkDocumentWriter {
   public InputStream createInputStreamWrapper(boolean allOrNothing, InputStream in) {
     List<InputStream> seq = new ArrayList<InputStream>(3);
 
-    try {
-      ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-      JsonGenerator jg = objectMapper.getFactory()
-          .createGenerator(byteArrayOutputStream, JsonEncoding.UTF8);
+    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+    try (JsonGenerator jg = objectMapper.getFactory()
+        .createGenerator(byteArrayOutputStream, JsonEncoding.UTF8)) {
       jg.writeStartObject();
+
       if (allOrNothing) {
         jg.writeBooleanField("all_or_nothing", true);
       }
+
       jg.writeFieldName("docs");
       jg.writeRaw(':');
       jg.flush();
@@ -73,6 +74,7 @@ public class BulkDocumentWriter {
     } catch (Exception e) {
       throw Exceptions.propagate(e);
     }
+
     return new SequenceInputStream(Collections.enumeration(seq));
   }
 

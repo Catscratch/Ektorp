@@ -62,8 +62,6 @@ public class PageResponseHandler<T> extends StdResponseHandler<Page<T>> {
       firstId = parser.getFirstId();
       firstKey = parser.getFirstKey();
     }
-    int offset = pageRequest.isBack() ? 1 : 1;
-
     PageRequest.Builder nextRequestBuilder = pageRequest.nextRequest(nextKey, nextId).back(false);
     PageRequest.Builder prevRequestBuilder = pageRequest.nextRequest(firstKey, firstId).back(true);
     int currentPage = pageRequest.getPageNo();
@@ -73,7 +71,7 @@ public class PageResponseHandler<T> extends StdResponseHandler<Page<T>> {
         currentPage == 1 ? PageRequest.firstPage(pageRequest.getPageSize()) :
             prevRequestBuilder.page(currentPage - 1).build();
 
-    boolean hasMore = rowsSize == pageRequest.getPageSize() + offset;
+    boolean hasMore = rowsSize == pageRequest.getPageSize() + 1;
     if (hasMore) {
       rows.remove(rows.size() - 1);
     } else if (!pageRequest.isBack()) {

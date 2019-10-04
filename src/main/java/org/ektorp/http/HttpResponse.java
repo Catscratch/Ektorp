@@ -1,16 +1,24 @@
 package org.ektorp.http;
 
-import java.io.*;
+import java.io.InputStream;
 
 public interface HttpResponse {
 
-	boolean isSuccessful();
-	int getCode();
-	String getRequestURI();
-	String getContentType();
-	long getContentLength();
-	InputStream getContent();
-	String getETag();
-	void releaseConnection();
-	void abort();
+  boolean isSuccessful();
+
+  int getCode();
+
+  String getRequestURI();
+
+  String getContentType();
+
+  long getContentLength();
+
+  InputStream getContent();
+
+  String getETag();
+
+  void releaseConnection();
+
+  void abort();
 }

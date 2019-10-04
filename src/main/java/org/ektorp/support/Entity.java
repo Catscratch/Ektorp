@@ -15,9 +15,9 @@ public class Entity extends CouchDbDocument implements Serializable {
 
   @Override
   public boolean equals(Object o) {
-		if (o == this) {
-			return true;
-		}
+    if (o == this) {
+      return true;
+    }
     if (o instanceof Entity) {
       Entity a2 = (Entity) o;
       return getId() != null && getId().equals(a2.getId());

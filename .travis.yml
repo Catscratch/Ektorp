@@ -10,11 +10,10 @@ matrix:
       jdk: openjdk7
     - #dist: trusty
       jdk: openjdk8
-env:
-  matrix:
-    - JACKSON_VERSION=2.6.0
-    - JACKSON_VERSION=2.5.0
-    - JACKSON_VERSION=2.4.0
-    - JACKSON_VERSION=2.3.0
+addons:
+  sonarcloud:
+    organization: "triplem"
+    token:
+      secure: "ZCKUrEsZ+QdWSJsMi/v+oPNI29gwJDS+jEyiikejOTqsf8V8tSlgWB2OIMBldTdevUGvvVbtEezOZzhMBKp0JkXP6jQNRV+LhGaOjR3J4yfPbPKUqHDFoKQOHwFXfg7iP2opI+hLdupwwzGSNC+Kro9D7qeaphtw1a5RD8/tGdejU632f8h6rVR247VTYoqeyIuK3Oo2ovS1cpyWqCm9FR7n0mCStZnr7kVbk6beHYOd4M6U0hY4K7n0yVf4J/2GLcAVZ1q8PadgmYhCwieMmn53lT62i6Va7vjBJvoHleUS1iGO/cXhBQJdExzghSNl9Jttu1mmlP6LIE8RMy/UJ0yh2+KaR0YVx0Vz2sRS8WQzy5HcPgEKO6HCQkv0yX8H1N7nz+9ApftA9Lnhjw29CPx8L4sBmkgVU+tceExa4CavogF67NVx0iIdVriuvLFk+MhYCV8zmWbLJoGu+dZtC1oCzubOXtG8hWSH571154fniz5oEAoIKxVBtGN/BJuAVCN94WoBSakHec3z0MivcMU4K6wsQ7EgcuMP/ZQ57N3159mpOyG+VkltQ74576enOYn8wPFcqKMlK0KKinV/TZ7L5lNAJLm19CW6Y0kiWbORXimWUTCFf/oag+hSLW2KGcPLxT+wCecDXIruXTN5dQTSm0QDyDcTQxkDxX+JpMw="
 script:
-  - mvn clean install -Djackson.version=$JACKSON_VERSION
+  - mvn clean verify sonar:sonar -Pcoverage -Dsonar.projectKey=triplem_Ektorp

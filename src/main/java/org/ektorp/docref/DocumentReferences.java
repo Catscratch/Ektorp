@@ -12,7 +12,8 @@ import java.lang.annotation.Target;
  * result of a view query. The parameter
  * <code>view</code> defines the name of a view located in the design document
  * of the class or in the design document specified by <code>designDoc</code>. The parameter
- * <code>fetch</code> controls when reference loading is performed. This annotation only has meaning
+ * <code>fetch</code> controls when reference loading is performed. This annotation only has
+ * meaning
  * on collection class members.
  */
 @Target({ElementType.FIELD})

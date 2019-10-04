@@ -154,9 +154,9 @@ public class StdCouchDbInstance implements CouchDbInstance {
   public CouchDbConnector createConnector(String path,
       boolean createIfNotExists) {
     CouchDbConnector db = new StdCouchDbConnector(path, this, objectMapperFactory);
-		if (createIfNotExists) {
-			db.createDatabaseIfNotExists();
-		}
+    if (createIfNotExists) {
+      db.createDatabaseIfNotExists();
+    }
     return db;
   }
 

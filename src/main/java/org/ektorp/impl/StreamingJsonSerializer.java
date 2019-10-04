@@ -56,19 +56,14 @@ public class StreamingJsonSerializer implements JsonSerializer {
    */
   public BulkOperation createBulkOperation(final Collection<?> objects,
       final boolean allOrNothing) {
-    try {
-      final PipedOutputStream out = new PipedOutputStream();
-      PipedInputStream in = new PipedInputStream(out);
-
-      Future<?> writeTask = executorService.submit(new Runnable() {
-
-        public void run() {
-          try {
-            bulkDocWriter.write(objects, allOrNothing, out);
-          } catch (Exception e) {
-            LOG.error("Caught exception while writing bulk document:", e);
-          }
-
+    try (final PipedOutputStream out = new PipedOutputStream();
+        PipedInputStream in = new PipedInputStream(out)) {
+      ;
+      Future<?> writeTask = executorService.submit(() -> {
+        try {
+          bulkDocWriter.write(objects, allOrNothing, out);
+        } catch (Exception e) {
+          LOG.error("Caught exception while writing bulk document:", e);
         }
       });
 

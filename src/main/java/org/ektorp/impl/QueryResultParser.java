@@ -118,9 +118,9 @@ public class QueryResultParser<T> {
     // dataField (all rows were error),
     // or we point at an END_OBJECT (end of a row) and have determined which
     // data field to use.
-      if (dataField == null) {
-          return;
-      }
+    if (dataField == null) {
+      return;
+    }
 
     // Parse all the remaining rows; jp points at START_OBJECT except after
     // the last row

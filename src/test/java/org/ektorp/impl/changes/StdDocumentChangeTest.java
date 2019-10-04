@@ -1,7 +1,19 @@
 package org.ektorp.impl.changes;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+import static org.junit.matchers.JUnitMatchers.hasItems;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.io.InputStream;
 import junit.framework.Assert;
 import org.apache.commons.io.IOUtils;
 import org.ektorp.StreamingChangesResult;
@@ -10,97 +22,90 @@ import org.ektorp.http.HttpResponse;
 import org.ektorp.impl.ResponseOnFileStub;
 import org.junit.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.*;
-import static org.junit.matchers.JUnitMatchers.hasItems;
-
 public class StdDocumentChangeTest {
 
-	ObjectMapper mapper = new ObjectMapper();
+  ObjectMapper mapper = new ObjectMapper();
 
-	@Test
-	public void test_normal_message() throws IOException {
-		StdDocumentChange m = new StdDocumentChange(load("change_message.json"));
-		assertMandatoryFields(m);
-		assertNull(m.getDoc());
-		assertTrue(m.getDocAsNode().isMissingNode());
-		assertFalse(m.isDeleted());
-	}
+  @Test
+  public void test_normal_message() throws IOException {
+    StdDocumentChange m = new StdDocumentChange(load("change_message.json"));
+    assertMandatoryFields(m);
+    assertNull(m.getDoc());
+    assertTrue(m.getDocAsNode().isMissingNode());
+    assertFalse(m.isDeleted());
+  }
 
-	private void assertMandatoryFields(StdDocumentChange m) {
-		assertEquals(21, m.getSequence());
-		assertEquals("doc_id", m.getId());
-		assertEquals("doc_rev", m.getRevision());
-	}
+  private void assertMandatoryFields(StdDocumentChange m) {
+    assertEquals(21, m.getSequence());
+    assertEquals("doc_id", m.getId());
+    assertEquals("doc_rev", m.getRevision());
+  }
 
-	@Test
-	public void test_deleted_doc_message() throws IOException {
-		StdDocumentChange m = new StdDocumentChange(load("change_message_w_deleted_doc.json"));
-		assertMandatoryFields(m);
-		assertTrue(m.isDeleted());
-	}
+  @Test
+  public void test_deleted_doc_message() throws IOException {
+    StdDocumentChange m = new StdDocumentChange(load("change_message_w_deleted_doc.json"));
+    assertMandatoryFields(m);
+    assertTrue(m.isDeleted());
+  }
 
-	@Test
-	public void test_message_with_included_doc() throws IOException {
-		StdDocumentChange m = new StdDocumentChange(load("change_message_w_included_doc.json"));
-		assertMandatoryFields(m);
-		assertNotNull(m.getDoc());
-		assertFalse(m.getDocAsNode().isMissingNode());
-		assertNotNull(m.getDocAsNode().findValue("_id"));
-		assertNotNull(m.getDocAsNode().findValue("_rev"));
-	}
+  @Test
+  public void test_message_with_included_doc() throws IOException {
+    StdDocumentChange m = new StdDocumentChange(load("change_message_w_included_doc.json"));
+    assertMandatoryFields(m);
+    assertNotNull(m.getDoc());
+    assertFalse(m.getDocAsNode().isMissingNode());
+    assertNotNull(m.getDocAsNode().findValue("_id"));
+    assertNotNull(m.getDocAsNode().findValue("_rev"));
+  }
 
-    @Test
-    public void getRevision_should_return_the_first_revision_when_there_are_multiple_changes() throws IOException
-    {
-        StdDocumentChange objectUnderTest = new StdDocumentChange(load("change_message_w_multiple_revs.json"));
-        assertThat(objectUnderTest.getId(), is("doc_id"));
-        assertThat(objectUnderTest.getRevision(), is("rev-first"));
-        assertNull(objectUnderTest.getDoc());
-        assertTrue(objectUnderTest.getDocAsNode().isMissingNode());
-        assertFalse(objectUnderTest.isDeleted());
+  @Test
+  public void getRevision_should_return_the_first_revision_when_there_are_multiple_changes()
+      throws IOException {
+    StdDocumentChange objectUnderTest = new StdDocumentChange(
+        load("change_message_w_multiple_revs.json"));
+    assertThat(objectUnderTest.getId(), is("doc_id"));
+    assertThat(objectUnderTest.getRevision(), is("rev-first"));
+    assertNull(objectUnderTest.getDoc());
+    assertTrue(objectUnderTest.getDocAsNode().isMissingNode());
+    assertFalse(objectUnderTest.isDeleted());
+  }
+
+  @Test
+  public void getRevisions_should_return_a_List_of_all_the_changes() throws IOException {
+    StdDocumentChange objectUnderTest = new StdDocumentChange(
+        load("change_message_w_multiple_revs.json"));
+    assertThat(objectUnderTest.getId(), is("doc_id"));
+    assertThat(objectUnderTest.getRevision(), is("rev-first"));
+    assertThat(objectUnderTest.getRevisions(), notNullValue());
+    assertThat(objectUnderTest.getRevisions(), hasItems("rev-first", "rev-second", "rev-third"));
+    assertThat(objectUnderTest.getRevisions().size(), is(3));
+    assertNull(objectUnderTest.getDoc());
+    assertTrue(objectUnderTest.getDocAsNode().isMissingNode());
+    assertFalse(objectUnderTest.isDeleted());
+  }
+
+
+  @Test
+  public void test_streaming_changes() throws IOException {
+    HttpResponse httpResponse = ResponseOnFileStub.newInstance(200, "changes/changes_full.json");
+
+    StreamingChangesResult changes = new StreamingChangesResult(new ObjectMapper(), httpResponse);
+    int i = 0;
+    for (DocumentChange documentChange : changes) {
+      Assert.assertEquals(++i, documentChange.getSequence());
     }
+    Assert.assertEquals(5, changes.getLastSeq());
+    changes.close();
+  }
 
-    @Test
-    public void getRevisions_should_return_a_List_of_all_the_changes() throws IOException
-    {
-        StdDocumentChange objectUnderTest = new StdDocumentChange(load("change_message_w_multiple_revs.json"));
-        assertThat(objectUnderTest.getId(), is("doc_id"));
-        assertThat(objectUnderTest.getRevision(), is("rev-first"));
-        assertThat(objectUnderTest.getRevisions(), notNullValue());
-        assertThat(objectUnderTest.getRevisions(), hasItems("rev-first", "rev-second", "rev-third"));
-        assertThat(objectUnderTest.getRevisions().size(), is(3));
-        assertNull(objectUnderTest.getDoc());
-        assertTrue(objectUnderTest.getDocAsNode().isMissingNode());
-        assertFalse(objectUnderTest.isDeleted());
+  private JsonNode load(String id) throws IOException {
+    InputStream resourceAsStream = null;
+    try {
+      resourceAsStream = getClass().getResourceAsStream(id);
+      return mapper.readTree(resourceAsStream);
+    } finally {
+      IOUtils.closeQuietly(resourceAsStream);
     }
-
-
-    @Test
-    public void test_streaming_changes() throws IOException {
-	    HttpResponse httpResponse = ResponseOnFileStub.newInstance(200, "changes/changes_full.json");
-	    
-	    StreamingChangesResult changes = new StreamingChangesResult(new ObjectMapper(), httpResponse);
-	    int i = 0;
-        for (DocumentChange documentChange : changes) {
-            Assert.assertEquals(++i, documentChange.getSequence());
-        }
-        Assert.assertEquals(5, changes.getLastSeq());
-        changes.close();
-    }
-
-	private JsonNode load(String id) throws IOException {
-        InputStream resourceAsStream = null;
-        try {
-            resourceAsStream = getClass().getResourceAsStream(id);
-            return mapper.readTree(resourceAsStream);
-        } finally {
-            IOUtils.closeQuietly(resourceAsStream);
-        }
-	}
+  }
 
 }

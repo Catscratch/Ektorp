@@ -61,6 +61,8 @@
     <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
     <spotbugs.version>4.0.0-beta4</spotbugs.version>
 
+    <sonar.version>3.6.0.1398</sonar.version>
+
     <spotbugs.skip>false</spotbugs.skip>
     <spotbugs.includeTests>true</spotbugs.includeTests>
   </properties>
@@ -136,7 +138,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>sonar-maven-plugin</artifactId>
-          <version>${sonarVersion}</version>
+          <version>${sonar.version}</version>
         </plugin>
         <plugin>
           <groupId>com.github.spotbugs</groupId>

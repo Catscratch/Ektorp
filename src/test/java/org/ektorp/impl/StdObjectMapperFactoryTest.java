@@ -1,54 +1,55 @@
 package org.ektorp.impl;
 
+import static org.junit.Assert.assertEquals;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-
 public class StdObjectMapperFactoryTest {
 
-	private StdObjectMapperFactory factory;
+  private StdObjectMapperFactory factory;
 
-	@Before
-	public void setUp() {
-		factory = new StdObjectMapperFactory();
-	}
+  @Before
+  public void setUp() {
+    factory = new StdObjectMapperFactory();
+  }
 
-	@Test
-	public void shouldSerializeBeanPropertiesByDefault() throws JsonProcessingException {
-		ObjectMapper objectMapper = factory.createObjectMapper();
+  @Test
+  public void shouldSerializeBeanPropertiesByDefault() throws JsonProcessingException {
+    ObjectMapper objectMapper = factory.createObjectMapper();
 
-		String actual = objectMapper.writeValueAsString(new Pair("couch", "db"));
+    String actual = objectMapper.writeValueAsString(new Pair("couch", "db"));
 
-		assertEquals("{\"name\":\"couch\",\"value\":\"db\"}", actual);
-	}
+    assertEquals("{\"name\":\"couch\",\"value\":\"db\"}", actual);
+  }
 
-	@Test
-	public void shouldNotSerializeNullBeanPropertiesByDefault() throws JsonProcessingException {
-		ObjectMapper objectMapper = factory.createObjectMapper();
+  @Test
+  public void shouldNotSerializeNullBeanPropertiesByDefault() throws JsonProcessingException {
+    ObjectMapper objectMapper = factory.createObjectMapper();
 
-		String actual = objectMapper.writeValueAsString(new Pair("couch", null));
+    String actual = objectMapper.writeValueAsString(new Pair("couch", null));
 
-		assertEquals("{\"name\":\"couch\"}", actual);
-	}
+    assertEquals("{\"name\":\"couch\"}", actual);
+  }
 
-	public static class Pair {
-		private String name;
-		private String value;
+  public static class Pair {
 
-		public Pair(String name, String value) {
-			this.name = name;
-			this.value = value;
-		}
+    private String name;
+    private String value;
 
-		public String getName() {
-			return name;
-		}
+    public Pair(String name, String value) {
+      this.name = name;
+      this.value = value;
+    }
 
-		public String getValue() {
-			return value;
-		}
-	}
+    public String getName() {
+      return name;
+    }
+
+    public String getValue() {
+      return value;
+    }
+  }
 }

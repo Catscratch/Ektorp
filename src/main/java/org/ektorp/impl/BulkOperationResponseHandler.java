@@ -13,9 +13,13 @@ import org.ektorp.DocumentOperationResult;
 import org.ektorp.http.HttpResponse;
 import org.ektorp.http.StdResponseHandler;
 import org.ektorp.util.Documents;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class BulkOperationResponseHandler extends
     StdResponseHandler<List<DocumentOperationResult>> {
+
+  private static final Logger LOG = LoggerFactory.getLogger(BulkOperationResponseHandler.class);
 
   private final ObjectMapper objectMapper;
   private final Collection<?> objects;
@@ -33,26 +37,28 @@ public class BulkOperationResponseHandler extends
   @SuppressFBWarnings(value = "SF_SWITCH_NO_DEFAULT")
   public List<DocumentOperationResult> success(HttpResponse hr)
       throws Exception {
-    JsonParser jp = objectMapper.getFactory().createParser(hr.getContent());
-    List<DocumentOperationResult> result = new ArrayList<DocumentOperationResult>();
-    Iterator<?> objectsIter = objects == null ? null : objects.iterator();
-    while (jp.nextToken() != null) {
-      switch (jp.getCurrentToken()) {
-        case START_OBJECT:
-          jp.nextToken();
-          if ("ok".equals(jp.getCurrentName())) {
+    List<DocumentOperationResult> result = new ArrayList<>();
+
+    try (JsonParser jp = objectMapper.getFactory().createParser(hr.getContent())) {
+      Iterator<?> objectsIter = objects == null ? null : objects.iterator();
+      while (jp.nextToken() != null) {
+        switch (jp.getCurrentToken()) {
+          case START_OBJECT:
             jp.nextToken();
+            if ("ok".equals(jp.getCurrentName())) {
+              jp.nextToken();
+              jp.nextToken();
+            }
             jp.nextToken();
-          }
-          jp.nextToken();
-          String id = jp.getText();
-          jp.nextToken();
-          String nextField = jp.getCurrentName();
-          if ("error".equals(nextField)) {
-            result.add(readError(jp, objectsIter, id));
-          } else {
-            setIdAndRevision(jp, objectsIter, id);
-          }
+            String id = jp.getText();
+            jp.nextToken();
+            String nextField = jp.getCurrentName();
+            if ("error".equals(nextField)) {
+              result.add(readError(jp, objectsIter, id));
+            } else {
+              setIdAndRevision(jp, objectsIter, id);
+            }
+        }
       }
     }
     return result;

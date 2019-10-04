@@ -5,13 +5,13 @@ package org.ektorp;
  */
 public interface ViewCompactionTask extends ActiveTask {
 
-    /**
-     * @return the database which the task is running against
-     */
-    String getDatabaseName();
+  /**
+   * @return the database which the task is running against
+   */
+  String getDatabaseName();
 
-    /**
-     * @return the ID of the design document which the compaction task is running for
-     */
-    String getDesignDocumentId();
+  /**
+   * @return the ID of the design document which the compaction task is running for
+   */
+  String getDesignDocumentId();
 }

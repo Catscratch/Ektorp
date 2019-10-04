@@ -86,6 +86,7 @@ public class StreamingChangesResult implements Serializable, Iterable<DocumentCh
       return hasNext;
     }
 
+    @SuppressWarnings("squid:S2272")
     public DocumentChange next() {
       findNext();
       hasNext = null;

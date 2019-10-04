@@ -10,8 +10,12 @@ import java.util.List;
 import org.ektorp.DbAccessException;
 import org.ektorp.http.HttpResponse;
 import org.ektorp.http.StdResponseHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DocIdResponseHandler extends StdResponseHandler<List<String>> {
+
+  private static final Logger LOG = LoggerFactory.getLogger(DocIdResponseHandler.class);
 
   private final JsonFactory jsonFactory;
 
@@ -41,36 +45,37 @@ public class DocIdResponseHandler extends StdResponseHandler<List<String>> {
 
   @Override
   public List<String> success(HttpResponse hr) throws Exception {
-    JsonParser jp = jsonFactory.createParser(hr.getContent());
-    if (jp.nextToken() != JsonToken.START_OBJECT) {
-      throw new DbAccessException("Expected data to start with an Object");
-    }
-
     List<String> result = null;
 
-    while (jp.nextToken() != null) {
-      if (jp.getCurrentToken() == JsonToken.FIELD_NAME) {
-        String fieldName = jp.getCurrentName();
-        if ("total_rows".equals(fieldName)) {
-          if (result != null) {
-            throw new DbAccessException("Two total_rows were provided.");
-          }
+    try (JsonParser jp = jsonFactory.createParser(hr.getContent())) {
+      if (jp.nextToken() != JsonToken.START_OBJECT) {
+        throw new DbAccessException("Expected data to start with an Object");
+      }
 
-          jp.nextToken();
-          result = new ArrayList<String>(jp.getIntValue());
-        } else if ("rows".equals(fieldName)) {
-          if (result == null) {
-            throw new DbAccessException(
-                "total_rows is required to be included in value before rows");
-          }
+      while (jp.nextToken() != null) {
+        if (jp.getCurrentToken() == JsonToken.FIELD_NAME) {
+          String fieldName = jp.getCurrentName();
+          if ("total_rows".equals(fieldName)) {
+            if (result != null) {
+              throw new DbAccessException("Two total_rows were provided.");
+            }
 
-          if (jp.nextToken() != JsonToken.START_ARRAY) {
-            throw new DbAccessException("rows's value must be an array");
-          }
+            jp.nextToken();
+            result = new ArrayList<String>(jp.getIntValue());
+          } else if ("rows".equals(fieldName)) {
+            if (result == null) {
+              throw new DbAccessException(
+                  "total_rows is required to be included in value before rows");
+            }
 
-          result = parseRows(jp, result);
-        } else {
-          jp.skipChildren();
+            if (jp.nextToken() != JsonToken.START_ARRAY) {
+              throw new DbAccessException("rows's value must be an array");
+            }
+
+            result = parseRows(jp, result);
+          } else {
+            jp.skipChildren();
+          }
         }
       }
     }

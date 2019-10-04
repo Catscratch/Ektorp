@@ -42,9 +42,9 @@ public class BulkDeleteDocument implements Serializable {
 
   @Override
   public boolean equals(Object o) {
-		if (o == this) {
-			return true;
-		}
+    if (o == this) {
+      return true;
+    }
     if (o instanceof BulkDeleteDocument) {
       BulkDeleteDocument bd = (BulkDeleteDocument) o;
       return bd.id.equals(id);

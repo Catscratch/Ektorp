@@ -1,10 +1,9 @@
 package org.ektorp.impl;
 
+import java.util.List;
 import org.ektorp.DocumentOperationResult;
 
-import java.util.Collection;
-import java.util.List;
-
 public interface BulkExecutor<T> {
-    List<DocumentOperationResult> executeBulk(T bulk, boolean allOrNothing);
+
+  List<DocumentOperationResult> executeBulk(T bulk, boolean allOrNothing);
 }

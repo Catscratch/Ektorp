@@ -188,9 +188,9 @@ public class ViewResult implements Iterable<ViewResult.Row>, Serializable {
     }
 
     private String nodeAsString(JsonNode node) {
-			if (isNull(node)) {
-				return null;
-			}
+      if (isNull(node)) {
+        return null;
+      }
       return node.isContainerNode() ? node.toString() : node.asText();
     }
 

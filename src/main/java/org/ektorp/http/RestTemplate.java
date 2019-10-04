@@ -105,9 +105,9 @@ public class RestTemplate {
   }
 
   private void handleVoidResponse(HttpResponse hr) {
-		if (hr == null) {
-			return;
-		}
+    if (hr == null) {
+      return;
+    }
     try {
       if (!hr.isSuccessful()) {
         new StdResponseHandler<Void>().error(hr);

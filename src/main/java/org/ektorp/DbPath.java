@@ -43,9 +43,9 @@ public class DbPath {
 
   public static String escape(String s) {
     // don't escape design doc ids
-		if (s.startsWith(SPECIAL_DOC_PREFIX)) {
-			return s;
-		}
+    if (s.startsWith(SPECIAL_DOC_PREFIX)) {
+      return s;
+    }
     try {
       return URLEncoder.encode(s, UTF_8);
     } catch (UnsupportedEncodingException e) {

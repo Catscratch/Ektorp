@@ -1,19 +1,19 @@
 package org.ektorp;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.*;
+import org.junit.Test;
 
 
 public class BulkDeleteDocumentTest {
 
-	@Test
-	public void testToJson() throws Exception {
-		ObjectMapper mapper = new ObjectMapper();
-		BulkDeleteDocument bd = new BulkDeleteDocument("0", "r0");
-		String json = mapper.writeValueAsString(bd);
-		assertEquals("{\"_id\":\"0\",\"_rev\":\"r0\",\"_deleted\":true}", json);
-	}
+  @Test
+  public void testToJson() throws Exception {
+    ObjectMapper mapper = new ObjectMapper();
+    BulkDeleteDocument bd = new BulkDeleteDocument("0", "r0");
+    String json = mapper.writeValueAsString(bd);
+    assertEquals("{\"_id\":\"0\",\"_rev\":\"r0\",\"_deleted\":true}", json);
+  }
 
 }
