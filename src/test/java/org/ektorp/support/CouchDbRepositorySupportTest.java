@@ -20,7 +20,6 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import org.ektorp.CouchDbConnector;
 import org.ektorp.Revision;
 import org.ektorp.UpdateConflictException;
@@ -185,7 +184,7 @@ public class CouchDbRepositorySupportTest {
     repo.initStandardDesignDocument();
     assertTrue(dd.containsView("by_field"));
 
-    verify(db).update(any(Map.class));
+    verify(db).update(any());
   }
 
 

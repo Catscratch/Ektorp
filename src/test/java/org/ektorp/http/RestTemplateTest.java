@@ -183,7 +183,6 @@ public class RestTemplateTest {
     template.put("/some/path", IOUtils.toInputStream("content"), "text/html", 12l);
 
     verify(client).put(eq("/some/path"), any(InputStream.class), eq("text/html"), eq(12l));
-    verify(rsp).releaseConnection();
   }
 
   @SuppressFBWarnings("unchecked")

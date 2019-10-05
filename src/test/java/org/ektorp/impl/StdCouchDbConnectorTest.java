@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyLong;
@@ -67,6 +68,7 @@ import org.joda.time.DateTimeZone;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
+import org.mockito.Mockito;
 import org.mockito.internal.stubbing.answers.ThrowsException;
 import org.mockito.internal.verification.VerificationModeFactory;
 
@@ -283,7 +285,7 @@ public class StdCouchDbConnectorTest {
     td.setId("some_id");
     td.setRevision("123D123");
     doReturn(ResponseOnFileStub.newInstance(409, "update_conflict.json")).when(httpClient)
-        .put(anyString(), any(InputStream.class), anyString(), anyInt());
+        .put(anyString(), any(InputStream.class), anyString(), anyLong());
     dbCon.createAttachment("id", "rev",
         new AttachmentInputStream("attach_id", IOUtils.toInputStream("data"),
             "whatever"));
@@ -394,8 +396,9 @@ public class StdCouchDbConnectorTest {
 
   @Test
   public void should_stream_attachmed_content() {
-    doReturn(ResponseOnFileStub.newInstance(200, "create_attachment_rsp.json")).when(httpClient)
-        .put(anyString(), any(InputStream.class), anyString(), anyInt());
+    doReturn(ResponseOnFileStub.newInstance(200, "create_attachment_rsp.json"))
+        .when(httpClient)
+        .put(anyString(), any(InputStream.class), anyString(), anyLong());
 
     dbCon.createAttachment("docid",
         new AttachmentInputStream("attachment_id", IOUtils.toInputStream("content"),
@@ -763,7 +766,7 @@ public class StdCouchDbConnectorTest {
     doReturn(null).when(httpClient)
         .put(eq(expectedPath), any(InputStream.class), anyString(), anyLong());
 
-    dbCon.updateMultipart(id, null, "abc", 0, null);
+    dbCon.updateMultipart(id, mock(InputStream.class), "abc", 0, null);
 
     verify(httpClient).put(eq(expectedPath), any(InputStream.class), anyString(), anyLong());
   }
@@ -778,7 +781,7 @@ public class StdCouchDbConnectorTest {
     String expectedPath = "/test_db/" + id + "?some_param=false";
     doReturn(null).when(httpClient)
         .put(eq(expectedPath), any(InputStream.class), anyString(), anyLong());
-    dbCon.updateMultipart(id, null, "abc", 0, options);
+    dbCon.updateMultipart(id, mock(InputStream.class), "abc", 0, options);
 
     verify(httpClient).put(eq(expectedPath), any(InputStream.class), anyString(), anyLong());
   }
@@ -799,7 +802,7 @@ public class StdCouchDbConnectorTest {
     String expectedContentType = "multipart/related; boundary=\"" + boundary + "\"";
     doReturn(null).when(httpClient)
         .put(anyString(), any(InputStream.class), eq(expectedContentType), anyLong());
-    dbCon.updateMultipart("a", null, boundary, 0, null);
+    dbCon.updateMultipart("a", mock(InputStream.class), boundary, 0, null);
     verify(httpClient).put(anyString(), any(InputStream.class), eq(expectedContentType), anyLong());
   }
 
@@ -810,11 +813,11 @@ public class StdCouchDbConnectorTest {
 
   @Test
   public void updateMultipart_should_perform_put_operation_with_content_type_set_to_length() {
-    long length = 1000l;
+    long length = 1000L;
     doReturn(null).when(httpClient)
         .put(anyString(), any(InputStream.class), anyString(), eq(length));
 
-    dbCon.updateMultipart("a", null, "abc", length, null);
+    dbCon.updateMultipart("a", mock(InputStream.class), "abc", length, null);
 
     verify(httpClient).put(anyString(), any(InputStream.class), anyString(), eq(length));
   }

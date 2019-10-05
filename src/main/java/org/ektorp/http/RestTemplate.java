@@ -58,8 +58,7 @@ public class RestTemplate {
     handleVoidResponse(client.put(path, httpEntity));
   }
 
-  public void put(String path, InputStream data, String contentType,
-      long contentLength) {
+  public void put(String path, InputStream data, String contentType, long contentLength) {
     handleVoidResponse(client.put(path, data, contentType, contentLength));
   }
 

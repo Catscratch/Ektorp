@@ -15,8 +15,7 @@ public interface HttpClient {
 
   HttpResponse put(String uri);
 
-  HttpResponse put(String uri, InputStream data, String contentType,
-      long contentLength);
+  HttpResponse put(String uri, InputStream data, String contentType, long contentLength);
 
   HttpResponse put(String uri, HttpEntity httpEntity);
 

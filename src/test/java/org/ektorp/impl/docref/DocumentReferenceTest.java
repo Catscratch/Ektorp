@@ -2,9 +2,9 @@ package org.ektorp.impl.docref;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.argThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -23,6 +23,8 @@ import org.ektorp.impl.StdCouchDbConnector;
 import org.ektorp.impl.StdCouchDbInstance;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentMatcher;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Matchers;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
@@ -43,16 +45,16 @@ public class DocumentReferenceTest {
 
   private void setupGetDocResponseForDocWithBackReferences() {
 
-    when(httpClient.get(Matchers.matches(".*lounge_id"))).thenReturn(
+    when(httpClient.get(ArgumentMatchers.matches(".*lounge_id"))).thenReturn(
         ResponseOnFileStub.newInstance(200, "docref/lounge.json"));
-    when(httpClient.get(Matchers.matches(".*nisse"))).thenReturn(
+    when(httpClient.get(ArgumentMatchers.matches(".*nisse"))).thenReturn(
         ResponseOnFileStub.newInstance(200,
             "docref/lounge_person_nisse.json"));
-    when(httpClient.get(Matchers.matches(".*kalle"))).thenReturn(
+    when(httpClient.get(ArgumentMatchers.matches(".*kalle"))).thenReturn(
         ResponseOnFileStub.newInstance(200,
             "docref/lounge_person_kalle.json"));
 
-    when(httpClient.getUncached(Matchers.matches(".*_docrefs_.*")))
+    when(httpClient.getUncached(ArgumentMatchers.matches(".*_docrefs_.*")))
         .thenAnswer(new Answer<ResponseOnFileStub>() {
 
           public ResponseOnFileStub answer(InvocationOnMock invocation) throws Throwable {
@@ -83,7 +85,7 @@ public class DocumentReferenceTest {
     assertEquals(true, ektorp.getSeatedPeople().contains(nisse));
 
     verify(httpClient)
-        .getUncached(Matchers
+        .getUncached(ArgumentMatchers
             .matches("/test_db/_design/LazyLounge/_view/ektorp_docrefs_seatedPeople\\?" +
                 "startkey=%5B%22lounge_id%22%2C%22seatedPeople%22%5D&" +
                 "endkey=%5B%22lounge_id%22%2C%22seatedPeople%22%2C%7B%7D%5D.*"));
@@ -122,7 +124,7 @@ public class DocumentReferenceTest {
   @Test
   public void back_referenced_document_should_update_referrers_when_updated() {
     when(httpClient.post(Matchers.matches(".*all_docs.*"),
-        Matchers.any(String.class)))
+        any(String.class)))
         .thenReturn(ResponseOnFileStub.newInstance(200,
             "docref/setlounge_persons_nisse_kalle.json"));
 
@@ -179,7 +181,7 @@ public class DocumentReferenceTest {
         readFile("expected_lounge_persons_update.json"), rev, rev);
 
     when(
-        httpClient.post(Matchers.matches(".*_bulk_docs"),
+        httpClient.post(ArgumentMatchers.matches(".*_bulk_docs"),
             argThat(new InputStreamAsJsonMatcher(
                 expectedChildDocumentSaveJSON)))).thenReturn(
         HttpResponseStub.valueOf(201, ""));
@@ -222,7 +224,7 @@ public class DocumentReferenceTest {
 
   private void verifyExecuteBulk() {
     verify(httpClient).post(Matchers.matches(".*_bulk_docs"),
-        Matchers.any(InputStream.class));
+        any(InputStream.class));
   }
 
   private void verifyDocRefsLoaded() {
@@ -244,7 +246,7 @@ public class DocumentReferenceTest {
     setupUpdateResponse();
 
     when(
-        httpClient.post(Matchers.matches(".*_bulk_docs"),
+        httpClient.post(ArgumentMatchers.matches(".*_bulk_docs"),
             any(InputStream.class))).thenReturn(
         HttpResponseStub.valueOf(201, ""));
 

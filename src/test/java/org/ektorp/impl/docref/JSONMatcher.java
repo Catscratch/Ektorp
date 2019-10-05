@@ -4,7 +4,7 @@ import org.ektorp.util.JSONComparator;
 import org.junit.Assert;
 import org.mockito.ArgumentMatcher;
 
-public class JSONMatcher extends ArgumentMatcher<String> {
+public class JSONMatcher implements ArgumentMatcher<String> {
 
   private final String expectedJSON;
 
@@ -14,8 +14,8 @@ public class JSONMatcher extends ArgumentMatcher<String> {
   }
 
   @Override
-  public boolean matches(Object argument) {
-    String actualJSON = (String) argument;
+  public boolean matches(String argument) {
+    String actualJSON = argument;
     if (!JSONComparator.areEqual(expectedJSON, actualJSON)) {
       Assert.assertEquals(expectedJSON, actualJSON);
       return false;

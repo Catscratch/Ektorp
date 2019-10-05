@@ -13,7 +13,7 @@ import org.ektorp.util.JSONComparator;
 import org.junit.Assert;
 import org.mockito.ArgumentMatcher;
 
-class InputStreamAsJsonMatcher extends ArgumentMatcher<InputStream> {
+class InputStreamAsJsonMatcher implements ArgumentMatcher<InputStream> {
 
   final String expected;
   final ObjectMapper objectMapper;
@@ -41,11 +41,8 @@ class InputStreamAsJsonMatcher extends ArgumentMatcher<InputStream> {
   }
 
   @Override
-  public boolean matches(Object argument) {
-    if (argument instanceof InputStream) {
-
-      BufferedInputStream bis = new BufferedInputStream(
-          (InputStream) argument);
+  public boolean matches(InputStream argument) {
+      BufferedInputStream bis = new BufferedInputStream(argument);
 
       String actual = "";
       try {
@@ -58,9 +55,6 @@ class InputStreamAsJsonMatcher extends ArgumentMatcher<InputStream> {
       } catch (IOException e) {
         throw new RuntimeException(e.getMessage() + " s: " + actual, e);
       }
-
-    }
-    return false;
   }
 
 }

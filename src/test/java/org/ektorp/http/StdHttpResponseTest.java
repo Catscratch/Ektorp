@@ -3,9 +3,10 @@ package org.ektorp.http;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.stub;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.net.URISyntaxException;
 import java.util.UUID;
 import org.apache.http.Header;
@@ -20,21 +21,23 @@ public class StdHttpResponseTest {
   private HttpResponse apacheResponse;
 
   @Before
+  @SuppressFBWarnings("RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT")
   public void setUp() throws URISyntaxException {
     apacheResponse = mock(HttpResponse.class);
 
     uriRequest = mock(HttpUriRequest.class);
     java.net.URI requestURI = new java.net.URI("http://tempuri.org/");
-    stub(uriRequest.getURI()).toReturn(requestURI);
+    doReturn(requestURI).when(uriRequest).getURI();
   }
 
   @Test
+  @SuppressFBWarnings("RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT")
   public void of_will_cause_getETag_to_return_the_ETag_value_extracted_from_quotes() {
     String revision = UUID.randomUUID().toString();
     String eTag = "\"" + revision + "\"";
     Header eTagHeader = mock(Header.class);
-    stub(eTagHeader.getValue()).toReturn(eTag);
-    stub(apacheResponse.getFirstHeader("ETag")).toReturn(eTagHeader);
+    doReturn(eTag).when(eTagHeader).getValue();
+    doReturn(eTagHeader).when(apacheResponse).getFirstHeader("ETag");
 
     assertThat(StdHttpResponse.of(apacheResponse, uriRequest).getETag(), is(revision));
   }
