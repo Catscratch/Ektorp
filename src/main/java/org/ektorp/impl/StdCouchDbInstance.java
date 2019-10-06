@@ -255,4 +255,27 @@ public class StdCouchDbInstance implements CouchDbInstance {
 
     return ret;
   }
+
+  public String describeCluster() {
+    String url = "/_membership";
+    List<StdActiveTask> tasks = restTemplate.get(url,
+        new StdResponseHandler<List<StdActiveTask>>() {
+          @Override
+          public List<StdActiveTask> success(HttpResponse hr) throws Exception {
+            return objectMapper
+                .readValue(hr.getContent(), new TypeReference<List<StdActiveTask>>() {
+                });
+          }
+        });
+
+    // We have to copy the list here because Java lacks covariance (i.e. we can't just return
+    // the List<StdActiveTask> because it's not a Collection<ActiveTask>).
+    Collection<ActiveTask> ret = new ArrayList<ActiveTask>();
+    for (StdActiveTask task : tasks) {
+      ret.add(task);
+    }
+
+    return null;
+
+  }
 }
