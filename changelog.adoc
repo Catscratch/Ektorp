@@ -19,6 +19,6 @@ Latest version (1.5.1-SNAPSHOT) was upgraded to 1.6 with the following changes
 ** remove spring
 ** remove android
 ** sonarqube cleanup
-
+** fixes #297 - add support for config change in cluster
 
 

@@ -3,6 +3,7 @@ package org.ektorp;
 import java.util.Collection;
 import java.util.List;
 import org.ektorp.http.HttpClient;
+import org.ektorp.impl.MembershipInfo;
 
 public interface CouchDbInstance {
 
@@ -49,49 +50,66 @@ public interface CouchDbInstance {
    * Get the full configuration of this instance
    *
    * @param c the type to return the configuration in (Map, JsonNode, POJO)
+   * @param nodeName the name of the node to query for the configuration, if it is null
+   *                 the _local node will be queried
    */
-  <T> T getConfiguration(final Class<T> c);
+  <T> T getConfiguration(final Class<T> c, String nodeName);
 
   /**
    * Get the configuration of this instance within the specified section
    *
    * @param c the type to return the configuration in (Map, JsonNode, POJO)
+   * @param nodeName the name of the node to query for the configuration, if it is null
+   *                 the _local node will be queried
    */
-  <T> T getConfiguration(final Class<T> c, String section);
+  <T> T getConfiguration(final Class<T> c, String nodeName, String section);
 
   /**
    * Get the configuration of this instance for this specific section and key
    *
    * @param c the type to return the configuration in (Map, JsonNode, POJO)
+   * @param nodeName the name of the node to query for the configuration, if it is null
+   *                 the _local node will be queried
    */
-  <T> T getConfiguration(final Class<T> c, String section, String key);
+  <T> T getConfiguration(final Class<T> c, String nodeName, String section, String key);
 
   /**
    * Convenience method to get specific configuration item
    *
    * @return the configuration value for the specified key in the specified section
    */
-  String getConfiguration(String section, String key);
+  String getConfiguration(String nodeName, String section, String key);
 
   /**
    * Update the configuration key in the specified section with the specified value
    *
+   * @param nodeName the name of the node to query for the configuration, if it is null
+   *                 the _local node will be queried
    * @param value the value to set (all config values are Strings in CouchDB)
    * @return the previous value for this key
    */
-  String setConfiguration(String section, String key, String value);
+  String setConfiguration(String nodeName, String section, String key, String value);
 
   /**
    * Delete the configuration key in the specified section
    *
+   * @param nodeName the name of the node to query for the configuration, if it is null
+   *                 the _local node will be queried
+   *
    * @return the previous value for this key
    */
-  String deleteConfiguration(String section, String key);
+  String deleteConfiguration(String nodeName, String section, String key);
 
   /**
    * @return all active tasks
    */
   Collection<ActiveTask> getActiveTasks();
 
-  String describeCluster();
+  /**
+   * Displays the nodes that are part of the cluster as cluster_nodes. The field all_nodes displays
+   * all nodes this node knows about, including the ones that are part of the cluster.
+   *
+   * @return
+   */
+  MembershipInfo describeCluster();
 }

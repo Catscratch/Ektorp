@@ -166,25 +166,19 @@ public class StdCouchDbInstance implements CouchDbInstance {
   }
 
   @Override
-  public <T> T getConfiguration(final Class<T> c) {
-    return getConfiguration(c, null, null);
+  public <T> T getConfiguration(final Class<T> c, String nodeName) {
+    return getConfiguration(c, nodeName, null, null);
   }
 
   @Override
-  public <T> T getConfiguration(final Class<T> c, String section) {
-    return getConfiguration(c, section, null);
+  public <T> T getConfiguration(final Class<T> c, String nodeName, String section) {
+    return getConfiguration(c, nodeName, section, null);
   }
 
   @Override
-  public <T> T getConfiguration(final Class<T> c, String section, String key) {
+  public <T> T getConfiguration(final Class<T> c, String nodeName, String section, String key) {
     Assert.notNull(c, "Class may not be null");
-    String url = "/_config";
-    if (section != null) {
-      url = url + "/" + section;
-      if (key != null) {
-        url = url + "/" + key;
-      }
-    }
+    String url = determineBaseConfigUrl(nodeName, section, key);
     return restTemplate.get(url,
         new StdResponseHandler<T>() {
           @Override
@@ -195,15 +189,15 @@ public class StdCouchDbInstance implements CouchDbInstance {
   }
 
   @Override
-  public String getConfiguration(String section, String key) {
-    return getConfiguration(String.class, section, key);
+  public String getConfiguration(String nodeName, String section, String key) {
+    return getConfiguration(String.class, nodeName, section, key);
   }
 
   @Override
-  public String setConfiguration(String section, String key, String value) {
+  public String setConfiguration(String nodeName, String section, String key, String value) {
     Assert.notNull(section, "Section may not be null");
     Assert.notNull(key, "Key may not be null");
-    String url = "/_config/" + section + "/" + key;
+    String url = this.determineBaseConfigUrl(nodeName, section, key);
     String content;
     try {
       content = objectMapper.writeValueAsString(value);
@@ -220,10 +214,10 @@ public class StdCouchDbInstance implements CouchDbInstance {
   }
 
   @Override
-  public String deleteConfiguration(String section, String key) {
+  public String deleteConfiguration(String nodeName, String section, String key) {
     Assert.notNull(section, "Section may not be null");
     Assert.notNull(key, "Key may not be null");
-    String url = "/_config/" + section + "/" + key;
+    String url = determineBaseConfigUrl(nodeName, section, key);
     return restTemplate.delete(url,
         new StdResponseHandler<String>() {
           @Override
@@ -231,6 +225,22 @@ public class StdCouchDbInstance implements CouchDbInstance {
             return objectMapper.readValue(hr.getContent(), String.class);
           }
         });
+  }
+
+  private String determineBaseConfigUrl(String nodeName, String section, String key) {
+    String url = "/_node/%s/_config";
+    String node = nodeName;
+    if (nodeName == null) {
+      node = "_local";
+    }
+    if (section != null) {
+      url = url + "/" + section;
+      if (key != null) {
+        url = url + "/" + key;
+      }
+    }
+
+    return String.format(url, node);
   }
 
   @Override
@@ -256,26 +266,15 @@ public class StdCouchDbInstance implements CouchDbInstance {
     return ret;
   }
 
-  public String describeCluster() {
+  public MembershipInfo describeCluster() {
     String url = "/_membership";
-    List<StdActiveTask> tasks = restTemplate.get(url,
-        new StdResponseHandler<List<StdActiveTask>>() {
+    return restTemplate.get(url,
+        new StdResponseHandler<MembershipInfo>() {
           @Override
-          public List<StdActiveTask> success(HttpResponse hr) throws Exception {
-            return objectMapper
-                .readValue(hr.getContent(), new TypeReference<List<StdActiveTask>>() {
-                });
+          public MembershipInfo success(HttpResponse hr) throws Exception {
+            return objectMapper.readValue(hr.getContent(),
+                MembershipInfo.class);
           }
         });
-
-    // We have to copy the list here because Java lacks covariance (i.e. we can't just return
-    // the List<StdActiveTask> because it's not a Collection<ActiveTask>).
-    Collection<ActiveTask> ret = new ArrayList<ActiveTask>();
-    for (StdActiveTask task : tasks) {
-      ret.add(task);
-    }
-
-    return null;
-
   }
 }

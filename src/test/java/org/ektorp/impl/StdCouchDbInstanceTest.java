@@ -70,42 +70,50 @@ public class StdCouchDbInstanceTest {
   @Test
   @SuppressFBWarnings("unchecked")
   public void testGetFullConfiguration() {
-    when(client.get("/_config")).thenReturn(HttpResponseStub.valueOf(200, "{\"httpd\": {" +
+    when(client.get("/_node/_local/_config")).thenReturn(HttpResponseStub.valueOf(200, "{\"httpd\": {" +
         "\"bind_address\": \"0.0.0.0\",\"port\": \"5984\"}, \"ssl\": {\"port\": \"6984\"}}"));
-    Map<String, Object> config = instance.getConfiguration(Map.class);
+    Map<String, Object> config = instance.getConfiguration(Map.class, null);
     assertEquals(2, config.keySet().size());
   }
 
   @Test
   @SuppressFBWarnings("unchecked")
   public void testGetConfigurationSection() {
-    when(client.get("/_config/httpd")).thenReturn(HttpResponseStub.valueOf(200, "{\"httpd\": {" +
+    when(client.get("/_node/_local/_config/httpd")).thenReturn(HttpResponseStub.valueOf(200, "{\"httpd\": {" +
         "\"bind_address\": \"0.0.0.0\",\"port\": \"5984\"}}"));
-    Map<String, Object> config = instance.getConfiguration(Map.class, "httpd");
+    Map<String, Object> config = instance.getConfiguration(Map.class, null, "httpd");
     assertEquals(1, config.keySet().size());
   }
 
   @Test
   public void testGetConfigurationValue() {
-    when(client.get("/_config/httpd/port")).thenReturn(HttpResponseStub.valueOf(200, "\"5984\""));
-    String config = instance.getConfiguration(String.class, "httpd", "port");
+    when(client.get("/_node/_local/_config/httpd/port")).thenReturn(HttpResponseStub.valueOf(200, "\"5984\""));
+    String config = instance.getConfiguration(String.class, null, "httpd", "port");
     assertEquals("5984", config);
   }
 
   @Test
   public void testSetConfigurationValue() {
-    when(client.put(eq("/_config/httpd/port"), anyString()))
+    when(client.put(eq("/_node/_local/_config/httpd/port"), anyString()))
         .thenReturn(HttpResponseStub.valueOf(200, "\"5984\""));
-    String oldConfig = instance.setConfiguration("httpd", "port", "5985");
+    String oldConfig = instance.setConfiguration(null, "httpd", "port", "5985");
     assertEquals("5984", oldConfig);
   }
 
   @Test
   public void testDeleteConfigurationValue() {
-    when(client.delete("/_config/httpd/port"))
+    when(client.delete("/_node/_local/_config/httpd/port"))
         .thenReturn(HttpResponseStub.valueOf(200, "\"5984\""));
-    String oldConfig = instance.deleteConfiguration("httpd", "port");
+    String oldConfig = instance.deleteConfiguration(null, "httpd", "port");
     assertEquals("5984", oldConfig);
+  }
+
+  @Test
+  public void testDescribeCluster() {
+    when(client.get("/_membership"))
+        .thenReturn(HttpResponseStub.valueOf(200, "{\"all_nodes\": [\"nonode@nohost\"]}"));
+    MembershipInfo mInfo = instance.describeCluster();
+    assertEquals(1, mInfo.getAllNodes().size());
   }
 
 }
