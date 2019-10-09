@@ -35,10 +35,9 @@ public class BackReferencedBeanSerializer<T> extends JsonSerializer<T> {
 
   @Override
   public void serialize(T value, JsonGenerator jgen,
-      SerializerProvider provider) throws IOException,
-      JsonProcessingException {
+      SerializerProvider provider) throws IOException {
 
-    Set<Object> docsToSave = new LinkedHashSet<Object>();
+    Set<Object> docsToSave = new LinkedHashSet<>();
     try {
 
       for (BeanPropertyWriter writer : documentReferenceFields) {
@@ -66,11 +65,8 @@ public class BackReferencedBeanSerializer<T> extends JsonSerializer<T> {
 
   private boolean cascadeUpdates(final String propertyName, Object value) {
     DocumentReferences referenceMetaData = ReflectionUtils
-        .findAnnotation(value.getClass(), DocumentReferences.class, new Predicate<Field>() {
-          public boolean apply(Field input) {
-            return propertyName.equals(input.getName());
-          }
-        });
+        .findAnnotation(value.getClass(), DocumentReferences.class,
+            input -> propertyName.equals(input.getName()));
     for (CascadeType t : referenceMetaData.cascade()) {
       if (CascadeType.PERSIST_TYPES.contains(t)) {
         return true;

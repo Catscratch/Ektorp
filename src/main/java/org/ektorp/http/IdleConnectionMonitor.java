@@ -12,9 +12,9 @@ import org.apache.http.conn.ClientConnectionManager;
 
 public class IdleConnectionMonitor {
 
-  private final static long DEFAULT_IDLE_CHECK_INTERVAL = 30;
+  private static final long DEFAULT_IDLE_CHECK_INTERVAL = 30;
 
-  private final static ScheduledExecutorService executorService = Executors
+  private static final ScheduledExecutorService executorService = Executors
       .newScheduledThreadPool(1, new ThreadFactory() {
 
         private final AtomicInteger threadCount = new AtomicInteger(0);

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import org.apache.http.entity.AbstractHttpEntity;
 
 public class InputStreamBulkEntity extends AbstractHttpEntity {
@@ -12,7 +13,7 @@ public class InputStreamBulkEntity extends AbstractHttpEntity {
       .getBytes(Charset.forName("UTF-8"));
   private static final byte[] BULK_HEADER_FALSE = "{\"all_or_nothing\":false,\"docs\":"
       .getBytes(Charset.forName("UTF-8"));
-  private static final byte[] BULK_FOOTER = "}".getBytes(Charset.forName("UTF-8"));
+  private static final byte[] BULK_FOOTER = "}".getBytes(StandardCharsets.UTF_8);
 
   private final static int DEFAULT_BUFFER_SIZE = 2048;
 

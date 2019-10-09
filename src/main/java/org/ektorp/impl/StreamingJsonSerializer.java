@@ -58,7 +58,6 @@ public class StreamingJsonSerializer implements JsonSerializer {
       final boolean allOrNothing) {
     try (final PipedOutputStream out = new PipedOutputStream();
         PipedInputStream in = new PipedInputStream(out)) {
-      ;
       Future<?> writeTask = executorService.submit(() -> {
         try {
           bulkDocWriter.write(objects, allOrNothing, out);

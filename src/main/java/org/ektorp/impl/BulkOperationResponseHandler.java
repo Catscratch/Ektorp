@@ -19,8 +19,6 @@ import org.slf4j.LoggerFactory;
 public class BulkOperationResponseHandler extends
     StdResponseHandler<List<DocumentOperationResult>> {
 
-  private static final Logger LOG = LoggerFactory.getLogger(BulkOperationResponseHandler.class);
-
   private final ObjectMapper objectMapper;
   private final Collection<?> objects;
 

@@ -15,8 +15,6 @@ import org.slf4j.LoggerFactory;
 
 public class DocIdResponseHandler extends StdResponseHandler<List<String>> {
 
-  private static final Logger LOG = LoggerFactory.getLogger(DocIdResponseHandler.class);
-
   private final JsonFactory jsonFactory;
 
   public DocIdResponseHandler(ObjectMapper om) {
