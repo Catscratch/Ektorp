@@ -1,12 +1,10 @@
 package org.ektorp.impl.docref;
 
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.BeanPropertyWriter;
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.lang.reflect.Proxy;
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -17,7 +15,6 @@ import org.ektorp.DbAccessException;
 import org.ektorp.DocumentOperationResult;
 import org.ektorp.docref.CascadeType;
 import org.ektorp.docref.DocumentReferences;
-import org.ektorp.util.Predicate;
 import org.ektorp.util.ReflectionUtils;
 
 public class BackReferencedBeanSerializer<T> extends JsonSerializer<T> {

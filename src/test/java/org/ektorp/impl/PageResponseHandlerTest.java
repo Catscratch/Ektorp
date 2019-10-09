@@ -9,7 +9,6 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.ektorp.Page;
 import org.ektorp.PageRequest;
 import org.ektorp.support.CouchDbDocument;
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class PageResponseHandlerTest {
@@ -37,17 +36,6 @@ public class PageResponseHandlerTest {
     assertEquals(4, page.size());
     assertTrue(page.isHasNext());
     assertEquals("dcdaf08242a4be7da1a36e25f4f0b022", page.getNextPageRequest().getStartKeyDocId());
-  }
-
-  @Test
-  @Ignore
-  public void given_previous_page_request_has_not_been_set_then_hasPrevious_should_be_false()
-      throws Exception {
-    handler = new PageResponseHandler<TestDoc>(PageRequest.firstPage(5), TestDoc.class,
-        new ObjectMapper());
-    Page<TestDoc> page = handler
-        .success(ResponseOnFileStub.newInstance(200, "offset_view_result.json"));
-    assertFalse(page.isHasPrevious());
   }
 
   @Test

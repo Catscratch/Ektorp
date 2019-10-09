@@ -10,12 +10,12 @@ import org.apache.http.entity.AbstractHttpEntity;
 public class InputStreamBulkEntity extends AbstractHttpEntity {
 
   private static final byte[] BULK_HEADER_TRUE = "{\"all_or_nothing\":true,\"docs\":"
-      .getBytes(Charset.forName("UTF-8"));
+      .getBytes(StandardCharsets.UTF_8);
   private static final byte[] BULK_HEADER_FALSE = "{\"all_or_nothing\":false,\"docs\":"
-      .getBytes(Charset.forName("UTF-8"));
+      .getBytes(StandardCharsets.UTF_8);
   private static final byte[] BULK_FOOTER = "}".getBytes(StandardCharsets.UTF_8);
 
-  private final static int DEFAULT_BUFFER_SIZE = 2048;
+  private static final int DEFAULT_BUFFER_SIZE = 2048;
 
   private final InputStream inputStream;
 
@@ -38,7 +38,7 @@ public class InputStreamBulkEntity extends AbstractHttpEntity {
   }
 
   @Override
-  public InputStream getContent() throws IOException, IllegalStateException {
+  public InputStream getContent() {
     throw new UnsupportedOperationException();
   }
 

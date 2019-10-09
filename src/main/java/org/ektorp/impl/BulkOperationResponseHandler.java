@@ -13,8 +13,6 @@ import org.ektorp.DocumentOperationResult;
 import org.ektorp.http.HttpResponse;
 import org.ektorp.http.StdResponseHandler;
 import org.ektorp.util.Documents;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class BulkOperationResponseHandler extends
     StdResponseHandler<List<DocumentOperationResult>> {

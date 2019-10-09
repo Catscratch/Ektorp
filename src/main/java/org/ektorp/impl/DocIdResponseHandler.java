@@ -10,8 +10,6 @@ import java.util.List;
 import org.ektorp.DbAccessException;
 import org.ektorp.http.HttpResponse;
 import org.ektorp.http.StdResponseHandler;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class DocIdResponseHandler extends StdResponseHandler<List<String>> {
 

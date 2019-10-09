@@ -45,7 +45,10 @@ public class StdHttpClient implements HttpClient {
 
   private final org.apache.http.client.HttpClient client;
   private final org.apache.http.client.HttpClient backend;
-  private final static Logger LOG = LoggerFactory.getLogger(StdHttpClient.class);
+
+  private static final String HTTP = "http";
+  private static final String HTTPS = "https";
+  private static final Logger LOG = LoggerFactory.getLogger(StdHttpClient.class);
 
   public StdHttpClient(org.apache.http.client.HttpClient hc) {
     this(hc, hc);
@@ -168,8 +171,8 @@ public class StdHttpClient implements HttpClient {
       } else {
         rsp = client.execute(getHttpHost(), request);
       }
-      LOG.trace("{} {} {} {}", new Object[]{request.getMethod(), request.getURI(),
-          rsp.getStatusLine().getStatusCode(), rsp.getStatusLine().getReasonPhrase()});
+      LOG.trace("{} {} {} {}", request.getMethod(), request.getURI(),
+          rsp.getStatusLine().getStatusCode(), rsp.getStatusLine().getReasonPhrase());
       return createHttpResponse(rsp, request);
     } catch (Exception e) {
       throw Exceptions.propagate(e);
@@ -245,7 +248,7 @@ public class StdHttpClient implements HttpClient {
           this.password = userInfoParts[1];
         }
       }
-      enableSSL("https".equals(url.getProtocol()));
+      enableSSL(HTTPS.equals(url.getProtocol()));
       if (this.port == -1) {
         if (this.enableSSL) {
           this.port = 443;
@@ -354,12 +357,12 @@ public class StdHttpClient implements HttpClient {
                 SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER) : new SSLSocketFactory(context);
 
           }
-          return new Scheme("https", port, sslSocketFactory);
+          return new Scheme(HTTPS, port, sslSocketFactory);
         } catch (Exception e) {
           throw Exceptions.propagate(e);
         }
       } else {
-        return new Scheme("http", port, PlainSocketFactory.getSocketFactory());
+        return new Scheme(HTTP, port, PlainSocketFactory.getSocketFactory());
       }
     }
 
@@ -391,10 +394,10 @@ public class StdHttpClient implements HttpClient {
       HttpConnectionParams.setSoTimeout(params, socketTimeout);
       HttpConnectionParams.setTcpNoDelay(params, Boolean.TRUE);
 
-      String protocol = "http";
+      String protocol = HTTP;
 
       if (enableSSL) {
-        protocol = "https";
+        protocol = HTTPS;
       }
 
       params.setParameter(ClientPNames.DEFAULT_HOST, new HttpHost(host, port, protocol));
