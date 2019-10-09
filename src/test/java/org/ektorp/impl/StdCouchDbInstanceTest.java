@@ -15,7 +15,6 @@ import org.ektorp.CouchDbInstance;
 import org.ektorp.http.HttpClient;
 import org.junit.Test;
 
-
 public class StdCouchDbInstanceTest {
 
   HttpClient client = mock(HttpClient.class);

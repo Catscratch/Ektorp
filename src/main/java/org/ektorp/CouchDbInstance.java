@@ -108,8 +108,6 @@ public interface CouchDbInstance {
   /**
    * Displays the nodes that are part of the cluster as cluster_nodes. The field all_nodes displays
    * all nodes this node knows about, including the ones that are part of the cluster.
-   *
-   * @return
    */
   MembershipInfo describeCluster();
 }

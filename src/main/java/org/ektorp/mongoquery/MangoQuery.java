@@ -69,6 +69,99 @@ public class MangoQuery {
   @JsonProperty("execution_stats")
   private Boolean executionStats;
 
-  
+  public Expression getSelector() {
+    return selector;
+  }
 
+  public void setSelector(Expression selector) {
+    this.selector = selector;
+  }
+
+  public Integer getLimit() {
+    return limit;
+  }
+
+  public void setLimit(Integer limit) {
+    this.limit = limit;
+  }
+
+  public Integer getSkip() {
+    return skip;
+  }
+
+  public void setSkip(Integer skip) {
+    this.skip = skip;
+  }
+
+  public List<Sort> getSort() {
+    return sort;
+  }
+
+  public void setSort(List<Sort> sort) {
+    this.sort = sort;
+  }
+
+  public List<String> getFields() {
+    return fields;
+  }
+
+  public void setFields(List<String> fields) {
+    this.fields = fields;
+  }
+
+  public String getUseIndex() {
+    return useIndex;
+  }
+
+  public void setUseIndex(String useIndex) {
+    this.useIndex = useIndex;
+  }
+
+  public Integer getReadQuorum() {
+    return readQuorum;
+  }
+
+  public void setReadQuorum(Integer readQuorum) {
+    this.readQuorum = readQuorum;
+  }
+
+  public String getBookmark() {
+    return bookmark;
+  }
+
+  public void setBookmark(String bookmark) {
+    this.bookmark = bookmark;
+  }
+
+  public Boolean getUpdate() {
+    return update;
+  }
+
+  public void setUpdate(Boolean update) {
+    this.update = update;
+  }
+
+  public Boolean getStable() {
+    return stable;
+  }
+
+  public void setStable(Boolean stable) {
+    this.stable = stable;
+  }
+
+  public Stale getStale() {
+    return stale;
+  }
+
+  public void setStale(Stale stale) {
+    this.stale = stale;
+  }
+
+  public Boolean getExecutionStats() {
+    return executionStats;
+  }
+
+  public void setExecutionStats(Boolean executionStats) {
+    this.executionStats = executionStats;
+  }
 }
