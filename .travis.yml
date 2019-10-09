@@ -14,4 +14,5 @@ cache:
   directories:
     - "$HOME/.m2/repository"
 script:
+  - git fetch --unshallow
   - mvn clean verify sonar:sonar -Pcoverage -Dsonar.projectKey=triplem_Ektorp
