@@ -10,6 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.EnumSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -28,7 +29,7 @@ import org.slf4j.LoggerFactory;
 
 public class ViewBasedCollection implements InvocationHandler {
 
-  private final static Logger LOG = LoggerFactory.getLogger(ViewBasedCollection.class);
+  private static final Logger LOG = LoggerFactory.getLogger(ViewBasedCollection.class);
 
   final String id;
   final CouchDbConnector couchDbConnector;

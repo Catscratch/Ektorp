@@ -31,7 +31,7 @@ public enum CascadeType {
     return false;
   }
 
-  public final static EnumSet<CascadeType> DELETE_TYPES = EnumSet.of(ALL, DELETE);
-  public final static EnumSet<CascadeType> PERSIST_TYPES = EnumSet.of(ALL, SAVE_UPDATE);
+  public static final EnumSet<CascadeType> DELETE_TYPES = EnumSet.of(CascadeType.ALL, CascadeType.DELETE);
+  public static final EnumSet<CascadeType> PERSIST_TYPES = EnumSet.of(CascadeType.ALL, CascadeType.SAVE_UPDATE);
 
 }
