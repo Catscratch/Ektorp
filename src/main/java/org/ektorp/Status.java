@@ -24,7 +24,7 @@ public class Status implements Serializable {
 
   private Map<String, Object> unknown() {
     if (unknownFields == null) {
-      unknownFields = new HashMap<String, Object>();
+      unknownFields = new HashMap<>();
     }
     return unknownFields;
   }

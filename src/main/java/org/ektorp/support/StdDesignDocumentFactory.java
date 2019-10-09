@@ -121,7 +121,7 @@ public class StdDesignDocumentFactory implements DesignDocumentFactory {
   }
 
   private Map<String, String> createShowFunctions(final Class<?> metaDataClass) {
-    final Map<String, String> shows = new HashMap<String, String>();
+    final Map<String, String> shows = new HashMap<>();
 
     ReflectionUtils
         .eachAnnotation(metaDataClass, ShowFunction.class, new Predicate<ShowFunction>() {

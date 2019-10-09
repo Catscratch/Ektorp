@@ -475,7 +475,7 @@ public class StdCouchDbConnector implements CouchDbConnector {
     query.dbPath(dbURI.toString());
     LOG.debug("startKey: {}", pr.getStartKey());
     LOG.debug("startDocId: {}", pr.getStartKeyDocId());
-    PageResponseHandler<T> ph = new PageResponseHandler<T>(pr, type, objectMapper,
+    PageResponseHandler<T> ph = new PageResponseHandler<>(pr, type, objectMapper,
         query.isIgnoreNotFound());
     query = PageRequest.applyPagingParameters(query, pr);
 
