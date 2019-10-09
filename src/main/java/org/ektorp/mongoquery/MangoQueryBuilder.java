@@ -1,7 +1,6 @@
 package org.ektorp.mongoquery;
 
 import com.fasterxml.jackson.annotation.JsonValue;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
