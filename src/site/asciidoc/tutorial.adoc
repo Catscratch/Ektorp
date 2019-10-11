@@ -1,0 +1,438 @@
+= Relaxed Java Persistence with Ektorp and CouchDB
+Henrik Lundgren <carl.henrik.lundgren@gmail.com>
+v2.0, 2019-10-11
+:doctype: book
+:sectnums:
+:toc: left
+:icons: font
+:experimental:
+
+== Introduction
+
+This document gives a brief overview on how to develop a basic blog application using CouchDB and Ektorp for persistence and Spring MVC 3 for the web layer. 
+
+=== Functionality
+
+The Relaxed Blog sample web application is pretty basic, it has the following features: 
+
+* Create blog posts
+* View a list of all blog posts
+* Create a comment for a blog post
+
+=== Prerequisite Software
+
+You need to have the following software installed on your system in order to run the sample application. 
+
+* https://github.com/downloads/helun/Ektorp/org.ektorp.sample-1.8-project.zip[org.ektorp.sample-1.8-project.zip ]
+* CouchDB installed and running.
+* Java SDK 1.8
+* Maven 3
+
+=== Launching
+
+Download the Relaxed Blog sample project and unpack the project somewhere nice. 
+
+Make sure you have CouchDB running locally.
+If you want to specify couchdb connection parameters it can be done in the file /src/main/resources/couchdb.properties in the sample project. 
+
+From the project's root, start the application by the following command: 
+
+[source]
+----
+mvn jetty:run
+----
+
+Point your browser at http://localhost:8080/blog/posts/ and you should find the first page of the Relaxed Blog application. 
+
+== The Structure of the Application
+
+=== Object Model
+
+This application has two "domain" classes:
+
+* _org.ektorp.sample.BlogPost_
+* _org.ektorp.sample.Comment_
+
+For convenience, they both extend _org.ektorp.support.CouchDbDocument_ (this is however not an requirement). 
+
+Both classes are classic Java Beans with good old getters and setters: 
+
+[source,java]
+----
+package org.ektorp.sample;
+
+import java.util.*;
+
+import org.ektorp.support.*;
+import org.joda.time.*;
+
+public class BlogPost extends CouchDbDocument {
+
+private static final long serialVersionUID = 1L;
+/**
+* @TypeDiscriminator is used to mark properties that makes this class's documents unique in
+the database.
+*/
+@TypeDiscriminator
+private String title;
+
+private String body;
+
+private List<String> tags;
+
+private DateTime dateCreated;
+
+/**
+* @DocumentReferences is used to refer to other documents in the database, in this case
+comments.
+*/
+@DocumentReferences(fetch = FetchType.LAZY, descendingSortOrder = true, orderBy =
+  "dateCreated", backReference = "blogPostId")
+  private Set<Comment> comments;
+
+  public DateTime getDateCreated() {
+    return dateCreated;
+  }
+
+  public void setDateCreated(DateTime dateCreated) {
+    this.dateCreated = dateCreated;
+  }
+
+  public String getTitle() {
+    return title;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
+  }
+
+  public String getBody() {
+    return body;
+  }
+
+  public void setBody(String body) {
+    this.body = body;
+  }
+
+  public List<String> getTags() {
+    return tags;
+  }
+
+  public void setTags(List<String> tags) {
+    this.tags = tags;
+  }
+}
+
+package org.ektorp.sample;
+
+import org.ektorp.support.*;
+import org.joda.time.*;
+
+public class Comment extends CouchDbDocument {
+
+  private static final long serialVersionUID = 1L;
+
+  private String blogPostId;
+  private String comment;
+  private DateTime dateCreated;
+  private String email;
+
+  public String getBlogPostId() {
+    return blogPostId;
+  }
+
+  public void setBlogPostId(String blogPostId) {
+    this.blogPostId = blogPostId;
+  }
+
+  public String getComment() {
+    return comment;
+  }
+
+  public void setComment(String comment) {
+    this.comment = comment;
+  }
+
+  public DateTime getDateCreated() {
+    return dateCreated;
+  }
+
+  public void setDateCreated(DateTime dateCreated) {
+    this.dateCreated = dateCreated;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String username) {
+    this.email = username;
+  }
+
+}
+----
+
+=== Modeling for Concurrency
+
+The straight forward solution to modeling blog post comments is to model the comments as a list embedded in the blog post document.
+Although this is almost always preferable, this model would in this case cause update congestion in the blog post document if many users post comments concurrently. 
+
+We choose instead to model comments as separate documents next to blog post documents.
+The relationship between BlogPost and Comment is maintained through the blogPostId field in the Comment class.
+The comments field in BlogPost is annotated with @DocumentReferences which enables Ektorp to load related comments to a blog post transparently and lazily. 
+
+Keeping each comment in its own document is a more efficient solution from a concurrency point of view is to as no update conflicts will occur. 
+
+What is the most appropriate model differs from case to case.
+In general when the parent object and its children has a more uniform update cycle, it is best to embed the list contents in the parent document / object. 
+
+=== Repositories
+
+All interactions with the database are encapsulated within repositories.
+A repository is typically responsible for a particlar domain class. 
+
+his application has two repositories, one for each domain class: 
+
+* _org.ektorp.sample.BlogPostRepository_
+* _org.ektorp.sample.CommentRepository_
+
+
+==== The BlogPostRepository
+
+This repository obviously handles blog posts.
+
+[source,java]
+----
+package org.ektorp.sample;
+
+import java.util.*;
+
+import org.ektorp.*;
+import org.ektorp.support.*;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.*;
+
+@Component
+public class BlogPostRepository extends CouchDbRepositorySupport<BlogPost> {
+
+  @Autowired
+  public BlogPostRepository(@Qualifier("blogPostDatabase") CouchDbConnector db) {
+    super(BlogPost.class, db);
+    initStandardDesignDocument();
+  }
+
+  @GenerateView @Override
+  public List<BlogPost> getAll() {
+    ViewQuery q = createQuery("all").descending(true);
+    return db.queryView(q, BlogPost.class);
+  }
+
+  @GenerateView
+  public List<BlogPost> findByTag(String tag) {
+    return queryView("by_tag", tag);
+  }
+
+}
+----
+
+View definitions can be embedded within repositories through the @View annotation. 
+
+===== Listing all Blog Posts
+
+The support class _CouchDbRepositorySupport_ provides a getAll() method out of the box.
+It calls the _all_ view that has to be defined in the database and returns all documents handled by this repository.
+In this case the _all_ view can be automatically generated by Ektorp as the BlogPost class has defined a field with a @TypeDiscriminator annotation that gives Ektorp enough information so that the _all_ view can be generated. 
+
+As we want the latest blog post to appear first, we have to override the default getAll() method and specify descending sort order. 
+
+The "all" view is defined in the @View annotation declared in the repository class above.
+In order for the view to be sorted by date, dateCreated is emitted as key. 
+
+If you are new to CouchDB and Views you can read more http://guide.couchdb.org/editions/1/en/views.html[here]. 
+
+===== The @GenerateView annotation
+
+The findByTag method is not used in the sample application, but it is shown here as an example on how the @GenerateView annotation us used. 
+
+Finder methods annotated with @GenerateView will have their view definitions automatically created. 
+
+===== The Constructor
+
+The CouchDbConnector is autowired in the constructor by Spring framework.
+As new connectors might be added to the applications later, a specific connector is specified through the @Qualifier("blogPostDatabase") annotation. 
+
+The constructor in the super class has to be called in order to specifiy this repository's handled type (BlogPost.class) and to provide the CouchDbConnector reference to the underlying support code. 
+
+The constructor then calls the _initStandardDesignDocument()_ method in order for the _@View_ and _@GenerateView_ definitions to be generated and inserted into the database.
+Existing view definitions are not overwritten so if you change your definitions, you will have to delete the existing view (or design document) in the database. 
+
+==== The CommentRepository
+
+There isn't much to say about the CommentRepository besides that the view used in findByBlogPostId uses the @GenerateView annotation in order to generate the view that describes the Comment's relationship with the BlogPost. 
+
+
+[source,java]
+----
+package org.ektorp.sample;
+
+import java.util.*;
+
+import org.ektorp.*;
+import org.ektorp.support.*;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.*;
+
+@Component
+@View( name="all", map = "function(doc) { if (doc.blogPostId) { emit(null, doc) } }")
+public class CommentRepository extends CouchDbRepositorySupport<Comment> {
+
+  @Autowired
+  public CommentRepository(@Qualifier("blogPostDatabase") CouchDbConnector db) {
+    super(Comment.class, db);
+    initStandardDesignDocument();
+  }
+
+  @GenerateView
+  public List<Comment> findByBlogPostId(String blogPostId) {
+    return queryView("by_blogPostId", blogPostId);
+  }
+
+}
+----
+
+==== The Controller
+
+The BlogController handles all use cases in this application.
+As this is a very simple application there is no service layer and the controller uses the repositories directly. 
+
+Authorization and such is left as an exercise for you, the reader. 
+
+[source,java]
+----
+package org.ektorp.sample;
+
+import org.joda.time.*;
+  import org.springframework.beans.factory.annotation.*;
+  import org.springframework.stereotype.*;
+  import org.springframework.ui.*;
+  import org.springframework.web.bind.annotation.*;
+  import org.springframework.web.servlet.*;
+
+@Controller
+public class BlogController {
+
+  @Autowired
+  BlogPostRepository blogPostRepo;
+  @Autowired
+  CommentRepository commentRepo;
+
+  @RequestMapping( value = "/posts/", method = RequestMethod.GET)
+  public String viewAll(Model m) {
+    m.addAttribute(blogPostRepo.getAll());
+    return "/posts/index";
+  }
+
+  @RequestMapping( value = "/posts/new", method = RequestMethod.GET)
+  public ModelAndView newPost() {
+    return new ModelAndView("/posts/edit", "command", new BlogPost());
+  }
+
+  @RequestMapping( value = "/posts/", method = RequestMethod.POST)
+  public String submitPost(@ModelAttribute("command") BlogPost post) {
+    if (post.isNew()) {
+      post.setId(createId(post.getTitle()));
+      post.setDateCreated(new DateTime());
+    }
+    blogPostRepo.update(post);
+    return "redirect:/blog/posts/";
+  }
+
+  private String createId(String title) {
+    return title.replaceAll("\\s", "-");
+  }
+
+  @RequestMapping("/posts/{postId}")
+  public ModelAndView viewPost(@PathVariable("postId") String postId) {
+    ModelAndView model = new ModelAndView("/posts/view");
+    model.addObject(blogPostRepo.get(postId));
+    model.addObject(commentRepo.findByBlogPostId(postId));
+    return model;
+  }
+
+  @RequestMapping( value = "/posts/{postId}/edit", method = RequestMethod.GET)
+  public BlogPost editPost(@PathVariable("postId") String postId) {
+    return blogPostRepo.get(postId);
+  }
+
+  @RequestMapping( value = "/posts/{postId}/comment", method = RequestMethod.POST)
+  public String addComment(@PathVariable("postId") String postId, @ModelAttribute("command")
+    Comment comment) {
+    comment.setBlogPostId(postId);
+    comment.setDateCreated(new DateTime());
+    commentRepo.add(comment);
+    return "redirect:/blog/posts/" + comment.getBlogPostId();
+  }
+}
+----
+
+==== The Spring Application Context
+
+Almost all components in this application are configured through annotations.
+The few things that need to be configured in xml are the _StdCouchDbConnector_ and its supporting classes _StdCouchDbInstance_ and __HttpClient__. 
+
+The HttpClient is created with the help of _org.ektorp.spring.HttpClientFactoryBean_ that read configuration parameters from _couchdb.properties_ defined below. 
+
+Note that in a bigger application, you would want _StdCouchDbInstance_ to be a standalone bean so that it can be referenced by multiple __CouchDbConnectors__. 
+
+[source,xml]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+          <beans xmlns="http://www.springframework.org/schema/beans"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:context="http://www.springframework.org/schema/context"
+                  xmlns:util="http://www.springframework.org/schema/util"
+                  xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                          http://www.springframework.org/schema/util
+          http://www.springframework.org/schema/util/spring-util-3.0.xsd
+                          http://www.springframework.org/schema/context
+          http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+                 
+                  <!-- Scans within the base package of the application for @Components to
+          configure as beans -->
+                  <context:component-scan base-package="org.ektorp.sample" />
+                 
+                  <util:properties id="couchdbProperties"
+          location="classpath:/couchdb.properties"/>
+
+                  <bean id="blogPostDatabase" class="org.ektorp.impl.StdCouchDbConnector">
+                          <constructor-arg value="blogPosts" />
+                          <constructor-arg>
+                                  <bean id="couchDbInstance"
+          class="org.ektorp.impl.StdCouchDbInstance">
+                                          <constructor-arg>
+                                                  <bean
+          class="org.ektorp.spring.HttpClientFactoryBean" />
+                                          </constructor-arg>
+                                  </bean>
+                          </constructor-arg>
+                  </bean>
+                 
+          </beans>
+----
+
+==== In the Database
+
+If you successfully started the application, your CouchDb instance will contain a new database called blogposts.
+The new database should contain one design documents: _\_design/BlogPost_ the contains the auto generated views . 
+
+If you made any posts or comments you should find them here as well. 
+
+==== Conclusion
+
+Now we have covered what a simple application with Ektorp as persistence layer looks like and I hope you will find Ektorp useful for you. 
+
+==== Further Reading
+
+* http://blog.couch.io/post/595079631/document-modelling-rules-of-thumb[ Document Modelling Rules of Thumb ]
+* https://helun.github.io/Ektorp/reference_documentation.html[Ektorp Reference Documentation ]
