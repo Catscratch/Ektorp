@@ -1,8 +1,0 @@
-title: Ektorp
-description: Java API for CouchDB
-google_analytics: UA-504305-5
-show_downloads: true
-theme: jekyll-theme-minimal
-
-gems:
-  - jekyll-mentions
