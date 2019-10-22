@@ -8,7 +8,7 @@ import java.util.Map;
 public class Expression implements Serializable {
 
     private String left;
-    private Object right;
+    private Serializable right;
 
     public String getLeft() {
         return left;
@@ -18,17 +18,17 @@ public class Expression implements Serializable {
         this.left = left;
     }
 
-    public Object getRight() {
+    public Serializable getRight() {
         return right;
     }
 
-    public void setRight(Object right) {
+    public void setRight(Serializable right) {
         this.right = right;
     }
 
     @JsonValue
-    public Map<String, Object> toJson() {
-        Map<String, Object> result = new HashMap<>();
+    public Map<String, Serializable> toJson() {
+        Map<String, Serializable> result = new HashMap<>();
         result.put(getLeft(), getRight());
         return result;
     }

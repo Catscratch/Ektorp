@@ -46,7 +46,7 @@ public class Operator {
             this.value = value;
         }
 
-        public SimpleCompareOperator(String fieldName, String comparator, Object value) {
+        public SimpleCompareOperator(String fieldName, String comparator, Serializable value) {
             this.setFieldName(fieldName);
             Expression exp = new Expression();
             exp.setLeft(comparator);
@@ -59,7 +59,7 @@ public class Operator {
 
         private static final String COMPARATOR = "$eq";
 
-        public EqualOperator(String fieldName, Object value) {
+        public EqualOperator(String fieldName, Serializable value) {
             super(fieldName, COMPARATOR, value);
         }
     }

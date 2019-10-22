@@ -1,6 +1,7 @@
 package org.ektorp.mongoquery;
 
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +30,7 @@ public class MangoQueryBuilder {
 
                 expressions.add(e);
             }
-            expression.setRight(expressions);
+            expression.setRight((Serializable) expressions);
         } else if (operators.length == 1){
             expression = new Expression();
             expression.setLeft(operators[0].getFieldName());
