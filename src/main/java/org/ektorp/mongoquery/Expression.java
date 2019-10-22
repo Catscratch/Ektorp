@@ -29,11 +29,7 @@ public class Expression implements Serializable {
     @JsonValue
     public Map<String, Object> toJson() {
         Map<String, Object> result = new HashMap<>();
-        if (getRight() instanceof Expression) {
-            result.put(getLeft(), ((Expression) getRight()).toJson());
-        } else {
-            result.put(getLeft(), getRight());
-        }
+        result.put(getLeft(), getRight());
         return result;
     }
 }

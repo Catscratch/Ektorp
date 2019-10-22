@@ -3,7 +3,6 @@ package org.ektorp.http;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import org.apache.http.entity.AbstractHttpEntity;
 
