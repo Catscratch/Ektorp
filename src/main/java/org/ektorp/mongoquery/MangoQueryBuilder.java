@@ -7,18 +7,17 @@ import java.util.Map;
 
 public class MangoQueryBuilder {
 
-    private Expression expression;
 
-    public MangoQueryBuilder or(Operator... operators) {
+    public Expression or(Operator... operators) {
         return combinationOperators("$or", operators);
     }
 
-    public MangoQueryBuilder and(Operator... operators) {
+    public Expression and(Operator... operators) {
         return combinationOperators("$and", operators);
     }
 
-    private MangoQueryBuilder combinationOperators(String oper, Operator... operators) {
-        expression = new Expression();
+    private Expression combinationOperators(String oper, Operator... operators) {
+        Expression expression = new Expression();
         expression.setLeft(oper);
 
         if (operators.length > 1) {
@@ -32,20 +31,12 @@ public class MangoQueryBuilder {
             }
             expression.setRight(expressions);
         } else if (operators.length == 1){
-            Expression e = new Expression();
-            e.setLeft(operators[0].getFieldName());
-            e.setRight(operators[0].getExpression());
-
-            expression = e;
+            expression = new Expression();
+            expression.setLeft(operators[0].getFieldName());
+            expression.setRight(operators[0].getExpression());
         }
 
-        return this;
+        return expression;
     }
-
-    @JsonValue
-    public Map<String, Object> toJson() {
-        return this.expression.toJson();
-    }
-
 
 }

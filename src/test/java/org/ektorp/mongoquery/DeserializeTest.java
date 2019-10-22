@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class FormatTest {
+public class DeserializeTest {
 
     @Test
     public void testFormat() throws Exception {
